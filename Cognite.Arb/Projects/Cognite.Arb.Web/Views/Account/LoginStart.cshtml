@@ -1,0 +1,47 @@
+﻿@using Cognite.Arb.Web.Models
+@model Cognite.Arb.Web.Models.Account.LoginStartViewModel
+
+@{
+    ViewBag.Title = "Log in step one";
+}
+
+<div class="large-4 large-centered columns">
+    <!-- Begin Body Content -->
+    @using (Html.BeginForm("LoginStart", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "custom", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="box login">
+            <h4>Login</h4>
+            <div class="row">
+                @Html.ValidationSummary("", new { @class = "validation-errors" })
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    @Html.LabelFor(m => m.Email, new { @class = "inline", @for = "email" })
+                    @Html.TextBoxFor(m => m.Email, new { @type = "email", @placeholder = "Type your email address...", @tabindex = 1, autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    @Html.LabelFor(m => m.Password, new { @class = "inline", @for = "password" })
+                    @Html.PasswordFor(m => m.Password, new { @placeholder = "Type your password...", @tabindex = 2 })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <input type="submit" value="Log in" class="button small radius full-width" tabindex="3" />
+                </div>
+                <div class="large-12 content">
+                    @Html.ActionLink("Forgot password?", "ForgotPassword", null, new { @tabindex = 4 })
+                </div>
+            </div>
+        </div>
+    }
+    <!-- End Body Content -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

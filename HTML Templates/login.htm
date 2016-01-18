@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>ARB // Portal Login</title>
+	<link rel="stylesheet" href="css/app.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="bower_components/modernizr/modernizr.js"></script>
+</head>
+
+<body>
+	<!--Begin Content-->
+	<!-- Begin Navigation -->
+	<div class="contain-to-grid">
+		<nav class="top-bar">
+			<ul class="title-area left">
+				<li class="name">
+      		<h1><a id="current-user"></a></h1>
+    		</li>									
+				<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+			<section class="top-bar-section">
+				<ul class="right">										
+					<li class="active"><a href="login.htm" title="Login">Login</a></li>									
+				</ul>
+			</section>
+		</nav>
+	</div>
+	<!-- End Navigation -->
+	<!-- Begin Header -->
+	<div class="contain-to-grid header">
+		<div class="row">
+			<div class="large-3 columns">
+				
+			</div>
+			<div class="large-6 columns">
+			</div>
+			<div class="large-3 columns">
+				<h1 class="logo">
+					<img src="images/arb-logo.png" title="Architects Registration Board">
+				</h1>
+			</div>
+		</div>
+	</div>
+	<!-- End Header -->
+	<!-- Body -->	
+	<div class="row first">
+		<div class="large-4 large-centered columns">
+			<!-- Begin Body Content -->	
+			<!-- Begin Login -->															
+			<form class="custom">											
+				<div class="box login">
+					<h4>Login</h4>
+					<div class="row">
+						<div class="large-12 columns">
+							<label for="email" class="inline">Email</label>
+							<input name="email" type="email" placeholder="Type your email address...">
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label for="password" class="inline">Password</label>
+							<input name="password" type="password" placeholder="Type your password...">
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<label for="password" class="inline">Secure Phrase</label>
+							<div class="box center">
+								<p class="secure-title">Secure Phrase</p>
+								<p class="secure">Enter the <strong>6th</strong> and <strong>9th</strong> charaters from your Secure Phrase below.</p>
+								<div class="row">
+									<div class="large-5 columns">
+										<input name="password1" type="password" placeholder="6th">
+									</div>
+									<div class="large-2 columns center">								
+										<p class="secure-divider">/</p> 
+									</div>
+									<div class="large-5 columns">
+										<input name="password2" type="password" placeholder="9th">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<a href="complaint-list.htm" class="button small radius full-width">Login</a>
+						</div>
+					</div>
+				</div>
+			</form>				
+			<!-- End Body Content -->
+		</div>
+	</div>
+	<!-- End Body -->
+	<!-- Footer -->
+	<footer>
+		<div class="row">
+			<div class="large-12 columns">
+			<hr>
+				<div class="row">
+					<div class="large-6 columns">
+						<p>&copy; 2014 Architects Registration Board</p>
+					</div>
+					<div class="large-6 columns">
+						<ul class="inline-list right">
+							<li><a href="">Privacy &amp; Terms</a></li>
+							<li><a href="">Help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+	<!--End Content-->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/foundation/js/foundation.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>

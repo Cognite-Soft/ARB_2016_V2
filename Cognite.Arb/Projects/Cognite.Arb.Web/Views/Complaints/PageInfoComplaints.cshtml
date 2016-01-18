@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Cognite.Arb.Web.Models.Additional.PageInfoComplaintOption>
+
+@{
+    var id = 0;
+    var idObj = ViewContext.RouteData.Values["id"];
+    if (idObj != null)
+    { 
+        id = Convert.ToInt32(idObj.ToString());
+    }
+}
+
+<select id="switch-case">
+    @foreach (var option in Model)
+    {
+        <option value="@option.Value" @if(option.Id.Equals(id)) { @Html.Raw("selected=\"selected\"") }>@option.Title</option>
+    }
+</select>

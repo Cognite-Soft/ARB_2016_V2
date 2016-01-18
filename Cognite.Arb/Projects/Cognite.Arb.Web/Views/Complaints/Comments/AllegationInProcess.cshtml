@@ -1,0 +1,56 @@
+﻿@using System
+@model Cognite.Arb.Web.Models.Complaints.AllegationWithMyComment
+
+
+<li data-allegation-id="@Model.Id">
+    @Model.Text
+    @if (Model.Documents.Count > 0)
+    {
+        <a href="@Url.Action("Download", "Documents", new { id = Model.Documents[0].Id })" title="View Document (@Model.Documents[0].Name)" target="_blank"><i class="fa fa-file-text fa-fw"></i></a>
+    }
+    @if (User.IsInRole("PanelMember"))
+    {
+        if (String.IsNullOrEmpty(Model.Comment.Text))
+        {
+            <div class="allegation-controls">
+                @Html.TextAreaFor(m => Model.Comment.Text, new { id = Model.Id, @class = "comment-allegation-text", rows = "1", placeholder = "Enter your comments" })
+                <input type="button" name="AddAllegationCommentYes" class="button tiny yes comment-allegation" title="Yes" value="Yes" />
+                <input type="button" name="AddAllegationCommentNo" class="button tiny no comment-allegation" title="No" value="No" />
+                <a class="button tiny additional" data-show="@Model.Id" title="More Info">Advice</a>
+                <div id="@Model.Id" class="hide">
+                    @Html.TextAreaFor(m => Model.Comment.AdditionalText, new { @class = "comment-allegation-text-add", rows = "1", placeholder = "Enter your additional comments" })
+                    <input type="button" name="AddAllegationCommentAdvice" class="button tiny yes advice comment-allegation" title="Send" value="Send" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="view">
+                <div class="box mini feed-sub">
+                    <div class="row" id="@Model.Comment.Id">
+                        <div class="large-2 columns center"><img src="/Content/Images/user.gif"><br><small>@User.Identity.Name</small></div>
+                        <div class="large-10 columns">
+                            <p>@Model.Comment.Text</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @if (Model.OtherComments.Count > 0)
+    {
+        <div class="view">
+            <div class="box mini feed-sub">
+                @foreach (var comment in Model.OtherComments)
+                {
+                    <div class="row" id="@comment.Id">
+                        <div class="large-2 columns center"><img src="/Content/Images/user.gif"><br><small>@comment.User.FullName</small></div>
+                        <div class="large-10 columns">
+                            <p>@comment.Text</p>
+                        </div>
+                    </div>
+                }
+            </div>
+    </div>
+    }
+</li>

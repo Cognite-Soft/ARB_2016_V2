@@ -1,0 +1,53 @@
+﻿@using Cognite.Arb.Web.Models.Additional
+@model Cognite.Arb.Web.Models.Complaints.ComplaintDetailsViewModel
+
+@{
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+}
+
+@section Pageinfo {
+    @Html.Raw(ViewBag.PageDescription)
+    @Html.Partial("PageInfoComplaints", (List<PageInfoComplaintOption>)ViewBag.CasesOptions)
+}
+
+<div class="large-12 columns last">
+    @Html.HiddenFor(m => Model.Id, new { @class = "model-id" })
+    <dl class="tabs">
+        <dd class="@if (actionName.Equals("Overview")) { @Html.Raw("active") }">
+            @Html.ActionLink("Overview", "Overview", new { id = Model.Id })
+        </dd>
+        <dd class="@if (actionName.Equals("ActivityFeed")) { @Html.Raw("active") }">
+            @Html.ActionLink("Activity Feed", "ActivityFeed", new { id = Model.Id })
+        </dd>
+        <dd class="@if (actionName.Equals("Comments")) { @Html.Raw("active") }">
+            @Html.ActionLink("Comments", "Comments", new { id = Model.Id })
+        </dd>
+        <dd class="@if (actionName.Equals("Discussions")) { @Html.Raw("active") }">
+            @Html.ActionLink("Discussions", "Discussions", new { id = Model.Id })
+        </dd>       
+                <dd >
+                    <a title="Print Screen" onclick="printPage()">Print Screen</a>
+                </dd>            
+    </dl>
+    @if (actionName.Equals("Discussions") && User.IsInRole("CaseWorker,PanelMember,Inquirer,Solicitor,ThirdPartyReviewer")) 
+    { 
+        <a class="button tiny right new-post additional" data-show="newpost">New post</a> 
+    }
+</div>
+
+@if (actionName.Equals("Overview"))     { @Html.Partial("Overview", Model.Overview) }
+@if (actionName.Equals("ActivityFeed")) { @Html.Partial("ActivityFeed/ActivityFeed", Model.ActivityFeed) }
+@if (actionName.Equals("Discussions"))  { @Html.Partial("Discussions/Discussions", Model.Discussions) }
+@if (actionName.Equals("Comments"))
+{ 
+    @Html.Partial("Comments/Comments", Model.Comments)
+    <ol class="joyride-list" data-joyride>
+        <li data-id="readme" data-text="OK!" data-options="tip_location:top;">
+            <p><strong>Please read all the documents first before commenting!</strong></p>
+        </li>
+    </ol>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/complaintview")
+}

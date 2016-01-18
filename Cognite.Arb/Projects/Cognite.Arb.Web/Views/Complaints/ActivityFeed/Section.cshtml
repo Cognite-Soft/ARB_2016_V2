@@ -1,0 +1,14 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.ComplaintActivityFeedSectionViewModel
+
+@if (ViewBag.StartDate != null) 
+{
+    <div data-alert class="alert-box @Model.Header.Class">
+        @Model.Header.Title
+        <a href="#" class="close">&times;</a>
+    </div>
+}
+
+@foreach (var item in Model.Items)
+{
+    @Html.Partial("ActivityFeed/Item", item)
+}

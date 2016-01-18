@@ -1,0 +1,52 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.ComplaintsFullListViewModel
+
+@{
+    ViewBag.Title = "Complaints";
+    ViewBag.PageInfo = "Complaints List";
+}
+
+@section Pageinfo {
+    @Html.Raw(ViewBag.PageInfo)
+}
+
+<div class="large-12 columns">    
+    <!-- Begin Body Content -->
+    @using (Html.BeginForm("Index", "Complaints", FormMethod.Post, new { @class = "custom", role = "form" }))
+    { 
+        @Html.AntiForgeryToken()
+        <dl class="tabs" data-tab>
+            <dd class="active">
+                <a href="#active">Active</a>
+            </dd>
+            <dd>
+                <a href="#closed">Closed</a>
+            </dd>
+            <dd>
+                <a href="#rejected">Rejected</a>
+            </dd>
+        </dl>
+        <br>
+        <div class="tabs-content first">
+            <div class="content">
+                @Html.ValidationSummary()
+            </div>
+            <div class="content active" id="active">
+                <!-- Tab Content -->
+                @Html.Partial("ComplaintsList", Model.Active)
+            </div>
+            <div class="content" id="closed">            
+                <!-- Tab Content -->
+                @Html.Partial("ComplaintsList", Model.Closed)
+            </div>
+            <div class="content" id="rejected">
+                <!-- Tab Content -->
+                @Html.Partial("ComplaintsList", Model.Rejected)
+            </div>
+        </div>
+    }
+    <!-- End Body Content -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/complaintslist")
+}

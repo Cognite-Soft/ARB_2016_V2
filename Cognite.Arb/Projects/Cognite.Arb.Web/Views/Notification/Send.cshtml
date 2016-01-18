@@ -1,0 +1,40 @@
+﻿@model Cognite.Arb.Web.Models.Notifications.SendNotificationModel
+
+@{
+    ViewBag.Title = "Send notification";
+}
+
+<div class="large-12 columns">
+    <div class="content" style="overflow: hidden;">
+        @using (Html.BeginForm("Send", "Notification", FormMethod.Post, new { @class = "custom", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="">
+                @Html.ValidationSummary("", new { @class = "validation-errors" })
+                @Html.HiddenFor(m => m.UserId)                               
+            </div>
+            <div class="">
+                <div class="large-12 columns" style="margin-bottom: 15px;">
+                    <h4>Notification message type</h4>
+                    @foreach (var value in Enum.GetValues(Model.Type.GetType()))
+                    {
+                        @Html.RadioButtonFor(m => m.Type, value, new { tabindex = 1 })
+                        @Html.Label(value.ToString())
+                    }
+                    @Html.ValidationMessageFor(m => m.Type, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="">
+                <div class="large-12 columns">
+                    @Html.TextAreaFor(m => m.Message, new { @placeholder = "Type your message...", rows = 4, tabindex = 2, autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.Message, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="">
+                <div class="large-12 columns">
+                    <input type="submit" class="button small radius yes" value="Send" tabindex="3" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

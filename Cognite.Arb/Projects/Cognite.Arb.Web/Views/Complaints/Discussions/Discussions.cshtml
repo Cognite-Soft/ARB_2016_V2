@@ -1,0 +1,33 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.ComplaintDiscussionsViewModel
+
+@{
+    var complaintId = ViewContext.RouteData.Values["id"].ToString();
+}
+
+<div class="large-12 columns">    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "validation-errors" })
+    <!-- Begin feed -->
+    @if (Model.Replies.Count > 0)
+    {
+        foreach (var reply in Model.Replies)
+        {
+            @Html.Partial("Discussions/Reply", reply)
+        }
+    }
+    else
+    {
+        <div class="box feed-sub">
+            <div class="row">
+                Discussion is not started yet.
+            </div>
+        </div>
+    }
+    <!-- end feed -->
+    <div id="newpost" class="large-12 hide">
+        <textarea class="new-post-area" rows="3" placeholder="Enter your reply"></textarea>
+        <a class="button tiny yes new-post-button" data-complaint-id="@complaintId" title="Send">Send</a>
+    </div>
+
+    
+</div>

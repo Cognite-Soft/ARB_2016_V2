@@ -1,0 +1,49 @@
+﻿@using Cognite.Arb.Web.Models.Complaints
+
+@model Cognite.Arb.Web.Models.Complaints.ComplaintCommentsPreliminaryCommentsViewModel
+
+<div class="content demo-stage-1">
+    <div class="row first comments-header">
+        <div class="large-9 columns">
+            <h4>1 : Preliminary Comments</h4>
+        </div>
+        <div class="large-3 columns">
+            @if (Model.State == ComplaintCommentsStepState.Complete)
+            {
+                <span class="label large right due success">Complete</span>
+            }
+            else
+            {
+                if (Model.DueDays == 0)
+                {
+                    <span class="label alert large right due-countdown">Due today!</span>
+                }
+                else
+                {
+                    <span class="label alert large right due-countdown">Due in @Model.DueDays days!</span>
+                }
+                <span class="label large right due">@Model.DueDateText</span>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <ol>
+                @if (Model.State == ComplaintCommentsStepState.Complete || User.IsInRole("CaseWorker"))
+                {
+                    foreach (var allegation in Model.AllegationsWithComments)
+                    {
+                        @Html.Partial("Comments/Allegation", allegation)
+                    }
+                }
+                else
+                {
+                    foreach (var allegation in Model.AllegationsWithMyComments)
+                    {
+                        @Html.Partial("Comments/AllegationInProcess", allegation)
+                    }
+                }
+            </ol>
+        </div>
+    </div>
+</div>

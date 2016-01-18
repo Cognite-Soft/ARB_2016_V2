@@ -1,0 +1,10 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.ComplaintListItemViewModel
+
+<a href="@Url.Action("Overview", new { id = Model.Id })">
+    <div class="row">
+        <div class="large-3 columns">@Model.CaseId</div>        
+        <div class="large-3 columns">@Model.Architect</div>
+        <div class="large-3 columns">@Model.Complainant</div>
+        <div class="large-3 columns">@Model.RegistrationId</div>
+    </div>
+</a>

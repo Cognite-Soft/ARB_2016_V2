@@ -1,0 +1,41 @@
+﻿@model Cognite.Arb.Web.Models.Schedule.ScheduleViewModel
+
+@{
+    ViewBag.Title = "Schedule Editor";
+    ViewBag.PageInfo = "Schedule Editor";
+}
+
+@section Pageinfo {
+    @Html.Raw(ViewBag.PageInfo)
+}
+
+<div class="large-12 columns">
+    <!-- Begin Body Content -->
+    <div class="row">
+        <div class="large-12 columns">
+            @using (Ajax.BeginForm("Update", "Schedule", null, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "custom", role = "form" }))
+            {
+                <div class="content hide">
+                    @Html.AntiForgeryToken()
+                </div>
+                <div class="content grid">
+                    @Html.ValidationSummary("", new { @class = "validation-errors" })
+                    @foreach (var row in Model.ScheduleRows)
+                    {
+                        <div class="row" data-index="@row.Index">
+                            @Html.Partial("Row", row)
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+    <!-- End Body Content -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/schedule")
+    <script type="text/javascript">
+        var scheduleAvailableUsers = @Html.Raw(ViewBag.PanelMembersToComplete);
+    </script>
+}

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FF88BFF3-5448-49C0-880F-1EAFF1CF67DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cognite.Arb.Server.Contract</RootNamespace>
+    <AssemblyName>Cognite.Arb.Server.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'buildserver|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\buildserver\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'release|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>bin\release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityFeed.cs" />
+    <Compile Include="AuthenticationResult.cs" />
+    <Compile Include="Cases\Allegation.cs" />
+    <Compile Include="Cases\AllegationCollection.cs" />
+    <Compile Include="Cases\AllegationComment.cs" />
+    <Compile Include="Cases\AllegationsUpdate.cs" />
+    <Compile Include="Cases\DateAndDetailUpdate.cs" />
+    <Compile Include="Cases\FinalDecisionType.cs" />
+    <Compile Include="Cases\InitialCaseDataUpdate.cs" />
+    <Compile Include="Cases\MyAllegationComment.cs" />
+    <Compile Include="Cases\AllegationCommentType.cs" />
+    <Compile Include="Cases\ArchitectContact.cs" />
+    <Compile Include="Cases\Case.cs" />
+    <Compile Include="CaseDoesNotExistException.cs" />
+    <Compile Include="CaseHeader.cs" />
+    <Compile Include="CaseStatus.cs" />
+    <Compile Include="Cases\CaseContacts.cs" />
+    <Compile Include="Cases\CaseState.cs" />
+    <Compile Include="Cases\CaseStateKind.cs" />
+    <Compile Include="Cases\CasePanelMembers.cs" />
+    <Compile Include="Cases\Contact.cs" />
+    <Compile Include="Cases\DateAndDetail.cs" />
+    <Compile Include="Cases\Document.cs" />
+    <Compile Include="Cases\InitialCaseData.cs" />
+    <Compile Include="Cases\NewAllegation.cs" />
+    <Compile Include="Cases\NewDateAndDetail.cs" />
+    <Compile Include="Cases\NewDocument.cs" />
+    <Compile Include="Cases\PanelMembersUpdate.cs" />
+    <Compile Include="Cases\NewPartiesComment.cs" />
+    <Compile Include="Cases\Question.cs" />
+    <Compile Include="Cases\ReadonlyCaseData.cs" />
+    <Compile Include="Cases\CaseUpdate.cs" />
+    <Compile Include="Cases\ComplaintComments.cs" />
+    <Compile Include="CreateCaseInfo.cs" />
+    <Compile Include="CreateNotificationAll.cs" />
+    <Compile Include="CreateNotificationBase.cs" />
+    <Compile Include="CreateNotification.cs" />
+    <Compile Include="CreatePostRequest.cs" />
+    <Compile Include="CreateReplyRequest.cs" />
+    <Compile Include="DuplicateUserException.cs" />
+    <Compile Include="FinalDecisionComment.cs" />
+    <Compile Include="InvalidResetTokenException.cs" />
+    <Compile Include="Notification.cs" />
+    <Compile Include="Post.cs" />
+    <Compile Include="ResetToken.cs" />
+    <Compile Include="Schedule.cs" />
+    <Compile Include="SecurityTokenNotFoundException.cs" />
+    <Compile Include="WeakSecurePhraseException.cs" />
+    <Compile Include="InvalidSecurePhraseAnswer.cs" />
+    <Compile Include="InvalidUserOrPasswordException.cs" />
+    <Compile Include="Login.cs" />
+    <Compile Include="NotAuthenticatedException.cs" />
+    <Compile Include="ForbiddenException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="SecurePhraseAnswer.cs" />
+    <Compile Include="SecurePhraseQuestion.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserDoesNotExistException.cs" />
+    <Compile Include="WeakPasswordException.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

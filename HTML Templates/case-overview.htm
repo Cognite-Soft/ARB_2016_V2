@@ -1,0 +1,260 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>ARB // Overview</title>
+	<link rel="stylesheet" href="css/app.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="bower_components/modernizr/modernizr.js"></script>
+</head>
+
+<body>
+	<!--Begin Content-->
+	<!-- Begin Navigation -->
+	<div class="contain-to-grid">
+		<nav class="top-bar">
+			<ul class="title-area left">
+				<li class="name">
+      		<h1><a id="current-user">Panel Member</a></h1>
+    		</li>					
+				<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+			<section class="top-bar-section">
+				<ul class="right">										
+					<li><a href="complaint-list.htm" title="Complaints">Complaints List</a></li>
+					<li class="active"><a href="case-overview.htm" title="Current Case">Current Case</a></li>					
+				</ul>
+			</section>
+		</nav>
+	</div>
+	<!-- End Navigation -->
+	<!-- Begin Header -->
+	<div class="contain-to-grid header">
+		<div class="row">
+			<div class="large-9 columns">
+				<h4 class="uni-logo">
+					Case Overview : <select id="switch-case">
+						<option selected>#156874968</option>
+						<option>#156874969</option>
+						<option>#156874970</option>
+					</select> 
+				</h4>
+			</div>
+			<div class="large-3 columns">
+				<h1 class="logo">
+					<img src="images/arb-logo.png" title="Architects Registration Board">
+				</h1>
+			</div>
+		</div>
+	</div>
+	<!-- End Header -->
+	<!-- Body -->	
+	<div class="row first">
+		<div class="large-12 columns">				
+			<dl class="tabs">
+			  <dd class="active"><a href="case-overview.htm">Overview</a></dd>
+			  <dd><a href="case-activity.htm">Activity Feed</a></dd>
+			  <dd><a href="case-comments.htm">Comments</a></dd>
+			  <dd><a href="case-discussions.htm">Discussions</a></dd>	  
+			</dl>
+		</div>
+	</div>
+	<div class="row first">
+		<div class="large-8 columns">
+			<div class="content">
+				<div class="row first">
+					<div class="large-6 columns">
+						<h4>Panel members</h4>
+						<div class="edit">
+							<input type="text" id="panel-1" placeholder="Panel members Name">
+							<input type="text" id="panel-2" placeholder="Panel members Name">
+							<input type="text" id="panel-3" placeholder="Panel members Name">
+						</div>
+						<div class="view">
+							<p>Tom</p>
+							<p>Sam</p>
+							<p>Jenny</p>
+						</div>
+					</div>
+					<div class="large-6 columns ar">
+						<h4>Case Start Date</h4>
+						<div class="edit">
+							<input type="date" id="start-date" placeholder="Start date">
+						</div>
+						<div class="view"> 
+							<span class="label large success">28/04/2014</span>
+						</div>
+						<h4>Comments due by</h4>
+						<div class="view"> 
+							<span class="label alert large">Due in 3 days!</span> <span class="label large">21/05/2014</span>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<h4>Background of complaint</h4>
+				<div class="edit">
+					<textarea id="background" rows="4" placeholder="Enter some background to the complaint"></textarea>
+				</div>
+				<div class="view">
+					<p>I have some soft spots in the basement joists and Simon installed added 4x4" posts to each side of the main support beam in the basement. The floors I realized have a load bearing wall, or at least I think I do, that doesn't line up with a joist or any support beam in the basement.</p>
+				</div>
+				<br>
+				<h4>Dates &amp; details of complaint</h4>
+				<div class="edit">
+					<input type="date" id="date-1" placeholder="enter a date">
+					<textarea id="detail-1" rows="1" placeholder="Enter some details"></textarea>
+					<a href="" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></a> 
+					<a href="" class="button tiny" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+				</div>
+				<div class="view">				
+					<p><strong>29/01/2010</strong> - Outlined an issue with  basment joists <a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i></a> </p>
+					<p><strong>05/05/2010</strong> - Lad bearing wall sagging <a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i></a></p>
+					<p><strong>09/05/2010</strong> - Simon denied blah</p>
+				</div>
+				<br>
+				<h4>Allegation's</h4>
+				<div class="edit">
+					<textarea id="allegation-1" rows="1" placeholder="Enter the allegation"></textarea>
+					<a href="" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+					<a href="" class="button tiny" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+				</div>
+				<div class="view">
+					<ol>
+						<li>I suspect Simon knew that this was a load bearing wall yet cut corners. <a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i></a>
+							<textarea id="allegation-1-comments" rows="1" placeholder="Enter your comments"></textarea>
+							<a href="" class="button tiny yes" title="Yes">Yes</a>
+							<a href="" class="button tiny no" title="No">No</a>
+							<a class="button tiny additional" data-show="additional-1" title="Advise">Advise</a>
+							<a class="button tiny additional" data-show="additional-1" title="More Info">More Info</a>
+							<div id="additional-1" class="hide">
+								<textarea id="allegation-1-additional-comments" rows="1" placeholder="Enter your additional comments"></textarea>
+								<a href="" id="allegation-1-additional-comments-send" class="button tiny yes" title="Send">Send</a>
+							</div>
+						</li>
+						<li>Materials were inadequate for the job highlighting his incompetency. <a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i></a>
+							<textarea id="allegation-2-comments" rows="1" placeholder="Enter your comments"></textarea>
+							<a href="" class="button tiny yes" title="Yes">Yes</a>
+							<a href="" class="button tiny no" title="No">No</a>
+							<a class="button tiny additional" data-show="additional-2" title="Advise">Advise</a>
+							<a class="button tiny additional" data-show="additional-2" title="More Info">More Info</a>
+							<div id="additional-2" class="hide">
+								<textarea id="allegation-1-additional-comments" rows="1" placeholder="Enter your additional comments"></textarea>
+								<a href="" id="allegation-1-additional-comments-send" class="button tiny yes" title="Send">Send</a>
+							</div>
+						</li>
+					</ol>
+				</div>
+				<br>
+				<h4>Issue raised with architect?</h4>
+				<div class="edit">
+					<input type="radio" name="raised" id="raised-yes" value="yes"><label for="raised-yes">Yes</label>
+					<input type="radio" name="raised" id="raised-no" value="no"><label for="raised-no">No</label>
+					<textarea id="raised-comment" rows="4" placeholder="Enter any comments"></textarea>
+				</div>
+				<div class="view">
+					<p><strong>Yes</strong></p>
+					<p>He denies everything, suggests the blame lies in faulty building nmaterials.</p>
+				</div>
+				<br>
+				<h4>Subject of legal proceedings?</h4>
+				<div class="edit">
+					<input type="radio" name="legal" id="legal-yes" value="yes"><label for="legal-yes">Yes</label>
+					<input type="radio" name="legal" id="legal-no" value="no"><label for="legal-no">No</label>
+					<textarea id="legal-comment" rows="4" placeholder="Enter any comments"></textarea>
+				</div>
+				<div class="view">
+					<p><strong>Yes</strong></p>
+					<p>Filed in small claims court for damages, but case was suspended due to blah.</p>
+				</div>
+				<h4>Ideal outcome</h4>
+				<div class="edit">
+					<textarea id="outcome" rows="4" placeholder="Enter the prefered outcome"></textarea>
+				</div>
+				<div class="view">
+					<p>Costs paid back in full and compensation for having to get work corrected.</p>
+				</div>
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="claim-contact">
+				<h4>Relationship</h4>
+				<div class="edit">
+					<input type="text" id="relationship" placeholder="Enter the relationship">
+				</div>
+				<div class="view">
+					<p><strong>Client</strong></p>
+				</div>
+				<hr>
+				<h4>Contact agreement</h4>
+				<div class="edit">
+					<input type="radio" name="contact-agree" id="contact-agree-yes" value="yes"><label for="contact-agree-yes">Yes</label>
+					<input type="radio" name="contact-agree" id="contact-agree-no" value="no"><label for="contact-agree-no">No</label>
+				</div>
+				<div class="view">
+					<p><strong>Yes</strong></p>
+				</div>
+				<hr>
+				<h4>Claimant</h4>
+				<div class="edit">
+					<input type="text" id="claimant-name" placeholder="Claimants Name">
+					<input type="text" id="claimant-registration-number" placeholder="Registration Number">
+					<input type="tel" id="claimant-phone-number" placeholder="Phone Number">
+					<input type="email" id="claimant-email" placeholder="Email Address">
+					<textarea id="claimant-address" rows="4" placeholder="Address"></textarea>
+				</div>
+				<div class="view">
+					<p>Andy Proios</p>
+					<p><a href="mailto:andy.proios@cognite.co.uk">andy.proios@cognite.co.uk</a></p>
+					<p>02074719907</p>
+					<br>
+					<p>21 summerville heights <br> brough, wilts,<br>Q2W 4G1</p>
+				</div>
+				<hr>
+				<h4>Architect</h4>
+				<div class="edit">
+					<input type="text" id="architect-name" placeholder="Architects Name">
+					<input type="text" id="architect-registration-number" placeholder="Registration Number">
+					<input type="tel" id="architect-phone-number" placeholder="Phone Number">
+					<input type="email" id="architect-email" placeholder="Email Address">
+					<textarea id="architect-address" rows="4" placeholder="Address"></textarea>
+				</div>
+				<div class="view">
+					<p>Simon Carpenter</p>
+					<p># 1568972</p>
+					<p><a href="mailto:Simon.Carpenter@newbuildme.co.uk">Simon.Carpenter@newbuildme.co.uk</a></p>
+					<p>0845 697 63258</p>
+					<br>
+					<p>NewBuildME <br>upton street <br> London<br>EC2 1A6</p>
+				</div>							
+			</div>
+		</div>
+	</div>
+	<!-- End Body -->
+	<!-- Footer -->
+	<footer>
+		<div class="row">
+			<div class="large-12 columns">
+			<hr>
+				<div class="row">
+					<div class="large-6 columns">
+						<p>&copy; 2014 Architects Registration Board</p>
+					</div>
+					<div class="large-6 columns">
+						<ul class="inline-list right">
+							<li><a href="">Privacy &amp; Terms</a></li>
+							<li><a href="">Help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+	<!--End Content-->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/foundation/js/foundation.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>

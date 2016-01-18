@@ -1,0 +1,43 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.DiscussionComment
+
+<div class="box feed-sub">
+    <div class="row" id="@Model.Id">
+        <div class="large-2 columns center"><img src="/Content/Images/user.gif"><br><small>@Model.User.FullName</small></div>
+        <div class="large-9 columns">
+            <strong>@Model.User.FirstName - </strong>
+            
+                <div id="txtareaparent">
+                    ​<textarea class="form-control" id="txtAreaDiscussion" rows="5" cols="50" readonly>@Model.Text</textarea>
+            
+                @*<textarea id="discussiontext" value=@Model.Text textboxmode="multiline">*@
+                @*<div class="large-1 columns">*@
+                @if (@Model.User.FullName == User.Identity.Name)
+                {
+                    <a class="button tiny right additional">Cancel</a><p></p>
+                    <a class="button tiny right additional">Save</a>
+                }
+                @*</div>*@
+
+            </div>
+            @if (Model.RootComment != null)
+            {
+                @Html.Partial("Discussions/InnerComments", Model.RootComment)
+            }
+            <div class="@Model.Id large-12 hide">
+                <textarea rows="1" placeholder="Enter your reply"></textarea>
+                <a class="button tiny yes reply-button" data-comment-id="@Model.Id" title="Send">Send</a>
+            </div>
+            @*<input type="button" disabled  id="textEditReadonly" class="button" onclick="onEditReadOnlyClick()">Edit..</>*@
+            @if (@Model.User.FullName == User.Identity.Name)
+            {
+                <button type="button" class="button tiny yes reply-button" id="btnreadonly">Edit..</button>
+            }
+        </div>
+        @if (User.IsInRole("CaseWorker,PanelMember,Inquirer,Solicitor,ThirdPartyReviewer"))
+        {
+            <div class="large-1 columns">
+                <a class="button tiny right additional" data-show="@Model.Id">Reply</a>
+            </div>
+        }
+    </div>
+</div>

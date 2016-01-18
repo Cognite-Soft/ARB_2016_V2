@@ -1,0 +1,147 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>ARB // Activity</title>
+	<link rel="stylesheet" href="css/app.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="bower_components/modernizr/modernizr.js"></script>
+</head>
+
+<body>
+	<!--Begin Content-->
+	<!-- Begin Navigation -->
+	<div class="contain-to-grid">
+		<nav class="top-bar">
+			<ul class="title-area left">
+				<li class="name">
+      		<h1><a id="current-user">Panel Member</a></h1>
+    		</li>					
+				<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+			<section class="top-bar-section">
+				<ul class="right">										
+					<li><a href="complaint-list.htm" title="Complaints">Complaints List</a></li>
+					<li class="active"><a href="case-overview.htm" title="Current Case">Current Case</a></li>					
+				</ul>
+			</section>
+		</nav>
+	</div>
+	<!-- End Navigation -->
+	<!-- Begin Header -->
+	<div class="contain-to-grid header">
+		<div class="row">
+			<div class="large-9 columns">
+				<h4 class="uni-logo">
+					Case Activity : <select id="switch-case">
+						<option selected>#156874968</option>
+						<option>#156874969</option>
+						<option>#156874970</option>
+					</select> 
+				</h4>
+			</div>
+			<div class="large-3 columns">
+				<h1 class="logo">
+					<img src="images/arb-logo.png" title="Architects Registration Board">
+				</h1>
+			</div>
+		</div>
+	</div>
+	<!-- End Header -->
+	<!-- Body -->	
+	<div class="row first">
+		<div class="large-12 columns">				
+			<dl class="tabs">
+			  <dd><a href="case-overview.htm">Overview</a></dd>
+			  <dd><a href="case-activity.htm">Activity Feed</a></dd>
+			  <dd><a href="case-comments.htm">Comments</a></dd>
+			  <dd class="active"><a href="case-discussions.htm">Discussions</a></dd>
+			</dl>
+			<a href="" class="button tiny right new-post">New post</a>
+		</div>
+	</div>
+	<div class="row first">
+		<div class="large-12 columns">
+			<!-- Begin feed -->
+			<div class="box feed-sub">
+					<div class="row">
+		        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Andy Proios</small></div>
+		        <div class="large-9 columns">
+		          <p><strong>Andy - </strong> Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong.</p>
+		          <!-- begin quote -->
+		          <div class="box feed-quote">
+								<div class="row">
+					        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Ali Raza</small></div>
+					        <div class="large-10 columns">
+					          <p><strong>Ali - said:</strong> Pig pork biltong sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit dolore.</p>
+					        </div>
+					      </div>
+				      </div>	
+							<!-- end quote -->
+		        </div>
+						<div class="large-1 columns"><a href="" class="button tiny right">Reply</a></div>
+		      </div>
+      </div>
+    
+      <div class="box feed-sub">
+				<div class="row">
+	        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Tom Pinder</small></div>
+	        <div class="large-9 columns">
+	          <p><strong>Tom - </strong> Rerum, odio, ratione accusamus repellendus minus ab corporis nam odit inventore nulla quibusdam cumque voluptatibus earum sunt atque blanditiis quidem saepe. Voluptas.</p>
+	        </div>
+	        <div class="large-1 columns"><a href="" class="button tiny right">Reply</a></div>
+	      </div>
+      </div>
+
+      <div class="box feed-sub">
+				<div class="row">
+	        <div class="large-2 columns small-3 center"><img src="images/user.gif"><br><small>Ali Raza</small></div>
+	        <div class="large-9 columns">
+	          <p><strong>Ali - </strong> Aliqua non est magna in labore pig pork biltong sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit dolore.</p>
+	        </div>
+	        <div class="large-1 columns"><a href="" class="button tiny right">Reply</a></div>
+	      </div>
+      </div>
+
+			<div class="box feed-sub">
+				<div class="row">
+	        <div class="large-2 columns small-3 center"><img src="images/user.gif"><br><small>Tom Pinder</small></div>
+	        <div class="large-9 columns">
+	          <p><strong>Tom - </strong> Pig pork biltong sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit dolore.</p>
+	        </div>
+	        <div class="large-1 columns"><a href="" class="button tiny right">Reply</a></div>
+	      </div>
+      </div>      
+      <!-- end feed -->
+		</div>
+	</div>
+	<!-- End Body Content -->
+	<!-- End Body -->
+	<!-- Footer -->
+	<footer>
+		<div class="row">
+			<div class="large-12 columns">
+			<hr>
+				<div class="row">
+					<div class="large-6 columns">
+						<p>&copy; 2014 Architects Registration Board</p>
+					</div>
+					<div class="large-6 columns">
+						<ul class="inline-list right">
+							<li><a href="">Privacy &amp; Terms</a></li>
+							<li><a href="">Help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+	<!--End Content-->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/foundation/js/foundation.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>

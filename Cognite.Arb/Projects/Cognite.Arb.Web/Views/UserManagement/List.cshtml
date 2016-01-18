@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Cognite.Arb.Web.Models.UserManagement.UserViewModel>
+
+<div class="row">
+    <div class="large-12 columns">
+        <div class="content grid">
+            <div class="row">
+                @Html.ValidationSummary("", new { @class = "validation-errors" })
+            </div>
+            <div class="row title">
+                <div class="large-2 columns">
+                    First Name
+                </div>
+                <div class="large-2 columns">
+                    Last Name
+                </div>
+                <div class="large-3 columns">
+                    Email
+                </div>
+                <div class="large-3 columns">
+                    Role
+                </div>
+                <div class="large-2 columns">
+                    Actions
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                Html.RenderPartial("Details", item);
+            }
+        </div>
+    </div>
+</div>

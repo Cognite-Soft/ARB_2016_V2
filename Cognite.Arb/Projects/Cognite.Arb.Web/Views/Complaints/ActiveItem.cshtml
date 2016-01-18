@@ -1,0 +1,18 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.ComplaintListItemViewModel
+
+<a href="@Url.Action("Overview", new { id = Model.Id })">
+    <div class="row">
+        <div class="large-2 columns">@Model.CaseId</div>
+        <div class="large-3 columns">@Model.Architect</div>
+        <div class="large-3 columns">@Model.Complainant</div>       
+        <div class="large-2 columns">@Model.RegistrationId</div>
+        @if (User.IsInRole("CaseWorker"))
+        { 
+            <div class="large-2 columns">
+                <span class="hover-underlined case-action" data-id="@Model.Id" data-action="Clone" title="Clone">Clone</span>
+                | 
+                <span class="hover-underlined case-action" data-id="@Model.Id" data-action="Close" title="Close">Close</span>
+            </div>
+        }
+    </div>
+</a>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+  <?include Variables.wxi ?>
+  <Product Id="$(var.ProductCode)"
+           UpgradeCode="$(var.UpgradeCode)"
+           Name="$(var.ProductName)"
+           Manufacturer="Cognite"
+           Language="1033"
+           Version="1.0.0.0">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes"></Media>
+    <UIRef Id="WixUI_Common" />
+    <UIRef Id="ProductUI" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Cognite">
+          <Directory Id="INSTALLFOLDER1" Name="Arb">
+            <Directory Id="WEBFOLDER" Name="Web">
+              <Directory Id="WEBAPISERVICEFOLDER" Name="WebApiService">
+                <Directory Id="WebApiContent_Areasc2db2e66631e4831bc16160c5a10c680_FOLDER" Name="Areas">
+                  <Directory Id="WebApiContent_HelpPagea565c08c2a0e407aae24c0a498c17e1b_FOLDER" Name="HelpPage">
+                    <Directory Id="WebApiContent_Views7c460e6fa7774d71bfb5dcfd048f1da6_FOLDER" Name="Views">
+                      <Directory Id="WebApiContent_Help4605ef8f44ad482189d712dc105a7520_FOLDER" Name="Help">
+                        <Directory Id="WebApiContent_DisplayTemplates0fc235b3fe9f4d899a3d78bbf49a57c4_FOLDER"
+                                   Name="DisplayTemplates">
+                        </Directory>
+                      </Directory>
+                      <Directory Id="WebApiContent_Sharedd2309b9dfe2b43fc95417903ad8a2f15_FOLDER" Name="Shared">
+                      </Directory>
+                    </Directory>
+                  </Directory>
+                </Directory>
+                <Directory Id="WebApiContent_bind8cbe8517d144a47bbd3622b16259da4_FOLDER" Name="bin">
+                  <Directory Id="WebApiContent_MailTemplates292e59b4a6634f988b8e2bfd88042173_FOLDER"
+                             Name="MailTemplates">
+                  </Directory>
+                </Directory>
+                <Directory Id="WebApiContent_Content6811e9d51d93462288e7f406104c61b9_FOLDER" Name="Content">
+                </Directory>
+                <Directory Id="WebApiContent_fonts2f619a0f12dd44609d3319006ac81923_FOLDER" Name="fonts">
+                </Directory>
+                <Directory Id="WebApiContent_MailTemplates106f7d1b63ab4c9ea980cc148e5c59a0_FOLDER" Name="MailTemplates">
+                </Directory>
+                <Directory Id="WebApiContent_Scripts9a7d4fad4c4243e2a1755a810ceef029_FOLDER" Name="Scripts">
+                </Directory>
+                <Directory Id="WebApiContent_Views873b4bf249584602994dd9f32aed7c14_FOLDER" Name="Views">
+                  <Directory Id="WebApiContent_Home0301b05532b24abf9ca89c13b7a4d20e_FOLDER" Name="Home">
+                  </Directory>
+                  <Directory Id="WebApiContent_Shared2058c00bf4844ee491573496c5d43dd6_FOLDER" Name="Shared">
+                  </Directory>
+                </Directory>
+              </Directory>
+              <Directory Id="WEBAPPLICATIONFOLDER" Name="WebApplication">
+                <Directory Id="WebContent_binec593c1551d14f1194847d42e5f3cdfd_FOLDER" Name="bin">
+                </Directory>
+                <Directory Id="WebContent_Contentebf14d05aa214119828fdcaa14a66372_FOLDER" Name="Content">
+                  <Directory Id="WebContent_Images7ed703d1b4194dae9a975569dde8d65e_FOLDER" Name="Images">
+                  </Directory>
+                </Directory>
+                <Directory Id="WebContent_fonts5ad62bef1a68443db8d601377e33221c_FOLDER" Name="fonts">
+                </Directory>
+                <Directory Id="WebContent_Scripts729605c7d5fa443086ac2b6ea6750f42_FOLDER" Name="Scripts">
+                </Directory>
+                <Directory Id="WebContent_Views2a5af8b638c746b28282ccdc2b6d5a58_FOLDER" Name="Views">
+                  <Directory Id="WebContent_Accounte3365d6c708441a296b399c4826605ef_FOLDER" Name="Account">
+                  </Directory>
+                  <Directory Id="WebContent_Complaintse6481882760c473891df45740df29bec_FOLDER" Name="Complaints">
+                    <Directory Id="WebContent_ActivityFeed3a277d8eaaf1464195a8623810ebf588_FOLDER" Name="ActivityFeed">
+                    </Directory>
+                    <Directory Id="WebContent_Comments8c5e2d11c8b84b4e9209cd8b410ca396_FOLDER" Name="Comments">
+                    </Directory>
+                    <Directory Id="WebContent_Discussions62f85062a5214fee8b86aa630cfe2af5_FOLDER" Name="Discussions">
+                    </Directory>
+                  </Directory>
+                  <Directory Id="WebContent_Home4d0b7f835f9049abb14afaa6d8064f57_FOLDER" Name="Home">
+                  </Directory>
+                  <Directory Id="WebContent_Scheduledcfd744eb9054b6f878c4f837193f98e_FOLDER" Name="Schedule">
+                  </Directory>
+                  <Directory Id="WebContent_Shared556ff7b0627149088177aad385e4ea45_FOLDER" Name="Shared">
+                  </Directory>
+                  <Directory Id="WebContent_UserManagementd16e25a8274942909f37279497bc33a2_FOLDER"
+                             Name="UserManagement">
+                  </Directory>
+                </Directory>
+              </Directory>
+            </Directory>
+            <Directory Id="STSFOLDER" Name="SecurityTokenService"></Directory>
+            <Directory Id="DATABASEFOLDER" Name="Database"></Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!--<iis:WebSite Id="DefaultWebSite" Description="Default Web Site">
+      <iis:WebAddress Id="AllUnassigned" Port="80" />
+    </iis:WebSite>-->
+
+    <Binary Id="CustomActions"
+            SourceFile="..\..\..\Cognite.Arb.Setup.CustomActions\bin\Debug\Cognite.Arb.Setup.CustomActions.CA.dll" />
+
+    <FeatureRef Id="WebFeature"></FeatureRef>
+    <FeatureRef Id="WebApiFeature"></FeatureRef>
+    <FeatureRef Id="DatabaseFeature"></FeatureRef>
+  </Product>
+</Wix>

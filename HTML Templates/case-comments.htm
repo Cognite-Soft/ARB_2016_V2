@@ -1,0 +1,314 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>ARB // Comments</title>
+	<link rel="stylesheet" href="css/app.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="bower_components/modernizr/modernizr.js"></script>
+</head>
+
+<body>
+	<!--Begin Content-->
+	<!-- Begin Navigation -->
+	<div class="contain-to-grid">
+		<nav class="top-bar">
+			<ul class="title-area left">
+				<li class="name">
+      		<h1><a id="current-user">Panel Member</a></h1>
+    		</li>					
+				<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+			<section class="top-bar-section">
+				<ul class="right">										
+					<li><a href="complaint-list.htm" title="Complaints">Complaints List</a></li>
+					<li class="active"><a href="case-overview.htm" title="Current Case">Current Case</a></li>					
+				</ul>
+			</section>
+		</nav>
+	</div>
+	<!-- End Navigation -->
+	<!-- Begin Header -->
+	<div class="contain-to-grid header">
+		<div class="row">
+			<div class="large-9 columns">
+				<h4 class="uni-logo">
+					Case Comments : <select id="switch-case">
+						<option selected>#156874968</option>
+						<option>#156874969</option>
+						<option>#156874970</option>
+					</select> 
+				</h4>
+			</div>
+			<div class="large-3 columns">
+				<h1 class="logo">
+					<img src="images/arb-logo.png" title="Architects Registration Board">
+				</h1>
+			</div>
+		</div>
+	</div>
+	<!-- End Header -->
+	<!-- Body -->	
+	<div class="row first">
+		<div class="large-12 columns">				
+			<dl class="tabs">
+			  <dd><a href="case-overview.htm">Overview</a></dd>
+			  <dd><a href="case-activity.htm">Activity Feed</a></dd>
+			  <dd class="active"><a href="case-comments.htm">Comments</a></dd>
+			  <dd><a href="case-discussions.htm">Discussions</a></dd>	  
+			</dl>
+		</div>
+	</div>
+	<div class="row first">
+		<div class="large-8 columns">
+
+			<div class="content demo-stage-3">
+				<div class="row first comments-header">
+					<div class="large-9 columns">
+						<h4>3 : Final Decision</h4>						
+					</div>
+					<div class="large-3 columns">						
+						<span class="label large right due">22/06/2014</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+					<h6>View the Final Decision</h6>
+						<div class="view">
+							<p><a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i>Final Decision Document</a></p>
+						</div>
+						<div class="edit">						 
+							<a href="" class="button tiny" title="Attach Preliminary Decision"><i class="fa fa-paperclip fa-fw"></i> </a>
+							<a href="" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+						</div>
+						<hr>
+						<div class="view">
+							<a href="" class="button tiny yes week-8" title="Accept">Accept</a>
+							<a class="button tiny week-8" title="Amend">Amend</a>
+							<a class="button tiny no additional week-8" data-show="decision-changed" title="Preliminary decision Changed">Preliminary decision Changed</a>
+							<div id="decision-changed" class="hide">
+								<textarea id="decision-changed-comments" rows="1" placeholder="Enter your reason for this change"></textarea>
+								<a href="" id="decision-changed-comments-send" class="button tiny yes" title="Send">Send</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content demo-stage-2">
+				<div class="row first comments-header">
+					<div class="large-9 columns">
+						<h4>2 : Preliminary Decision</h4>						
+					</div>
+					<div class="large-3 columns">						
+							<span class="label large right due">01/06/2014</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<div class="row">							
+							<div class="large-6 columns">
+							<h6>View the Preliminary Decision</h6>
+								<div class="view">
+									<p><a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i> Preliminary Decision Document</a></p>
+								</div>
+								<div class="edit">								 
+									<a href="" class="button tiny" title="Attach Preliminary Decision"><i class="fa fa-paperclip fa-fw"></i></a>
+									<a href="" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+								</div>
+							</div>
+							<div class="large-6 columns">
+								<h6>Comments from parties involved</h6>
+								<ul>
+									<li class="view week-6tmp">There are no addtional comments yet.</li>
+									<li class="view week-7"><a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i> Comments from Complainant</a></li>
+									<li class="view week-7"><a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i> Comments from Architect</a></li>
+								</ul>
+								<div class="edit">
+									<input type="text" id="party-comment-1" placeholder="Title">									 
+									<a href="" class="button tiny" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+									<a href="" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></a>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="view week-6 hide">						
+							<div class="box mini feed-sub">
+								<div class="row">
+					        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Andy Proios</small></div>
+					        <div class="large-10 columns"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, accusamus, aut eos magni repudiandae debitis veritatis temporibus voluptas ipsa beatae illum quae non atque vero corporis voluptate consequuntur saepe ullam.</p></div>
+					      </div>
+				
+								<div class="row">
+					        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Ali raza</small></div>
+					        <div class="large-10 columns"><p>Illum quae non atque vero corporis voluptate consequuntur saepe ullam.</p></div>
+					      </div>
+						 	
+								<div class="row">
+					        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Tom Pinder</small></div>
+					        <div class="large-10 columns"><p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, hic, veritatis, laborum nihil explicabo totam consectetur quod obcaecati quibusdam iste soluta iusto recusandae adipisci sapiente porro voluptate deleniti aperiam praesentium!</span>
+					        <span>Recusandae, nostrum dolor delectus eos vitae perferendis saepe suscipit sed ratione voluptate perspiciatis nemo expedita voluptatum repellendus tempora adipisci magni libero quibusdam maiores aliquid. Consectetur nihil rem numquam saepe perspiciatis.</span>
+					        <span>Deserunt, ab, placeat, deleniti libero accusantium dolor repudiandae ratione voluptatem atque sequi voluptatum at recusandae corporis adipisci excepturi nostrum nam eligendi iste natus itaque ipsa. Voluptatibus repellendus accusamus magnam blanditiis.</span></p></div>
+					      </div>
+						  </div>
+						</div>
+						<textarea id="preliminary-decision-comments-1" rows="1" placeholder="Enter your comments" class="week-5"></textarea>
+						<a href="" id="preliminary-decision-comments-1-send" class="button tiny yes  week-5" title="Send">Send</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="content demo-stage-1">
+				<div class="row first comments-header">
+					<div class="large-9 columns">
+						<h4>1 : Preliminary Comments</h4>						
+					</div>
+					<div class="large-3 columns">						
+							<span class="label alert large right due-countdown">Due in 3 days!</span> <span class="label large right due">25/05/2014</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 columns">
+						<ol>
+							<li>I suspect Simon knew that this was a load bearing wall yet cut corners. <a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i></a>
+								<div class="view week-4 hide">						
+									<div class="box mini feed-sub">
+										<div class="row">
+							        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Andy Proios</small></div>
+							        <div class="large-10 columns"><p>I agree this guy sounds like a complete cowboy! How did he ever get accredited?!</p></div>
+							      </div>
+						
+										<div class="row">
+							        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Ali raza</small></div>
+							        <div class="large-10 columns"><p>I assume he went to MC College..  he knew.</p></div>
+							      </div>
+								 	
+										<div class="row">
+							        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Tom Pinder</small></div>
+							        <div class="large-10 columns"><p>There is definitely a case here.</p></div>
+							      </div>
+								  </div>
+							  </div>
+							  <textarea id="allegation-1-comments" rows="1" placeholder="Enter your comments" class="week-1"></textarea>
+								<a href="" class="button tiny yes week-1" title="Yes">Yes</a>
+								<a href="" class="button tiny no week-1" title="No">No</a>
+								<a class="button tiny additional week-1" data-show="additional-1" title="Advise">Advise</a>
+								<a class="button tiny additional week-1" data-show="additional-1" title="More Info">More Info</a>
+								<div id="additional-1" class="hide">
+									<textarea id="allegation-1-additional-comments" rows="1" placeholder="Enter your additional comments"></textarea>
+									<a href="" id="allegation-1-additional-comments-send" class="button tiny yes" title="Send">Send</a>
+								</div>
+							</li>
+							<li>Materials were inadequate for the job highlighting his incompetency. <a href="" title="View Document"><i class="fa fa-file-text fa-fw"></i></a>
+								<div class="view week-4 hide">						
+									<div class="box mini feed-sub">
+										<div class="row">
+							        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Andy Proios</small></div>
+							        <div class="large-10 columns"><p>I agree this guy sounds like a complete cowboy! How did he ever get accredited?!</p></div>
+							      </div>
+						
+										<div class="row">
+							        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Ali raza</small></div>
+							        <div class="large-10 columns"><p>I assume he went to MC College..  he knew.</p></div>
+							      </div>
+								 	
+										<div class="row">
+							        <div class="large-2 columns center"><img src="images/user.gif"><br><small>Tom Pinder</small></div>
+							        <div class="large-10 columns"><p>There is definitely a case here.</p></div>
+							      </div>
+								  </div>
+							  </div>
+								<textarea id="allegation-2-comments" rows="1" placeholder="Enter your comments" class="week-1"></textarea>
+								<a href="" class="button tiny yes week-1" title="Yes">Yes</a>
+								<a href="" class="button tiny no week-1" title="No">No</a>
+								<a class="button tiny additional week-1" data-show="additional-2" title="Advise">Advise</a>
+								<a class="button tiny additional week-1" data-show="additional-2" title="More Info">More Info</a>
+								<div id="additional-2" class="hide">
+									<textarea id="allegation-1-additional-comments" rows="1" placeholder="Enter your additional comments"></textarea>
+									<a href="" id="allegation-1-additional-comments-send" class="button tiny yes" title="Send">Send</a>
+								</div>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="large-4 columns" id="readme">
+			<h4>Case Documents</h4>
+			<ul class="no-bullet">
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Some random documents</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> My doc</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Other docs</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Some random documents</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> My doc</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Other docs</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Some random documents</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> My doc</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Other docs</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Some random documents</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> My doc</span></a></li>
+				<li><a href=""><span class="label secondary"><i class="fa fa-file-text fa-fw"></i> Other docs</span></a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- End Body -->	
+	<!-- Footer -->
+	<footer>
+		<div class="row">
+			<div class="large-12 columns">
+			<hr>
+				<div class="row">
+					<div class="large-6 columns">
+						<p>&copy; 2014 Architects Registration Board</p>
+					</div>
+					<div class="large-6 columns">
+						<ul class="inline-list right">
+							<li><a href="">Privacy &amp; Terms</a></li>
+							<li><a href="">Help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+	<!--Joyride-->
+	<ol class="joyride-list" data-joyride>
+	  <li data-id="readme" data-text="OK!" data-options="tip_location:top;">
+	    <p><strong>Please read all the documents first before commenting!</strong></p>
+	  </li>
+	</ol>
+
+	<!--End Content-->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/foundation/js/foundation.min.js"></script>
+	<script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+	<script src="js/app.js"></script>
+
+	<script>
+		var CommentsScreen = true;
+		var CurrentWeek = '1';		
+		simulateCaseProgress();
+	</script>
+
+	<div class="demo-nav">
+	Simulate Case Progress
+		<ul class="side-nav">
+			<li><a class="week-1">Week 1</a></li>
+			<li><a class="week-4">Week 4</a></li>
+			<li><a class="week-5">Week 5</a></li>
+			<li><a class="week-6">Week 6</a></li>
+			<li><a class="week-7">Week 7</a></li>
+			<li><a class="week-8">Week 8</a></li>
+			<li><a class="week-9">Week 9</a></li>
+			<li><a class="week-12">Week 12</a></li>
+		</ul>
+	</div>
+
+</body>
+</html>

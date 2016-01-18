@@ -1,0 +1,760 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ExternalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CasePersons">
+          <Key>
+            <PropertyRef Name="CaseNumber" />
+            <PropertyRef Name="orgPersonID" />
+          </Key>
+          <Property Name="CaseNumber" Type="smallint" Nullable="false" />
+          <Property Name="CaseSequence" Type="int" />
+          <Property Name="orgPersonID" Type="int" Nullable="false" />
+          <Property Name="RoleInCase" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdatedWhen" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="CommentsOn" Type="varchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="CaseNumber" />
+          </Key>
+          <Property Name="UserFriendlyDescription" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CaseNumber" Type="smallint" Nullable="false" />
+          <Property Name="IsComplaint" Type="bit" />
+          <Property Name="OpenedDate" Type="datetime" />
+          <Property Name="CaseOutcome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClosedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UpdatedWhen" Type="datetime" Nullable="false" />
+          <Property Name="CaseManager" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="LegacyCaseNumber" Type="smallint" />
+          <Property Name="InitiallyReceivedDocs" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InitiallyReceivedDocsFrom" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserComments" Type="varchar" MaxLength="5500" />
+          <Property Name="StatusSummarised" Type="varchar" MaxLength="128" />
+          <Property Name="TypeOfCase" Type="varchar" MaxLength="50" />
+          <Property Name="DisplayCaseReference" Type="varchar" MaxLength="18" StoreGeneratedPattern="Computed" />
+          <Property Name="DisplayLegacyReference" Type="varchar" MaxLength="18" StoreGeneratedPattern="Computed" />
+          <Property Name="LegacyCaseStatus" Type="int" />
+          <Property Name="PrimaryCaseStatus" Type="varchar" MaxLength="100" />
+          <Property Name="SecondaryCaseStatus" Type="varchar" MaxLength="100" />
+          <Property Name="WorkflowStatus" Type="varchar" MaxLength="100" />
+          <Property Name="WorkflowOutcome" Type="varchar" MaxLength="100" />
+          <Property Name="RiskCategory" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewCases">
+          <Key>
+            <PropertyRef Name="CaseNumber" />
+          </Key>
+          <Property Name="CaseNumber" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegulationExecOrgPersons_Seed">
+          <Key>
+            <PropertyRef Name="orgPersonID" />
+          </Key>
+          <Property Name="orgPersonID" Type="int" Nullable="false" />
+          <Property Name="RequestedBy" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegulationExecutivePersons">
+          <Key>
+            <PropertyRef Name="RegulationExecutivePersonID" />
+          </Key>
+          <Property Name="title" Type="varchar" MaxLength="30" />
+          <Property Name="title_id" Type="int" Nullable="false" />
+          <Property Name="Forenames" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Initials" Type="varchar" MaxLength="4" />
+          <Property Name="Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="60" />
+          <Property Name="Address2" Type="varchar" MaxLength="60" />
+          <Property Name="Address3" Type="varchar" MaxLength="60" />
+          <Property Name="Address4" Type="varchar" MaxLength="60" />
+          <Property Name="Address5" Type="varchar" MaxLength="60" />
+          <Property Name="Address6" Type="varchar" MaxLength="60" />
+          <Property Name="AddressPostcode" Type="varchar" MaxLength="10" />
+          <Property Name="country" Type="varchar" MaxLength="30" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="TelBusiness" Type="varchar" MaxLength="20" />
+          <Property Name="Telephone" Type="varchar" MaxLength="20" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+          <Property Name="fax" Type="varchar" MaxLength="20" />
+          <Property Name="WebUrl" Type="varchar" MaxLength="70" />
+          <Property Name="orgPersonID" Type="int" Nullable="false" />
+          <Property Name="RegulationExecutivePersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DefaultRole1" Type="varchar" MaxLength="50" />
+          <Property Name="DefaultRole2" Type="varchar" MaxLength="50" />
+          <Property Name="DefaultRole3" Type="varchar" MaxLength="50" />
+          <Property Name="DefaultRole4" Type="varchar" MaxLength="50" />
+          <Property Name="CommentOn" Type="varchar" MaxLength="500" />
+          <Property Name="LastUpdatedWhen" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="InvertedDisplayName" Type="varchar" MaxLength="70" StoreGeneratedPattern="Computed" />
+          <Property Name="SurnameMetaphKey" Type="char" MaxLength="8" StoreGeneratedPattern="Computed" />
+          <Property Name="ForenamesMetaphKey" Type="char" MaxLength="8" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="RegulationExecutiveUsers">
+          <Key>
+            <PropertyRef Name="UserNameNT" />
+          </Key>
+          <Property Name="UserNameNT" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserNameFriendly" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="JobDescription" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserInitials" Type="char" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleOfPersons">
+          <Key>
+            <PropertyRef Name="RoleOfPerson" />
+          </Key>
+          <Property Name="RoleOfPerson" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SmallMembership" Type="bit" />
+        </EntityType>
+        <Association Name="FK_CasePersons_Cases">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="1" />
+          <End Role="CasePersons" Type="Self.CasePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseNumber" />
+            </Principal>
+            <Dependent Role="CasePersons">
+              <PropertyRef Name="CaseNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CasePersons_RegulationExecOrgPersons_Seed">
+          <End Role="RegulationExecOrgPersons_Seed" Type="Self.RegulationExecOrgPersons_Seed" Multiplicity="1" />
+          <End Role="CasePersons" Type="Self.CasePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecOrgPersons_Seed">
+              <PropertyRef Name="orgPersonID" />
+            </Principal>
+            <Dependent Role="CasePersons">
+              <PropertyRef Name="orgPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CasePersons_RegulationExecutiveUsers">
+          <End Role="RegulationExecutiveUsers" Type="Self.RegulationExecutiveUsers" Multiplicity="1" />
+          <End Role="CasePersons" Type="Self.CasePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecutiveUsers">
+              <PropertyRef Name="UserNameNT" />
+            </Principal>
+            <Dependent Role="CasePersons">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CasePersons_RoleOfPersons">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPersons" Multiplicity="1" />
+          <End Role="CasePersons" Type="Self.CasePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson" />
+            </Principal>
+            <Dependent Role="CasePersons">
+              <PropertyRef Name="RoleInCase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_RegulationExecutiveUsers">
+          <End Role="RegulationExecutiveUsers" Type="Self.RegulationExecutiveUsers" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecutiveUsers">
+              <PropertyRef Name="UserNameNT" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="CaseManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed">
+          <End Role="RegulationExecOrgPersons_Seed" Type="Self.RegulationExecOrgPersons_Seed" Multiplicity="1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecOrgPersons_Seed">
+              <PropertyRef Name="orgPersonID" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="orgPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RegulationExecutiveUsers">
+          <End Role="RegulationExecutiveUsers" Type="Self.RegulationExecutiveUsers" Multiplicity="1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecutiveUsers">
+              <PropertyRef Name="UserNameNT" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPersons" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons1">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPersons" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons2">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPersons" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons3">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPersons" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExternalDatabaseModelStoreContainer">
+          <EntitySet Name="CasePersons" EntityType="Self.CasePersons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewCases" EntityType="Self.NewCases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegulationExecOrgPersons_Seed" EntityType="Self.RegulationExecOrgPersons_Seed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegulationExecutivePersons" EntityType="Self.RegulationExecutivePersons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegulationExecutiveUsers" EntityType="Self.RegulationExecutiveUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleOfPersons" EntityType="Self.RoleOfPersons" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CasePersons_Cases" Association="Self.FK_CasePersons_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="CasePersons" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CasePersons_RegulationExecOrgPersons_Seed" Association="Self.FK_CasePersons_RegulationExecOrgPersons_Seed">
+            <End Role="RegulationExecOrgPersons_Seed" EntitySet="RegulationExecOrgPersons_Seed" />
+            <End Role="CasePersons" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CasePersons_RegulationExecutiveUsers" Association="Self.FK_CasePersons_RegulationExecutiveUsers">
+            <End Role="RegulationExecutiveUsers" EntitySet="RegulationExecutiveUsers" />
+            <End Role="CasePersons" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CasePersons_RoleOfPersons" Association="Self.FK_CasePersons_RoleOfPersons">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="CasePersons" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_RegulationExecutiveUsers" Association="Self.FK_Cases_RegulationExecutiveUsers">
+            <End Role="RegulationExecutiveUsers" EntitySet="RegulationExecutiveUsers" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed" Association="Self.FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed">
+            <End Role="RegulationExecOrgPersons_Seed" EntitySet="RegulationExecOrgPersons_Seed" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RegulationExecutiveUsers" Association="Self.FK_RegulationExecutivePersons_RegulationExecutiveUsers">
+            <End Role="RegulationExecutiveUsers" EntitySet="RegulationExecutiveUsers" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons1" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons1">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons2" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons2">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons3" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons3">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExternalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CasePerson">
+          <Key>
+            <PropertyRef Name="CaseNumber" />
+            <PropertyRef Name="orgPersonID" />
+          </Key>
+          <Property Name="CaseNumber" Type="Int16" Nullable="false" />
+          <Property Name="CaseSequence" Type="Int32" />
+          <Property Name="orgPersonID" Type="Int32" Nullable="false" />
+          <Property Name="RoleInCase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastUpdatedWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CommentsOn" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_CasePersons_Cases" FromRole="CasePersons" ToRole="Cases" />
+          <NavigationProperty Name="RegulationExecutiveUser" Relationship="Self.FK_CasePersons_RegulationExecutiveUsers" FromRole="CasePersons" ToRole="RegulationExecutiveUsers" />
+          <NavigationProperty Name="RoleOfPerson" Relationship="Self.FK_CasePersons_RoleOfPersons" FromRole="CasePersons" ToRole="RoleOfPersons" />
+          <NavigationProperty Name="RegulationExecOrgPersons_Seed" Relationship="ExternalDatabaseModel.FK_CasePersons_RegulationExecOrgPersons_Seed" FromRole="CasePerson" ToRole="RegulationExecOrgPersons_Seed" />
+        </EntityType>
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="CaseNumber" />
+          </Key>
+          <Property Name="UserFriendlyDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CaseNumber" Type="Int16" Nullable="false" />
+          <Property Name="IsComplaint" Type="Boolean" />
+          <Property Name="OpenedDate" Type="DateTime" Precision="3" />
+          <Property Name="CaseOutcome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClosedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdatedWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CaseManager" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LegacyCaseNumber" Type="Int16" />
+          <Property Name="InitiallyReceivedDocs" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InitiallyReceivedDocsFrom" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserComments" Type="String" MaxLength="5500" FixedLength="false" Unicode="false" />
+          <Property Name="StatusSummarised" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfCase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayCaseReference" Type="String" MaxLength="18" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="DisplayLegacyReference" Type="String" MaxLength="18" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="LegacyCaseStatus" Type="Int32" />
+          <Property Name="PrimaryCaseStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryCaseStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkflowStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkflowOutcome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RiskCategory" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CasePersons" Relationship="Self.FK_CasePersons_Cases" FromRole="Cases" ToRole="CasePersons" />
+          <NavigationProperty Name="RegulationExecutiveUser" Relationship="Self.FK_Cases_RegulationExecutiveUsers" FromRole="Cases" ToRole="RegulationExecutiveUsers" />
+        </EntityType>
+        <EntityType Name="RegulationExecutivePerson">
+          <Key>
+            <PropertyRef Name="RegulationExecutivePersonID" />
+          </Key>
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="title_id" Type="Int32" Nullable="false" />
+          <Property Name="Forenames" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Initials" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Address3" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Address4" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Address5" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Address6" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="AddressPostcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="TelBusiness" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WebUrl" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="orgPersonID" Type="Int32" Nullable="false" />
+          <Property Name="RegulationExecutivePersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DefaultRole1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultRole2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultRole3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultRole4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CommentOn" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdatedWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InvertedDisplayName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SurnameMetaphKey" Type="String" MaxLength="8" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ForenamesMetaphKey" Type="String" MaxLength="8" FixedLength="true" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="RegulationExecutiveUser" Relationship="Self.FK_RegulationExecutivePersons_RegulationExecutiveUsers" FromRole="RegulationExecutivePersons" ToRole="RegulationExecutiveUsers" />
+          <NavigationProperty Name="RoleOfPerson" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons" FromRole="RegulationExecutivePersons" ToRole="RoleOfPersons" />
+          <NavigationProperty Name="RoleOfPerson1" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons1" FromRole="RegulationExecutivePersons" ToRole="RoleOfPersons" />
+          <NavigationProperty Name="RoleOfPerson2" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons2" FromRole="RegulationExecutivePersons" ToRole="RoleOfPersons" />
+          <NavigationProperty Name="RoleOfPerson3" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons3" FromRole="RegulationExecutivePersons" ToRole="RoleOfPersons" />
+          <NavigationProperty Name="RegulationExecOrgPersons_Seed" Relationship="ExternalDatabaseModel.FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed" FromRole="RegulationExecutivePerson" ToRole="RegulationExecOrgPersons_Seed" />
+        </EntityType>
+        <EntityType Name="RegulationExecutiveUser">
+          <Key>
+            <PropertyRef Name="UserNameNT" />
+          </Key>
+          <Property Name="UserNameNT" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserNameFriendly" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserInitials" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CasePersons" Relationship="Self.FK_CasePersons_RegulationExecutiveUsers" FromRole="RegulationExecutiveUsers" ToRole="CasePersons" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_RegulationExecutiveUsers" FromRole="RegulationExecutiveUsers" ToRole="Cases" />
+          <NavigationProperty Name="RegulationExecutivePersons" Relationship="Self.FK_RegulationExecutivePersons_RegulationExecutiveUsers" FromRole="RegulationExecutiveUsers" ToRole="RegulationExecutivePersons" />
+        </EntityType>
+        <EntityType Name="RoleOfPerson">
+          <Key>
+            <PropertyRef Name="RoleOfPerson1" />
+          </Key>
+          <Property Name="RoleOfPerson1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SmallMembership" Type="Boolean" />
+          <NavigationProperty Name="CasePersons" Relationship="Self.FK_CasePersons_RoleOfPersons" FromRole="RoleOfPersons" ToRole="CasePersons" />
+          <NavigationProperty Name="RegulationExecutivePersons" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons" FromRole="RoleOfPersons" ToRole="RegulationExecutivePersons" />
+          <NavigationProperty Name="RegulationExecutivePersons1" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons1" FromRole="RoleOfPersons" ToRole="RegulationExecutivePersons" />
+          <NavigationProperty Name="RegulationExecutivePersons2" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons2" FromRole="RoleOfPersons" ToRole="RegulationExecutivePersons" />
+          <NavigationProperty Name="RegulationExecutivePersons3" Relationship="Self.FK_RegulationExecutivePersons_RoleOfPersons3" FromRole="RoleOfPersons" ToRole="RegulationExecutivePersons" />
+        </EntityType>
+        <Association Name="FK_CasePersons_Cases">
+          <End Role="Cases" Type="Self.Case" Multiplicity="1" />
+          <End Role="CasePersons" Type="Self.CasePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="CaseNumber" />
+            </Principal>
+            <Dependent Role="CasePersons">
+              <PropertyRef Name="CaseNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CasePersons_RegulationExecutiveUsers">
+          <End Role="RegulationExecutiveUsers" Type="Self.RegulationExecutiveUser" Multiplicity="1" />
+          <End Role="CasePersons" Type="Self.CasePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecutiveUsers">
+              <PropertyRef Name="UserNameNT" />
+            </Principal>
+            <Dependent Role="CasePersons">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CasePersons_RoleOfPersons">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPerson" Multiplicity="1" />
+          <End Role="CasePersons" Type="Self.CasePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson1" />
+            </Principal>
+            <Dependent Role="CasePersons">
+              <PropertyRef Name="RoleInCase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_RegulationExecutiveUsers">
+          <End Role="RegulationExecutiveUsers" Type="Self.RegulationExecutiveUser" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecutiveUsers">
+              <PropertyRef Name="UserNameNT" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="CaseManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RegulationExecutiveUsers">
+          <End Role="RegulationExecutiveUsers" Type="Self.RegulationExecutiveUser" Multiplicity="1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecutiveUsers">
+              <PropertyRef Name="UserNameNT" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPerson" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson1" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons1">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPerson" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson1" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons2">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPerson" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson1" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RoleOfPersons3">
+          <End Role="RoleOfPersons" Type="Self.RoleOfPerson" Multiplicity="0..1" />
+          <End Role="RegulationExecutivePersons" Type="Self.RegulationExecutivePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleOfPersons">
+              <PropertyRef Name="RoleOfPerson1" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePersons">
+              <PropertyRef Name="DefaultRole4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExternalDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CasePersons" EntityType="Self.CasePerson" />
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="RegulationExecutivePersons" EntityType="Self.RegulationExecutivePerson" />
+          <EntitySet Name="RegulationExecutiveUsers" EntityType="Self.RegulationExecutiveUser" />
+          <EntitySet Name="RoleOfPersons" EntityType="Self.RoleOfPerson" />
+          <AssociationSet Name="FK_CasePersons_Cases" Association="Self.FK_CasePersons_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="CasePersons" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CasePersons_RegulationExecutiveUsers" Association="Self.FK_CasePersons_RegulationExecutiveUsers">
+            <End Role="RegulationExecutiveUsers" EntitySet="RegulationExecutiveUsers" />
+            <End Role="CasePersons" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CasePersons_RoleOfPersons" Association="Self.FK_CasePersons_RoleOfPersons">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="CasePersons" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_RegulationExecutiveUsers" Association="Self.FK_Cases_RegulationExecutiveUsers">
+            <End Role="RegulationExecutiveUsers" EntitySet="RegulationExecutiveUsers" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RegulationExecutiveUsers" Association="Self.FK_RegulationExecutivePersons_RegulationExecutiveUsers">
+            <End Role="RegulationExecutiveUsers" EntitySet="RegulationExecutiveUsers" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons1" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons1">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons2" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons2">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RoleOfPersons3" Association="Self.FK_RegulationExecutivePersons_RoleOfPersons3">
+            <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
+            <End Role="RegulationExecutivePersons" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+          <EntitySet Name="NewCases" EntityType="ExternalDatabaseModel.NewCas" />
+          <EntitySet Name="RegulationExecOrgPersons_Seed" EntityType="ExternalDatabaseModel.RegulationExecOrgPersons_Seed" />
+          <AssociationSet Name="FK_CasePersons_RegulationExecOrgPersons_Seed" Association="ExternalDatabaseModel.FK_CasePersons_RegulationExecOrgPersons_Seed">
+            <End Role="RegulationExecOrgPersons_Seed" EntitySet="RegulationExecOrgPersons_Seed" />
+            <End Role="CasePerson" EntitySet="CasePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed" Association="ExternalDatabaseModel.FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed">
+            <End Role="RegulationExecOrgPersons_Seed" EntitySet="RegulationExecOrgPersons_Seed" />
+            <End Role="RegulationExecutivePerson" EntitySet="RegulationExecutivePersons" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="NewCas">
+          <Key>
+            <PropertyRef Name="CaseNumber" />
+          </Key>
+          <Property Name="CaseNumber" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegulationExecOrgPersons_Seed">
+          <Key>
+            <PropertyRef Name="orgPersonID" />
+          </Key>
+          <Property Name="orgPersonID" Type="Int32" Nullable="false" />
+          <Property Name="RequestedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CasePersons" Relationship="ExternalDatabaseModel.FK_CasePersons_RegulationExecOrgPersons_Seed" FromRole="RegulationExecOrgPersons_Seed" ToRole="CasePerson" />
+          <NavigationProperty Name="RegulationExecutivePersons" Relationship="ExternalDatabaseModel.FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed" FromRole="RegulationExecOrgPersons_Seed" ToRole="RegulationExecutivePerson" />
+        </EntityType>
+        <Association Name="FK_CasePersons_RegulationExecOrgPersons_Seed">
+          <End Type="ExternalDatabaseModel.RegulationExecOrgPersons_Seed" Role="RegulationExecOrgPersons_Seed" Multiplicity="1" />
+          <End Type="ExternalDatabaseModel.CasePerson" Role="CasePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecOrgPersons_Seed">
+              <PropertyRef Name="orgPersonID" />
+            </Principal>
+            <Dependent Role="CasePerson">
+              <PropertyRef Name="orgPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed">
+          <End Type="ExternalDatabaseModel.RegulationExecOrgPersons_Seed" Role="RegulationExecOrgPersons_Seed" Multiplicity="1" />
+          <End Type="ExternalDatabaseModel.RegulationExecutivePerson" Role="RegulationExecutivePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegulationExecOrgPersons_Seed">
+              <PropertyRef Name="orgPersonID" />
+            </Principal>
+            <Dependent Role="RegulationExecutivePerson">
+              <PropertyRef Name="orgPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExternalDatabaseModelStoreContainer" CdmEntityContainer="ExternalDatabaseEntities">
+          <EntitySetMapping Name="CasePersons">
+            <EntityTypeMapping TypeName="ExternalDatabaseModel.CasePerson">
+              <MappingFragment StoreEntitySet="CasePersons">
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="CaseSequence" ColumnName="CaseSequence" />
+                <ScalarProperty Name="orgPersonID" ColumnName="orgPersonID" />
+                <ScalarProperty Name="RoleInCase" ColumnName="RoleInCase" />
+                <ScalarProperty Name="LastUpdatedWhen" ColumnName="LastUpdatedWhen" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="CommentsOn" ColumnName="CommentsOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="ExternalDatabaseModel.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="UserFriendlyDescription" ColumnName="UserFriendlyDescription" />
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="IsComplaint" ColumnName="IsComplaint" />
+                <ScalarProperty Name="OpenedDate" ColumnName="OpenedDate" />
+                <ScalarProperty Name="CaseOutcome" ColumnName="CaseOutcome" />
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedWhen" ColumnName="UpdatedWhen" />
+                <ScalarProperty Name="CaseManager" ColumnName="CaseManager" />
+                <ScalarProperty Name="LegacyCaseNumber" ColumnName="LegacyCaseNumber" />
+                <ScalarProperty Name="InitiallyReceivedDocs" ColumnName="InitiallyReceivedDocs" />
+                <ScalarProperty Name="InitiallyReceivedDocsFrom" ColumnName="InitiallyReceivedDocsFrom" />
+                <ScalarProperty Name="UserComments" ColumnName="UserComments" />
+                <ScalarProperty Name="StatusSummarised" ColumnName="StatusSummarised" />
+                <ScalarProperty Name="TypeOfCase" ColumnName="TypeOfCase" />
+                <ScalarProperty Name="DisplayCaseReference" ColumnName="DisplayCaseReference" />
+                <ScalarProperty Name="DisplayLegacyReference" ColumnName="DisplayLegacyReference" />
+                <ScalarProperty Name="LegacyCaseStatus" ColumnName="LegacyCaseStatus" />
+                <ScalarProperty Name="PrimaryCaseStatus" ColumnName="PrimaryCaseStatus" />
+                <ScalarProperty Name="SecondaryCaseStatus" ColumnName="SecondaryCaseStatus" />
+                <ScalarProperty Name="WorkflowStatus" ColumnName="WorkflowStatus" />
+                <ScalarProperty Name="WorkflowOutcome" ColumnName="WorkflowOutcome" />
+                <ScalarProperty Name="RiskCategory" ColumnName="RiskCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegulationExecutivePersons">
+            <EntityTypeMapping TypeName="ExternalDatabaseModel.RegulationExecutivePerson">
+              <MappingFragment StoreEntitySet="RegulationExecutivePersons">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="title_id" ColumnName="title_id" />
+                <ScalarProperty Name="Forenames" ColumnName="Forenames" />
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address4" ColumnName="Address4" />
+                <ScalarProperty Name="Address5" ColumnName="Address5" />
+                <ScalarProperty Name="Address6" ColumnName="Address6" />
+                <ScalarProperty Name="AddressPostcode" ColumnName="AddressPostcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="TelBusiness" ColumnName="TelBusiness" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="WebUrl" ColumnName="WebUrl" />
+                <ScalarProperty Name="orgPersonID" ColumnName="orgPersonID" />
+                <ScalarProperty Name="RegulationExecutivePersonID" ColumnName="RegulationExecutivePersonID" />
+                <ScalarProperty Name="DefaultRole1" ColumnName="DefaultRole1" />
+                <ScalarProperty Name="DefaultRole2" ColumnName="DefaultRole2" />
+                <ScalarProperty Name="DefaultRole3" ColumnName="DefaultRole3" />
+                <ScalarProperty Name="DefaultRole4" ColumnName="DefaultRole4" />
+                <ScalarProperty Name="CommentOn" ColumnName="CommentOn" />
+                <ScalarProperty Name="LastUpdatedWhen" ColumnName="LastUpdatedWhen" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="InvertedDisplayName" ColumnName="InvertedDisplayName" />
+                <ScalarProperty Name="SurnameMetaphKey" ColumnName="SurnameMetaphKey" />
+                <ScalarProperty Name="ForenamesMetaphKey" ColumnName="ForenamesMetaphKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegulationExecutiveUsers">
+            <EntityTypeMapping TypeName="ExternalDatabaseModel.RegulationExecutiveUser">
+              <MappingFragment StoreEntitySet="RegulationExecutiveUsers">
+                <ScalarProperty Name="UserNameNT" ColumnName="UserNameNT" />
+                <ScalarProperty Name="UserNameFriendly" ColumnName="UserNameFriendly" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="UserInitials" ColumnName="UserInitials" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleOfPersons">
+            <EntityTypeMapping TypeName="ExternalDatabaseModel.RoleOfPerson">
+              <MappingFragment StoreEntitySet="RoleOfPersons">
+                <ScalarProperty Name="RoleOfPerson1" ColumnName="RoleOfPerson" />
+                <ScalarProperty Name="SmallMembership" ColumnName="SmallMembership" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewCases">
+            <EntityTypeMapping TypeName="ExternalDatabaseModel.NewCas">
+              <MappingFragment StoreEntitySet="NewCases">
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegulationExecOrgPersons_Seed">
+            <EntityTypeMapping TypeName="ExternalDatabaseModel.RegulationExecOrgPersons_Seed">
+              <MappingFragment StoreEntitySet="RegulationExecOrgPersons_Seed">
+                <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+                <ScalarProperty Name="orgPersonID" ColumnName="orgPersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

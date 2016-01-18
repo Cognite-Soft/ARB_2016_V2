@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension">
+  <Fragment>
+    <Property Id="DATABASE_SERVER" Value="." />
+    <Property Id="DATABASE_NAME" Value="Cognite.Arb" />
+    <Property Id="DATABASE_USER" Value="sa" />
+    <Property Id="DATABASE_PASSWORD" Value="Passw0rd" />
+
+    <util:User Id="SqlUser" Name="[DATABASE_USER]" Password="[DATABASE_PASSWORD]"></util:User>
+
+    <Feature Id="DatabaseFeature" Title="Database" Level="1">
+      <Component Id="DatabaseComponent" Directory="DATABASEFOLDER" Guid="{EBC1C19F-9139-45D9-81DA-3FE14862C23C}">
+        <CreateFolder/>
+        <sql:SqlDatabase Id="SqlDatabase"
+                         Server="[DATABASE_SERVER]" Database="[DATABASE_NAME]" User="SqlUser"
+                         ContinueOnError="no"
+                         CreateOnInstall="yes" CreateOnReinstall="no"
+                         DropOnReinstall="no" DropOnUninstall="no">
+        </sql:SqlDatabase>
+      </Component>
+    </Feature>
+  </Fragment>
+</Wix>

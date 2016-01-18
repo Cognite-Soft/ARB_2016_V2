@@ -1,0 +1,234 @@
+﻿@using System
+@using Cognite.Arb.Server.Contract.Cases
+@model Cognite.Arb.Web.Models.Complaints.ComplaintOverviewViewModel
+
+@using (Html.BeginForm("StartProcess", "Complaints", new { id = Model.Id }, FormMethod.Post, new { @class = "custom", role = "form" }))
+{
+    <div class="large-8 columns">
+        <div class="content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "validation-errors" })
+            @if (User.IsInRole("CaseWorker") && Model.ComplaintCanBeEdited)
+            {
+                <div class="ovf-hidden">
+                    <div class="large-6 columns">&nbsp;</div>
+                    <div class="large-6 columns text-right">
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "button tiny additional" })
+                        
+
+                        @*Pravahya Code for handling the verification for Start Process*@
+                        @Html.TextBox("pMem1", Model.PanelMembers.Member1.FullName,new {style="display:none;"})
+                        @Html.TextBox("pMem2", Model.PanelMembers.Member2.FullName, new { style = "display:none;" })
+                        @Html.TextBox("pMem3", Model.PanelMembers.Member3.FullName, new { style = "display:none;" })
+                        @Html.TextBox("alig", Model.Allegations.Items.Count, new { style = "display:none;" })
+                        @*Pravahya Code for handling the verification for Start Process*@
+
+
+                        <input type="submit" value="Start process" class="button tiny yes" onclick="return validateStartProcess();"/>
+                         @*@if (Model.IsReady)
+                        {
+                            <input type="submit" value="Start process" class="button tiny yes" />
+                        }*@
+                    </div>
+                </div>
+            }
+            else
+            {
+                 <div class="ovf-hidden">
+                    <div class="large-6 columns">&nbsp;</div>
+                    <div class="large-6 columns text-right">
+                        @if(User.IsInRole("CaseWorker")){
+                             @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "button tiny additional" })
+                        }
+                     </div>
+                </div>
+                
+            }
+            
+            <div class="row first">
+                <div class="large-6 columns">
+                    <h4>Panel members</h4>
+                    <div class="view">
+                        @if (User.IsInRole("CaseWorker"))
+                        {
+                            if (!String.IsNullOrEmpty(Model.PanelMembers.Member1.FullName))
+                            {
+                                <p>@Html.ActionLink(Model.PanelMembers.Member1.FullName, "Send", "Notification", new { id = Model.PanelMembers.Member1.Id, returnUrl = Request.Url.AbsoluteUri }, new { @class = "notification-link", title = "Send notification" })</p>
+                            }
+                            if (!String.IsNullOrEmpty(Model.PanelMembers.Member2.FullName))
+                            {
+                                <p>@Html.ActionLink(Model.PanelMembers.Member2.FullName, "Send", "Notification", new { id = Model.PanelMembers.Member2.Id, returnUrl = Request.Url.AbsoluteUri }, new { @class = "notification-link", title = "Send notification" })</p>
+                            }
+                            if (!String.IsNullOrEmpty(Model.PanelMembers.Member3.FullName))
+                            {
+                                <p>@Html.ActionLink(Model.PanelMembers.Member3.FullName, "Send", "Notification", new { id = Model.PanelMembers.Member3.Id, returnUrl = Request.Url.AbsoluteUri }, new { @class = "notification-link", title = "Send notification" })</p>
+                            }
+                        }
+                        else
+                        {
+                            <p>@Model.PanelMembers.Member1.FullName</p>
+                            <p>@Model.PanelMembers.Member2.FullName</p>
+                            <p>@Model.PanelMembers.Member3.FullName</p>
+                        }
+                    </div>
+                </div>
+                <div class="large-6 columns ar">
+                    <h4>Case Start Date</h4>
+                    <div class="view">
+                        <span class="label large success">@Model.StartDate.ToShortDateString()</span>
+                    </div>
+                    <h4>@Model.State.TypeText</h4>
+                    @if (Model.State.Type != CaseStateKind.New && Model.State.Type != CaseStateKind.Closed && Model.State.Type != CaseStateKind.Rejected)
+                    {
+                        <div class="view">
+                            @if (Model.State.DaysLeft == 0)
+                            {
+                                <span class="label alert large">Due today!</span>
+                            }
+                            else
+                            {
+                                <span class="label alert large">Due in @Model.State.DaysLeft days!</span>
+                            } 
+                            <span class="label large">@Model.State.DueDate.ToShortDateString()</span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div>
+                @if (User.IsInRole("CaseWorker"))
+                {
+                    if (!String.IsNullOrEmpty(Model.PanelMembers.Member1.FullName) || !String.IsNullOrEmpty(Model.PanelMembers.Member2.FullName) || !String.IsNullOrEmpty(Model.PanelMembers.Member3.FullName))
+                    {
+                        <p>@Html.ActionLink("Send message to all panel members", "SendAll", "Notification", new { id = Model.Id, retuenUrl = Request.Url.AbsoluteUri }, new { @class = "notification-link", title = "Send notification to all panel memebers" })</p>
+                    }
+                }
+            </div>
+            <hr>
+            <h4>Date complaint received by ARB</h4>            
+            <div class="view">
+                <p>@Model.Background</p>
+            </div>
+            <br>
+            <h4>Background of complaint</h4>
+            <div class="view">
+                @foreach (var dateDetail in Model.DatesAndDetails)
+                {
+                    <p>
+                        <strong>@dateDetail.Date.ToShortDateString()</strong> - @dateDetail.Text
+                        @if (dateDetail.Documents.Count > 0)
+                        {
+                            <a href="@Url.Action("Download", "Documents", new { id = dateDetail.Documents[0].Id })" title="View Document (@dateDetail.Documents[0].Name)" target="_blank">
+                                <i class="fa fa-file-text fa-fw"></i>
+                            </a>
+                        }
+                    </p>
+                }
+            </div>
+            <br>
+            <h4>Allegations</h4>
+            <h6>That the Architect is guilty of unacceptable professional conduct and/or serious professional incompetence in that he/she</h6>
+            <div class="view">
+                <ol>
+                    @foreach (var allegation in Model.Allegations.Items)
+                    {
+                        <li data-allegation-id="@allegation.Id">
+                            @allegation.Text
+                            @if (allegation.Documents.Count > 0)
+                            {
+                                <a href="@Url.Action("Download", "Documents", new { id = allegation.Documents[0].Id })" title="View Document (@allegation.Documents[0].Name)" target="_blank">
+                                    <i class="fa fa-file-text fa-fw"></i>
+                                </a>
+                            }
+                            @if (User.IsInRole("PanelMember") && Model.State.Type == CaseStateKind.PreliminaryComments)
+                            {
+                                if (String.IsNullOrEmpty(allegation.Comment.Text))
+                                {
+                                    @*<div class="allegation-controls">
+                                        @Html.TextAreaFor(m => allegation.Comment.Text, new { @class = "comment-allegation-text", rows = "1", placeholder = "Enter your comments" })
+                                        <input type="button" name="AddAllegationCommentYes" class="button tiny yes comment-allegation" title="Yes" value="Yes" />
+                                        <input type="button" name="AddAllegationCommentNo" class="button tiny no comment-allegation" title="No" value="No" />
+                                        <a class="button tiny additional" data-show="@allegation.Id" title="More Info">Advice</a>
+                                        <div id="@allegation.Id" class="hide">
+                                            @Html.TextAreaFor(m => allegation.Comment.AdditionalText, new { @class = "comment-allegation-text-add", rows = "1", placeholder = "Enter your additional comments" })
+                                            <input type="button" name="AddAllegationCommentAdvice" class="button tiny yes advice comment-allegation" title="Send" value="Send" />
+                                        </div>
+                                    </div>*@
+                                
+                                 <div class="allegation-controls">
+                                        @Html.TextAreaFor(m => allegation.Comment.Text, new { @class = "comment-allegation-text", rows = "1", placeholder = "Enter your comments" })
+                                        <input type="button" name="AddAllegationCommentYes" class="button tiny yes comment-allegation" title="Yes" value="Yes" />
+                                        <input type="button" name="AddAllegationCommentNo" class="button tiny no comment-allegation" title="No" value="No" />
+                                        <input type="button" name="AddAllegationCommentAdvice" class="button tiny advice comment-allegation" title="More Info" value="Advice" />
+                                        @*<a class="button tiny additional" data-show="@allegation.Id" title="More Info">Advice</a>*@
+                                        <div id="@allegation.Id" class="hide">
+                                            @Html.TextAreaFor(m => allegation.Comment.AdditionalText, new { @class = "comment-allegation-text-add", rows = "1", placeholder = "Enter your additional comments" })
+                                           @* <input type="button" name="AddAllegationCommentAdvice_old" class="button tiny yes advice comment-allegation" title="Send" value="Send" />*@
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p><strong>@allegation.Comment.AllegationCommentTypeText</strong></p>
+                                    <p>@allegation.Comment.Text</p>
+                                    <p>@allegation.Comment.AdditionalText</p>
+                                }
+                            }
+                        </li>
+                    }
+                </ol>
+            </div>
+            <br>
+            <h4>Issue raised with architect?</h4>
+            <div class="view">
+                <p><strong>@Model.IssueRaisedWithArchitect.AnswerText</strong></p>
+                <p>@Model.IssueRaisedWithArchitect.Comments</p>
+            </div>
+            <br>
+            <h4>Subject of legal proceedings?</h4>
+            <div class="view">
+                <p><strong>@Model.IssueRaisedWithArchitect.AnswerText</strong></p>
+                <p>@Model.SubjectOfLegalProceedings.Comments</p>
+            </div>
+            <h4>Ideal outcome</h4>
+            <div class="view">
+                <p>@Model.IdealOutcome</p>
+            </div>
+        </div>
+    </div>
+    <div class="large-4 columns">
+        <div class="claim-contact">
+            <h4>Relationship</h4>
+            <div class="view">
+                <p><strong>@Model.Relationship</strong></p>
+            </div>
+            <hr>
+            <h4>Contact agreement</h4>
+            <div class="view">
+                <p>
+                    <strong>@Model.ContactAgreementText</strong>
+                </p>
+            </div>
+            <hr>
+            <h4>Complainant</h4>
+            <div class="view">
+                <p>@Model.ClaimantContact.Name</p>
+                <p><a href="mailto:@Model.ClaimantContact.EMail">@Model.ClaimantContact.EMail</a></p>
+                <p>@Model.ClaimantContact.Phone</p>
+                <br>
+                <p>@Model.ClaimantContact.Address</p>
+            </div>
+            <hr>
+            <h4>Architect</h4>
+            <div class="view">
+                <p>@Model.ArchitectContact.Name</p>
+                <p>#@Model.ArchitectContact.RegistrationNumber</p>
+                <p><a href="mailto:@Model.ArchitectContact.EMail">@Model.ArchitectContact.EMail</a></p>
+                <p>@Model.ArchitectContact.Phone</p>
+                <br>
+                <p>@Model.ArchitectContact.Address</p>
+            </div>
+        </div>
+    </div>
+    
+    
+}

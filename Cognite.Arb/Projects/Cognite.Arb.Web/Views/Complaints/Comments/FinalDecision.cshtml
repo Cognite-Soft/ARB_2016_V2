@@ -1,0 +1,98 @@
+﻿@using Cognite.Arb.Web.Models.Complaints
+
+@model Cognite.Arb.Web.Models.Complaints.ComplaintCommentsFinalDecisionViewModel
+
+<div class="content demo-stage-3">
+    <div class="row first comments-header">
+        <div class="large-9 columns">
+            <h4>3 : Final Decision</h4>
+        </div>
+        <div class="large-3 columns">
+            @switch (Model.State)
+            {
+                case ComplaintCommentsStepState.Complete:
+                    <span class="label large right due success">Closed</span>
+                    break;
+                case ComplaintCommentsStepState.InProcess:
+                    if (Model.DueDays == 0)
+                    {
+                        <span class="label alert large right due-countdown">Due today!</span>
+                    }
+                    else
+                    {
+                        <span class="label alert large right due-countdown">Due in @Model.DueDays days!</span>
+                    }
+                    <span class="label large right due">@Model.DueDateText</span>
+                    break;
+                case ComplaintCommentsStepState.Locked:
+                    <span class="label large right due">Locked</span>
+                    break;
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <h6>View the Final Decision</h6>
+            @using (Html.BeginForm("", "Complaints", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                if (User.IsInRole("CaseWorker") && Model.State != ComplaintCommentsStepState.Complete)
+                {
+
+                    if (Model.Document != null)
+                    {
+                        <p>
+                            <a href="@Url.Action("Download", "Documents", new { id = Model.Document.Id })" title="View Document (@Model.Document.Name)" target="_blank">
+                                <i class="fa fa-file-text fa-fw"></i>@Model.Document.Name
+                            </a>
+                        </p>
+                    }
+                    <div class="edit">
+                        <input type="hidden" name="caseid" value="@ViewContext.RouteData.Values["id"].ToString()" />
+                        <input type="file" name="finaldecisionfile" id="finaldecision-file" class="hide" />
+                        <a class="button tiny attach" data-input-id="finaldecision-file" title="Attach Final Decision"><i class="fa fa-paperclip fa-fw"></i> </a>
+                        <button type="submit" name="AddFinalDecision" class="button tiny add-final-decision" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                        <span class="finaldecision-file"></span>
+                    </div>
+                }
+                else
+                {
+                    <div class="view">
+                        @if (Model.Document != null)
+                        {
+                            <p>
+                                <a href="@Url.Action("Download", "Documents", new { id = Model.Document.Id })" title="View Document (@Model.Document.Name)" target="_blank">
+                                    <i class="fa fa-file-text fa-fw"></i>@Model.Document.Name
+                                </a>
+                            </p>
+                            if (Model.State != ComplaintCommentsStepState.Complete)
+                            {
+                                <div class="edit">
+                                    <p>Upload updated final decision</p>
+                                    <input type="hidden" name="caseid" value="@ViewContext.RouteData.Values["id"].ToString()" />
+                                    <input type="file" name="finaldecisionfile" id="finaldecision-file" class="hide" />
+                                    <a class="button tiny attach" data-input-id="finaldecision-file" title="Attach Updated Final Decision"><i class="fa fa-paperclip fa-fw"></i> </a>
+                                    <button type="submit" name="AddUpdatedFinalDecision" class="button tiny add-final-decision" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                                    <span class="finaldecision-file"></span>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            }
+            <hr>
+            @if (User.IsInRole("PanelMember") && Model.State == ComplaintCommentsStepState.InProcess && !Model.ApprovedByCurrentUser)
+            {
+                <div class="view">
+                    <a class="button tiny yes final-decision-operation" data-action="Accept" title="Accept">Accept</a>
+                    <a class="button tiny final-decision-operation" data-action="Amend" title="Amend">Amend</a>
+                    <a class="button tiny no additional" data-show="decision-changed" title="Preliminary decision Changed">Preliminary decision Changed</a>
+                    <div id="decision-changed" class="hide">
+                        <textarea class="decision-changed-comment" rows="1" placeholder="Enter your reason for this change"></textarea>
+                        <a class="button tiny yes final-decision-operation" data-action="Changed" title="Send">Send</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

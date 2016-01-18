@@ -1,0 +1,24 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.AllegationWithComments
+
+<li data-allegation-id="@Model.Id">
+    @Model.Text 
+    @if (Model.Documents.Count > 0) {
+        <a href="@Url.Action("Download", "Documents", new { id = Model.Documents[0].Id })"  title="View Document (@Model.Documents[0].Name)" target="_blank"><i class="fa fa-file-text fa-fw"></i></a>
+    }
+    <div class="view">
+        @if (Model.Comments.Count > 0)
+        {
+            <div class="box mini feed-sub">
+                @foreach (var comment in Model.Comments)
+                {
+                    <div class="row" id="@comment.Id">
+                        <div class="large-2 columns center"><img src="/Content/Images/user.gif"><br><small>@comment.User.FullName</small></div>
+                        <div class="large-10 columns">
+                            <p>@comment.Text</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</li>

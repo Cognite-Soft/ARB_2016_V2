@@ -1,0 +1,10 @@
+﻿@model Cognite.Arb.Web.Models.Schedule.ScheduleRowViewModel
+
+@foreach (var item in Model.ScheduleRowItems)
+{
+    var cellId = Guid.NewGuid();
+    <div class="large-4 columns">
+        @Html.HiddenFor(m => item.Id, new { @class = "schedulecell-hidden", id = cellId, @data_index = item.Index })
+        <input type="text" value="@item.Value" data-value-id="@cellId" class="schedulecell" placeholder="Enter Panel Members Name" tabindex="1" required />
+    </div>
+}

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+  <Fragment>
+    <Property Id="WEBAPI_ADDRESS" Value="http://localhost/ArbWebApi/api/" />
+    <Feature Id="WebFeature" Title="Web Application" Level="1">
+      <Component Id="WebIISComponet" Guid="{CC8AFC22-10F7-40F3-A252-F746C749A617}" Directory="WEBAPPLICATIONFOLDER">
+        <CreateFolder />
+        <!--<iis:WebSite Id="CogniteWebSite" Description="Cognite Web Site" Directory="WEBFOLDER">
+          <iis:WebAddress Id="AllUnassigned" Port="80"/>
+        </iis:WebSite>-->
+        <iis:WebSite Id="ArbWebSite" Description="ArbWebSite" Directory="WEBAPPLICATIONFOLDER">
+          <iis:WebAddress Id="AllUnassigned2" Port="82"/>
+        </iis:WebSite>
+        <iis:WebVirtualDir Id="WebVirtualDirectory" Alias="ArbWeb" Directory="WEBAPPLICATIONFOLDER" WebSite="ArbWebSite">
+          <iis:WebApplication Id="WebWebApplication" Name="ArbWeb"></iis:WebApplication>
+        </iis:WebVirtualDir>
+      </Component>
+      <Component Id="WebContent_WEBPUBLISH_Component" Guid="e5f73fbb-a470-4adc-8bcd-8d6675977a24" Directory="WEBAPPLICATIONFOLDER">
+        <CreateFolder />
+        <File Id="File_a508f35ac3d5406ab12375e32b81095e" Source="../../../Cognite.Arb.Web/favicon.ico"/>
+        <File Id="File_2d971d50a2324960acc272328e0c2897" Source="../../../Cognite.Arb.Web/Global.asax"/>
+        <File Id="File_6903079136534df5a023b7a65783330c" Source="../../../Cognite.Arb.Web/packages.config"/>
+        <File Id="File_59aca787362f4695a5af896b00a2392d" Source="../../../Cognite.Arb.Web/Web.config"/>
+      </Component>
+      <Component Id="WebContent_bin_Component" Guid="a1476cb3-0fa4-436a-a096-f790e3ca5de9" Directory="WebContent_binec593c1551d14f1194847d42e5f3cdfd_FOLDER">
+        <CreateFolder />
+        <File Id="File_2c813d234a924459b2b47d8af5e9523e" Source="../../../Cognite.Arb.Web/bin\Antlr3.Runtime.dll"/>
+        <File Id="File_70ec52081db847a7b9ed9425c51a8e44" Source="../../../Cognite.Arb.Web/bin\Cognite.Arb.Server.Contract.dll"/>
+        <File Id="File_a66ad05ace674764995016e1c5473e20" Source="../../../Cognite.Arb.Web/bin\Cognite.Arb.Web.dll"/>
+        <File Id="File_143c8475fc854b0ead79c1455b46dffb" Source="../../../Cognite.Arb.Web/bin\Cognite.Arb.Web.ServiceClient.dll"/>
+        <File Id="File_749a77d4dd384071bd9b421b499bb3cb" Source="../../../Cognite.Arb.Web/bin\EntityFramework.dll"/>
+        <File Id="File_654c078d572c41228db78691ae163af3" Source="../../../Cognite.Arb.Web/bin\EntityFramework.SqlServer.dll"/>
+        <File Id="File_f6856c606e4049a8975be1b814870251" Source="../../../Cognite.Arb.Web/bin\Microsoft.AspNet.Identity.Core.dll"/>
+        <File Id="File_5c255282bc6f407cb9a859e39fdc9a6f" Source="../../../Cognite.Arb.Web/bin\Microsoft.AspNet.Identity.EntityFramework.dll"/>
+        <File Id="File_4b22819d03b24e23b03121a87a7e06e4" Source="../../../Cognite.Arb.Web/bin\Microsoft.AspNet.Identity.Owin.dll"/>
+        <File Id="File_a4c1ca98da154a84b56dc7117af2855b" Source="../../../Cognite.Arb.Web/bin\Microsoft.Owin.dll"/>
+        <File Id="File_dbcb7eaa60954031b3edc507ec5c36dd" Source="../../../Cognite.Arb.Web/bin\Microsoft.Owin.Host.SystemWeb.dll"/>
+        <File Id="File_794b84247396469aa83d23a025cf0a52" Source="../../../Cognite.Arb.Web/bin\Microsoft.Owin.Security.Cookies.dll"/>
+        <File Id="File_eae059a7b00e4ae8a7bc9abedb4dbb53" Source="../../../Cognite.Arb.Web/bin\Microsoft.Owin.Security.dll"/>
+        <File Id="File_97c4d9dc2ee147c1b0a6a389d7724f4e" Source="../../../Cognite.Arb.Web/bin\Microsoft.Owin.Security.OAuth.dll"/>
+        <File Id="File_6e5cd6fc78b543e8a89f171a73d44243" Source="../../../Cognite.Arb.Web/bin\Microsoft.Practices.ServiceLocation.dll"/>
+        <File Id="File_a392f6bd3297414a92c6d43a777cd957" Source="../../../Cognite.Arb.Web/bin\Microsoft.Practices.Unity.Configuration.dll"/>
+        <File Id="File_08437cfe32e24c69990cfe67806c1d09" Source="../../../Cognite.Arb.Web/bin\Microsoft.Practices.Unity.dll"/>
+        <File Id="File_8e9b1e5a41d748759513c216804f1b97" Source="../../../Cognite.Arb.Web/bin\Microsoft.Practices.Unity.Mvc.dll"/>
+        <File Id="File_efdce35b8c484debb9e14965b867c838" Source="../../../Cognite.Arb.Web/bin\Microsoft.Practices.Unity.RegistrationByConvention.dll"/>
+        <File Id="File_2328a100e1a345f4a088bde8d0879fe5" Source="../../../Cognite.Arb.Web/bin\Microsoft.Web.Infrastructure.dll"/>
+        <File Id="File_346613563114483381b7c698a1ef40af" Source="../../../Cognite.Arb.Web/bin\Moq.dll"/>
+        <File Id="File_e8f9db2e8c1b4cf7b0199efafb3e684b" Source="../../../Cognite.Arb.Web/bin\Newtonsoft.Json.dll"/>
+        <File Id="File_0e9a62e8373f4f85ac8a792069933c47" Source="../../../Cognite.Arb.Web/bin\nunit.framework.dll"/>
+        <File Id="File_5ee706a91f1b4ac7929e706a5577fdb4" Source="../../../Cognite.Arb.Web/bin\Owin.dll"/>
+        <File Id="File_e51e7caf8270411788ef35ea3bbae98e" Source="../../../Cognite.Arb.Web/bin\System.Net.Http.Formatting.dll"/>
+        <File Id="File_7f5d84d3630a4f4194a486163c682648" Source="../../../Cognite.Arb.Web/bin\System.Web.Helpers.dll"/>
+        <File Id="File_4f2e7a9fd24c42b28e6ba6787ec0c864" Source="../../../Cognite.Arb.Web/bin\System.Web.Mvc.dll"/>
+        <File Id="File_eca9370363ea4f0e87d9b6147794f7b7" Source="../../../Cognite.Arb.Web/bin\System.Web.Optimization.dll"/>
+        <File Id="File_cb8bb57bcb284b9b8ef4358ea62e2b43" Source="../../../Cognite.Arb.Web/bin\System.Web.Razor.dll"/>
+        <File Id="File_bd304e0a7823472b83c578974c430868" Source="../../../Cognite.Arb.Web/bin\System.Web.WebPages.Deployment.dll"/>
+        <File Id="File_f70929fd6be047a4b1ad86d95b6a642e" Source="../../../Cognite.Arb.Web/bin\System.Web.WebPages.dll"/>
+        <File Id="File_7ca3b75d22e340d2b374d41e7da586c5" Source="../../../Cognite.Arb.Web/bin\System.Web.WebPages.Razor.dll"/>
+        <File Id="File_8a5ea0de71ba4fc69c5e88aa15dcb386" Source="../../../Cognite.Arb.Web/bin\Unity.Mvc5.dll"/>
+        <File Id="File_7b95125f234f41f9b1d44ec16870433a" Source="../../../Cognite.Arb.Web/bin\WebActivatorEx.dll"/>
+        <File Id="File_d2ce308555ff473db56fb0a069f282ff" Source="../../../Cognite.Arb.Web/bin\WebGrease.dll"/>
+      </Component>
+      <Component Id="WebContent_Content_Component" Guid="d68a36f6-a130-4179-9f39-c6ba034d2306" Directory="WebContent_Contentebf14d05aa214119828fdcaa14a66372_FOLDER">
+        <CreateFolder />
+        <File Id="File_273746765904422d9c94aeaa004beb6c" Source="../../../Cognite.Arb.Web/Content\app.css"/>
+        <File Id="File_c152c5389dca487fb64c1bcc90eb7774" Source="../../../Cognite.Arb.Web/Content\font-awesome.min.css"/>
+        <File Id="File_94959a788a1d494e8cab5d842d6af1ab" Source="../../../Cognite.Arb.Web/Content\jnotify.css"/>
+        <File Id="File_6bdaef32e43c4411b71414775aad5770" Source="../../../Cognite.Arb.Web/Content\jquery-ui.min.css"/>
+        <File Id="File_2e52fd913d3342a289597e6e946a8aba" Source="../../../Cognite.Arb.Web/Content\magicsuggest.css"/>
+      </Component>
+      <Component Id="WebContent_Images_Component" Guid="8c41cb7c-a638-4979-a25e-03e2ba20f722" Directory="WebContent_Images7ed703d1b4194dae9a975569dde8d65e_FOLDER">
+        <CreateFolder />
+        <File Id="File_4fa3de053b624f8ead619071371b31ee" Source="../../../Cognite.Arb.Web/Content\Images\animated-overlay.gif"/>
+        <File Id="File_baf452aee4674e1dbbbe961165c6b916" Source="../../../Cognite.Arb.Web/Content\Images\arb-logo.png"/>
+        <File Id="File_1ddc5dbc85fd4aa881b3876c93a5e9e9" Source="../../../Cognite.Arb.Web/Content\Images\error.png"/>
+        <File Id="File_c699a1b6e1284ee8bd36e1c78d0ac372" Source="../../../Cognite.Arb.Web/Content\Images\info.png"/>
+        <File Id="File_a4748ab3f7f44d779f1d42f5b8318d8e" Source="../../../Cognite.Arb.Web/Content\Images\loading.gif"/>
+        <File Id="File_e2477c42148545ed85d537087ae0c99c" Source="../../../Cognite.Arb.Web/Content\Images\success.png"/>
+        <File Id="File_4d50643f70744ebb9a86910b6fce0a10" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_flat_0_aaaaaa_40x100.png"/>
+        <File Id="File_ef27e84cf59f413a8d9adef19762f3bc" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_flat_75_ffffff_40x100.png"/>
+        <File Id="File_9532e4eca2af49c7ae2542616cc008f4" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_glass_55_fbf9ee_1x400.png"/>
+        <File Id="File_eab830659673452c9d5c6ea9a9a1645d" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_glass_65_ffffff_1x400.png"/>
+        <File Id="File_2f18a4de636045de8d6e6e46df9801f0" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_glass_75_dadada_1x400.png"/>
+        <File Id="File_bbcf07c470464b6981eeb95de2709874" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_glass_75_e6e6e6_1x400.png"/>
+        <File Id="File_feaff804fbcd4fa7b23c1daf2b0e4bb0" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_glass_95_fef1ec_1x400.png"/>
+        <File Id="File_d8cd9d5276e341428029deebd320b1a8" Source="../../../Cognite.Arb.Web/Content\Images\ui-bg_highlight-soft_75_cccccc_1x100.png"/>
+        <File Id="File_8a9a24b5f5ab4917a66b8cf53508f33d" Source="../../../Cognite.Arb.Web/Content\Images\ui-icons_222222_256x240.png"/>
+        <File Id="File_ddad387e14274b53aa1672680a83554f" Source="../../../Cognite.Arb.Web/Content\Images\ui-icons_2e83ff_256x240.png"/>
+        <File Id="File_eb02091b4992435b8c0297f39d1072dd" Source="../../../Cognite.Arb.Web/Content\Images\ui-icons_454545_256x240.png"/>
+        <File Id="File_7619e740bfe247b79a805b2550957a2f" Source="../../../Cognite.Arb.Web/Content\Images\ui-icons_888888_256x240.png"/>
+        <File Id="File_7644a27d998840b582398d2b33e08288" Source="../../../Cognite.Arb.Web/Content\Images\ui-icons_cd0a0a_256x240.png"/>
+        <File Id="File_ff9ce3fc1a4d4130b9c20abc2119f0c4" Source="../../../Cognite.Arb.Web/Content\Images\user.gif"/>
+      </Component>
+      <Component Id="WebContent_fonts_Component" Guid="8441ab2b-fec8-4c53-90c2-7e4d6a5529c8" Directory="WebContent_fonts5ad62bef1a68443db8d601377e33221c_FOLDER">
+        <CreateFolder />
+        <File Id="File_4fc337866e034cbb870d27eca2c1e47a" Source="../../../Cognite.Arb.Web/fonts\fontawesome-webfont.eot"/>
+        <File Id="File_74befc3b13194d3b954a5658686c4757" Source="../../../Cognite.Arb.Web/fonts\fontawesome-webfont.svg"/>
+        <File Id="File_fcb77e3168f54ab3ae3a02d905d5dd9a" Source="../../../Cognite.Arb.Web/fonts\fontawesome-webfont.ttf"/>
+        <File Id="File_31b89a0bf39a4da2b673544c17f2cfd3" Source="../../../Cognite.Arb.Web/fonts\fontawesome-webfont.woff"/>
+        <File Id="File_fe843e0498204c6b8b77b332fe0d2884" Source="../../../Cognite.Arb.Web/fonts\FontAwesome.otf"/>
+        <File Id="File_40941f7fb9fd4f98b1a3fecc18192050" Source="../../../Cognite.Arb.Web/fonts\glyphicons-halflings-regular.eot"/>
+        <File Id="File_4afd525fc4eb497da7b0839e40fffadf" Source="../../../Cognite.Arb.Web/fonts\glyphicons-halflings-regular.svg"/>
+        <File Id="File_c7bc711de27148b49e753a6e5220c1a8" Source="../../../Cognite.Arb.Web/fonts\glyphicons-halflings-regular.ttf"/>
+        <File Id="File_a0503c17820d4acab2a9c150b77485b5" Source="../../../Cognite.Arb.Web/fonts\glyphicons-halflings-regular.woff"/>
+      </Component>
+      <Component Id="WebContent_Scripts_Component" Guid="f0d1e4b3-d479-4708-8e56-c803e6e95028" Directory="WebContent_Scripts729605c7d5fa443086ac2b6ea6750f42_FOLDER">
+        <CreateFolder />
+        <File Id="File_dcd1375817174cf4a7503f4ca8c3821c" Source="../../../Cognite.Arb.Web/Scripts\app.js"/>
+        <File Id="File_649173f1505d4bbaa577107e9b5fca68" Source="../../../Cognite.Arb.Web/Scripts\complaint.edit.js"/>
+        <File Id="File_f55ef6149dd04784944c881ba7b13733" Source="../../../Cognite.Arb.Web/Scripts\complaint.view.js"/>
+        <File Id="File_41f77d46180d4c378372e9d668694c72" Source="../../../Cognite.Arb.Web/Scripts\complaints.list.js"/>
+        <File Id="File_47bfa630b96543b18f7837760e11016d" Source="../../../Cognite.Arb.Web/Scripts\foundation.min.js"/>
+        <File Id="File_362f7eea691144098ddf54b0b4a88398" Source="../../../Cognite.Arb.Web/Scripts\jnotify.js"/>
+        <File Id="File_50e4e7d8f07c4c04a1adb563edde4932" Source="../../../Cognite.Arb.Web/Scripts\jquery-ui.min.contain"/>
+        <File Id="File_1c4bcca7ceb54f2c8ac8e5be7c4c0435" Source="../../../Cognite.Arb.Web/Scripts\jquery-ui.min.js"/>
+        <File Id="File_7ca3e11ac54d4e1b98838c2c863a40ad" Source="../../../Cognite.Arb.Web/Scripts\jquery.min.js"/>
+        <File Id="File_231021adb81145b88d599aed2127bbd7" Source="../../../Cognite.Arb.Web/Scripts\jquery.min.map"/>
+        <File Id="File_2dbdc16ed5e44f5696ee2b421e3b1a85" Source="../../../Cognite.Arb.Web/Scripts\jquery.validate.min.js"/>
+        <File Id="File_45bafae1cd624ae2a9481fc1b4d443b5" Source="../../../Cognite.Arb.Web/Scripts\jquery.validate.unobtrusive.min.js"/>
+        <File Id="File_a100bf2f27484bba8736d2a97d2fe3ff" Source="../../../Cognite.Arb.Web/Scripts\magicsuggest-min.js"/>
+        <File Id="File_21c4dda1abe24e7e8612bf8766de28ea" Source="../../../Cognite.Arb.Web/Scripts\modernizr.js"/>
+        <File Id="File_b4809e778cc24dca91024edfdb488a8e" Source="../../../Cognite.Arb.Web/Scripts\schedule.update.js"/>
+        <File Id="File_7526b226fdaa413aae4abb883ba57684" Source="../../../Cognite.Arb.Web/Scripts\usermanagement.actions.js"/>
+        <File Id="File_9e4162f7376f41b29e59285b5f186947" Source="../../../Cognite.Arb.Web/Scripts\usermanagement.assign.js"/>
+        <File Id="File_6782dbbbb5a54fc89724c53f923d764f" Source="../../../Cognite.Arb.Web/Scripts\_references.js"/>
+      </Component>
+      <Component Id="WebContent_Views_Component" Guid="376adbd6-57fe-4472-9c2d-c4cc4c2eccef" Directory="WebContent_Views2a5af8b638c746b28282ccdc2b6d5a58_FOLDER">
+        <CreateFolder />
+        <File Id="File_54d447fd18984db38c94089a6f3585cd" Source="../../../Cognite.Arb.Web/Views\Web.config"/>
+        <File Id="File_393416a19cfb4d75bfa1547150c6e5a1" Source="../../../Cognite.Arb.Web/Views\_ViewStart.cshtml"/>
+      </Component>
+      <Component Id="WebContent_Account_Component" Guid="09f7be28-8a86-4415-b0dc-0b6576fbbc3d" Directory="WebContent_Accounte3365d6c708441a296b399c4826605ef_FOLDER">
+        <CreateFolder />
+        <File Id="File_b7ef1ec8ac304505b6ce6222658be4b9" Source="../../../Cognite.Arb.Web/Views\Account\ForgotPassword.cshtml"/>
+        <File Id="File_357b8d0578264099a5b6d563599a1ff9" Source="../../../Cognite.Arb.Web/Views\Account\ForgotPasswordConfirmation.cshtml"/>
+        <File Id="File_970bc6a19fd44d70a908ee61271d6aaf" Source="../../../Cognite.Arb.Web/Views\Account\ForgotSecurePhrase.cshtml"/>
+        <File Id="File_ff47d8d5310e4a89878a97980dd87d19" Source="../../../Cognite.Arb.Web/Views\Account\ForgotSecurePhraseConfirmation.cshtml"/>
+        <File Id="File_d9564daac4f84ff0a9b227e212735da0" Source="../../../Cognite.Arb.Web/Views\Account\LoginFinish.cshtml"/>
+        <File Id="File_883ad22865e64c5692c2c010bffb8105" Source="../../../Cognite.Arb.Web/Views\Account\LoginStart.cshtml"/>
+        <File Id="File_16dcef3eb9cb42a0b8fb268ea86f1264" Source="../../../Cognite.Arb.Web/Views\Account\Reset.cshtml"/>
+        <File Id="File_9548aa2a4ff241d3ac23293237fe80a9" Source="../../../Cognite.Arb.Web/Views\Account\ResetBothConfirmation.cshtml"/>
+        <File Id="File_eb17e56c72844f788cd064c05d458ba9" Source="../../../Cognite.Arb.Web/Views\Account\ResetPassword.cshtml"/>
+        <File Id="File_fca586470b36447ca31c1b0f98dfc408" Source="../../../Cognite.Arb.Web/Views\Account\ResetPasswordConfirmation.cshtml"/>
+        <File Id="File_acba09299b0d46f7b567d2783db01144" Source="../../../Cognite.Arb.Web/Views\Account\ResetSecurePhrase.cshtml"/>
+        <File Id="File_a0398e9f34274571b54cd5336072b5f1" Source="../../../Cognite.Arb.Web/Views\Account\ResetSecurePhraseConfirmation.cshtml"/>
+      </Component>
+      <Component Id="WebContent_Complaints_Component" Guid="1719e501-db31-4e4a-9d9a-05096caace92" Directory="WebContent_Complaintse6481882760c473891df45740df29bec_FOLDER">
+        <CreateFolder />
+        <File Id="File_77412a95ebf84e94a1fc9789ad44f070" Source="../../../Cognite.Arb.Web/Views\Complaints\ActiveItem.cshtml"/>
+        <File Id="File_153335dc45534aae98d24a2c63327544" Source="../../../Cognite.Arb.Web/Views\Complaints\ClosedItem.cshtml"/>
+        <File Id="File_4f179034fc7a46a3b1169921ac6cd60e" Source="../../../Cognite.Arb.Web/Views\Complaints\ComplaintsList.cshtml"/>
+        <File Id="File_055f7169856c491b984ddee066f4789e" Source="../../../Cognite.Arb.Web/Views\Complaints\Details.cshtml"/>
+        <File Id="File_e35824998caf4b17ac0c793f9a8e57bc" Source="../../../Cognite.Arb.Web/Views\Complaints\Edit.cshtml"/>
+        <File Id="File_b3129dcafe7b441d921b035e63060a31" Source="../../../Cognite.Arb.Web/Views\Complaints\Index.cshtml"/>
+        <File Id="File_4d457d262cf349f5aa504166cd3bd056" Source="../../../Cognite.Arb.Web/Views\Complaints\Overview.cshtml"/>
+        <File Id="File_e3a08deb88764a6e9ce8206ec8b774df" Source="../../../Cognite.Arb.Web/Views\Complaints\PageInfoComplaints.cshtml"/>
+        <File Id="File_21abb16b3cee4da2a8a51ff6f1571e78" Source="../../../Cognite.Arb.Web/Views\Complaints\RejectedItem.cshtml"/>
+      </Component>
+      <Component Id="WebContent_ActivityFeed_Component" Guid="d478bf05-6989-4e84-a9b1-dd498e6e8112" Directory="WebContent_ActivityFeed3a277d8eaaf1464195a8623810ebf588_FOLDER">
+        <CreateFolder />
+        <File Id="File_8b8e23605e2f44d2a0a4fb62fa40a526" Source="../../../Cognite.Arb.Web/Views\Complaints\ActivityFeed\ActivityFeed.cshtml"/>
+        <File Id="File_6ce4f8ab6682461c9e88522b2f88b920" Source="../../../Cognite.Arb.Web/Views\Complaints\ActivityFeed\Item.cshtml"/>
+        <File Id="File_ca3b421ae2474c2da7692b76c3e9dae4" Source="../../../Cognite.Arb.Web/Views\Complaints\ActivityFeed\Section.cshtml"/>
+      </Component>
+      <Component Id="WebContent_Comments_Component" Guid="6592b831-9b2f-424e-9933-1c79b3d26526" Directory="WebContent_Comments8c5e2d11c8b84b4e9209cd8b410ca396_FOLDER">
+        <CreateFolder />
+        <File Id="File_0e28ab98ba4f482a857d62d9b8e91a07" Source="../../../Cognite.Arb.Web/Views\Complaints\Comments\Allegation.cshtml"/>
+        <File Id="File_9481bb83442a4ccda9e87b6bcfa1bd10" Source="../../../Cognite.Arb.Web/Views\Complaints\Comments\AllegationInProcess.cshtml"/>
+        <File Id="File_abeb7ebcae59417d93ebbab67842bb86" Source="../../../Cognite.Arb.Web/Views\Complaints\Comments\Comments.cshtml"/>
+        <File Id="File_b85a0f92ba4146d88216d9e5f6471c97" Source="../../../Cognite.Arb.Web/Views\Complaints\Comments\FinalDecision.cshtml"/>
+        <File Id="File_3905a88c920049daa5faf14399712271" Source="../../../Cognite.Arb.Web/Views\Complaints\Comments\PreliminaryComments.cshtml"/>
+        <File Id="File_d46e78abc15a4a94ab93b3c9c60ca948" Source="../../../Cognite.Arb.Web/Views\Complaints\Comments\PreliminaryDecision.cshtml"/>
+      </Component>
+      <Component Id="WebContent_Discussions_Component" Guid="dd8fdb86-24fa-4266-bb4c-c625dc6e24ae" Directory="WebContent_Discussions62f85062a5214fee8b86aa630cfe2af5_FOLDER">
+        <CreateFolder />
+        <File Id="File_d8beff1234a54b928bf52be11a5c11bb" Source="../../../Cognite.Arb.Web/Views\Complaints\Discussions\Discussions.cshtml"/>
+        <File Id="File_c791e2ccd593458e94c5caa4760cfd71" Source="../../../Cognite.Arb.Web/Views\Complaints\Discussions\InnerComments.cshtml"/>
+        <File Id="File_93473eeb77bd455db748ae486341c084" Source="../../../Cognite.Arb.Web/Views\Complaints\Discussions\Reply.cshtml"/>
+      </Component>
+      <Component Id="WebContent_Home_Component" Guid="84a2f114-9615-4919-9983-c3c2ea7948dd" Directory="WebContent_Home4d0b7f835f9049abb14afaa6d8064f57_FOLDER">
+        <CreateFolder />
+        <File Id="File_b3e94dd466f9461db1ac30f8b136a79b" Source="../../../Cognite.Arb.Web/Views\Home\About.cshtml"/>
+        <File Id="File_8e0705fff4714c94a348dc80b86b0042" Source="../../../Cognite.Arb.Web/Views\Home\Contact.cshtml"/>
+        <File Id="File_6f5de89b9ec64c8e8737fddcdef75c5b" Source="../../../Cognite.Arb.Web/Views\Home\Index.cshtml"/>
+      </Component>
+      <Component Id="WebContent_Schedule_Component" Guid="685b6685-0726-4341-9257-0c925cb1d245" Directory="WebContent_Scheduledcfd744eb9054b6f878c4f837193f98e_FOLDER">
+        <CreateFolder />
+        <File Id="File_af5dcdd9aa614e4cb01022ee009fd86f" Source="../../../Cognite.Arb.Web/Views\Schedule\Index.cshtml"/>
+        <File Id="File_2ef9b563d8504709907a49a034bd1563" Source="../../../Cognite.Arb.Web/Views\Schedule\Row.cshtml"/>
+      </Component>
+      <Component Id="WebContent_Shared_Component" Guid="38619cfb-e52b-4ead-bc21-c2e07ea0c4e1" Directory="WebContent_Shared556ff7b0627149088177aad385e4ea45_FOLDER">
+        <CreateFolder />
+        <File Id="File_924e2c5ea7334c5bbf3ee0263b3e6eab" Source="../../../Cognite.Arb.Web/Views\Shared\Error.cshtml"/>
+        <File Id="File_43e47298e59441169f457ca56118c6a9" Source="../../../Cognite.Arb.Web/Views\Shared\_Layout.cshtml"/>
+        <File Id="File_81897355e37740c3962730fe6405dcd4" Source="../../../Cognite.Arb.Web/Views\Shared\_LoginPartial.cshtml"/>
+        <File Id="File_057b6cb7052a4c24b03d6d1253823e80" Source="../../../Cognite.Arb.Web/Views\Shared\_TopLeftNavigation.cshtml"/>
+        <File Id="File_d647741596a74085908d0c1b716172e9" Source="../../../Cognite.Arb.Web/Views\Shared\_TopRightNavigation.cshtml"/>
+        <File Id="File_285014c46ab640e0a7ff495b2f8dfdee" Source="../../../Cognite.Arb.Web/Views\Shared\_UserManagementPageInfo.cshtml"/>
+      </Component>
+      <Component Id="WebContent_UserManagement_Component" Guid="5bf416a1-c02f-4331-a96c-a5da65a4c4ec" Directory="WebContent_UserManagementd16e25a8274942909f37279497bc33a2_FOLDER">
+        <CreateFolder />
+        <File Id="File_bdeafc3fc09a4e3a8c95a0afb68f4f3d" Source="../../../Cognite.Arb.Web/Views\UserManagement\Create.cshtml"/>
+        <File Id="File_095fd1d42dd243ae8c9810f0acd986b2" Source="../../../Cognite.Arb.Web/Views\UserManagement\Details.cshtml"/>
+        <File Id="File_f22712f58f19413f90a08ecbb547fb0a" Source="../../../Cognite.Arb.Web/Views\UserManagement\Index.cshtml"/>
+        <File Id="File_93f0ab40df064fa2be90f67b0d977114" Source="../../../Cognite.Arb.Web/Views\UserManagement\List.cshtml"/>
+      </Component>
+    </Feature>
+  </Fragment>
+</Wix>

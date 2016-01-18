@@ -1,0 +1,42 @@
+﻿@model Cognite.Arb.Web.Models.UserManagement.UserViewModel
+
+<div id="addNew" class="panel @if (ViewBag.ShowUserCreation == null) { @Html.Raw("hide")  } ">
+    @using (Html.BeginForm("Create", "UserManagement", null, FormMethod.Post, new { @class = "custom", role = "form" }))
+    {
+        @Html.ValidationSummary("", new { @class = "validation-errors" })
+        <div class="row">
+            <div class="large-12 columns">
+                @Html.HiddenFor(m => m.Id)
+                @Html.AntiForgeryToken()
+            </div>
+            <div class="large-4 columns">
+                <label for="add-first-name">First Name</label>
+                @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "First Name", @required = "required", @tabindex = 1, autofocus = "autofocus" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "validation-error" })
+            </div>
+            <div class="large-4 columns">
+                <label for="add-last-name">Last Name</label>
+                @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Last Name", @required = "required", @tabindex = 2 })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "validation-error" })
+            </div>
+            <div class="large-4 columns">
+                <label for="add-email">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @required = "required", @tabindex = 3 })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation-error" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 columns">
+                <label for="add-role">Role</label>
+                @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.Roles, "Value", "Text"), new { @required = "required", @tabindex = 4 })
+                @Html.ValidationMessageFor(m => m.SelectedRole, "", new { @class = "validation-error" })
+            </div>
+            <div class="large-4 columns">
+                @Html.DropDownListFor(m => m.SelectedCase, new SelectList(Model.Cases, "Value", "Text"), new { @required = "required", @tabindex = 5 })
+            </div>
+            <div class="large-4 columns">
+                <input type="submit" class="button tiny add-user" value="Add User" tabindex="6" />
+            </div>
+        </div>
+    }
+</div>

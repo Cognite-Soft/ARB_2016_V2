@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{416F2852-B2D0-4CB2-B49F-133B5E36E684}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cognite.Arb.Server.Business</RootNamespace>
+    <AssemblyName>Cognite.Arb.Server.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'buildserver|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\buildserver\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'release|AnyCPU'">
+    <OutputPath>bin\release\</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityFeed.cs" />
+    <Compile Include="AuthenticationResult.cs" />
+    <Compile Include="CaseData.cs" />
+    <Compile Include="CaseHeader.cs" />
+    <Compile Include="Cases\Allegation.cs" />
+    <Compile Include="Cases\AllegationCollection.cs" />
+    <Compile Include="Cases\AllegationCommentType.cs" />
+    <Compile Include="Cases\AllegationsUpdate.cs" />
+    <Compile Include="Cases\AllegationEx.cs" />
+    <Compile Include="Cases\ArchitectContact.cs" />
+    <Compile Include="Cases\Case.cs" />
+    <Compile Include="Cases\CaseContacts.cs" />
+    <Compile Include="Cases\CasePanelMembers.cs" />
+    <Compile Include="Cases\CaseState.cs" />
+    <Compile Include="Cases\CaseStateKind.cs" />
+    <Compile Include="Cases\CaseUpdate.cs" />
+    <Compile Include="Cases\Contact.cs" />
+    <Compile Include="Cases\DateAndDetail.cs" />
+    <Compile Include="Cases\Document.cs" />
+    <Compile Include="Cases\FinalDecisionComment.cs" />
+    <Compile Include="Cases\InitialCaseData.cs" />
+    <Compile Include="Cases\InitialCaseDataUpdate.cs" />
+    <Compile Include="Cases\MyAllegationComment.cs" />
+    <Compile Include="Cases\NewAllegation.cs" />
+    <Compile Include="Cases\NewDateAndDetail.cs" />
+    <Compile Include="Cases\NewDocument.cs" />
+    <Compile Include="Cases\PanelMembersUpdate.cs" />
+    <Compile Include="Cases\NewPartiesComment.cs" />
+    <Compile Include="Cases\PartiesComment.cs" />
+    <Compile Include="Cases\PreliminaryDecisionComment.cs" />
+    <Compile Include="Cases\Question.cs" />
+    <Compile Include="Cases\ReadonlyCaseData.cs" />
+    <Compile Include="CreateCaseInfo.cs" />
+    <Compile Include="DocumentActivity.cs" />
+    <Compile Include="IDatabase.cs" />
+    <Compile Include="IDocumentStore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Login.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageEx.cs" />
+    <Compile Include="Post.cs" />
+    <Compile Include="ResetToken.cs" />
+    <Compile Include="ResetTokenInfo.cs" />
+    <Compile Include="ResetTokenType.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="Schedule.cs" />
+    <Compile Include="SecurePhraseAnswer.cs" />
+    <Compile Include="SecurePhraseQuestion.cs" />
+    <Compile Include="Facade.cs" />
+    <Compile Include="IConfiguration.cs" />
+    <Compile Include="IPasswordManager.cs" />
+    <Compile Include="ISecurityTokenService.cs" />
+    <Compile Include="PasswordManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserData.cs" />
+    <Compile Include="UserHeader.cs" />
+    <Compile Include="UserState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cognite.Arb.Server.Business.Mailing\Cognite.Arb.WebApi.Business.Mailing.csproj">
+      <Project>{D2F11401-B187-4511-8BFF-3C40C8161C39}</Project>
+      <Name>Cognite.Arb.WebApi.Business.Mailing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cognite.Arb.Server.Contract\Cognite.Arb.WebApi.Contract.csproj">
+      <Project>{FF88BFF3-5448-49C0-880F-1EAFF1CF67DE}</Project>
+      <Name>Cognite.Arb.WebApi.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,40 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.ComplaintsListViewModel
+
+@if (Model.Complaints.Count() > 0)
+{
+    if (Model.Type != Cognite.Arb.Web.Core.ComplaintsListType.Rejected)
+    {
+        <div class="row title">
+            <div class="large-2 columns">Case ID</div>            
+            <div class="large-3 columns">Architect</div>
+            <div class="large-3 columns">Complainant</div>
+            <div class="large-2 columns">Registration #</div>
+            @if (User.IsInRole("CaseWorker")) 
+            { 
+                <div class="large-2 columns">Action</div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row title">
+            <div class="large-3 columns">Case ID</div>            
+            <div class="large-3 columns">Architect</div>
+            <div class="large-3 columns">Complainant</div>
+            <div class="large-3 columns">Registration #</div>
+        </div>
+    }
+
+    foreach (var item in Model.Complaints)
+    {
+        if (Model.Type == Cognite.Arb.Web.Core.ComplaintsListType.Active)   { @Html.Partial("ActiveItem", item); }
+        if (Model.Type == Cognite.Arb.Web.Core.ComplaintsListType.Closed)   { @Html.Partial("ClosedItem", item); }
+        if (Model.Type == Cognite.Arb.Web.Core.ComplaintsListType.Rejected) { @Html.Partial("RejectedItem", item); }
+    }
+}
+else
+{
+    <div class="row">
+        <div class="large-12 columns">You have no @Model.Info cases.</div>
+    </div>
+}

@@ -1,0 +1,59 @@
+﻿@using Cognite.Arb.Web.Models
+@model Cognite.Arb.Web.Models.Account.LoginFinishViewModel
+
+@{
+    ViewBag.Title = "Log in step two";
+}
+
+<div class="large-4 large-centered columns">
+    <!-- Begin Body Content -->
+    <!-- Begin Login -->
+    @using (Html.BeginForm("LoginFinish", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "custom", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="box login">
+            <h4>Login</h4>
+            <div class="row">
+                <div class="large-12 columns">
+                    @Html.HiddenFor(m => m.SecurityToken)
+                    @Html.HiddenFor(m => m.PhraseFirstCharNumber)
+                    @Html.HiddenFor(m => m.PhraseSecondCharNumber)
+                    @Html.ValidationSummary("", new { @class = "validation-errors" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label for="password" class="inline">Secure Phrase</label>
+                    <div class="box center">
+                        <p class="secure-title">Secure Phrase</p>
+                        <p class="secure">Enter the <strong>@Model.PhraseFirstCharNumber</strong> and <strong>@Model.PhraseSecondCharNumber</strong> charaters from your Secure Phrase below.</p>
+                        <div class="row">
+                            <div class="large-5 columns">
+                                @Html.PasswordFor(m => m.PhraseFirstChar, new { @placeholder = Model.PhraseFirstCharNumber, @tabindex = 1, autofocus = "autofocus" })
+                            </div>
+                            <div class="large-2 columns center">
+                                <p class="secure-divider">/</p>
+                            </div>
+                            <div class="large-5 columns">
+                                @Html.PasswordFor(m => m.PhraseSecondChar, new { @placeholder = Model.PhraseSecondCharNumber, @tabindex = 2 })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <input type="submit" value="Log in" class="button small radius full-width" tabindex="3" />
+                </div>
+                <div class="large-12 content">
+                    @Html.ActionLink("Forgot secure phrase?", "ForgotSecurePhrase", null, new { tabindex = 4 })
+                </div>
+            </div>
+        </div>
+    }
+    <!-- End Body Content -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,58 @@
+﻿@model Cognite.Arb.Web.Models.UserManagement.UserViewModel
+
+@using (Ajax.BeginForm("Update", "UserManagement", null, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "custom details-user relative", role = "form", id = "form_" + Model.Id, data_userid = Model.Id }))
+{
+    <div class="row">
+        <div class="large-12 columns">
+            @Html.AntiForgeryToken()
+        </div>
+        <div class="large-12 columns">
+            @Html.HiddenFor(m => m.Id)
+        </div>
+        <div class="large-2 columns">
+            @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "First Name", @required = "required", @default = Model.FirstName })
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "validation-error" })
+        </div>
+        <div class="large-2 columns">
+            @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Last Name", @required = "required", @default = Model.LastName })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "validation-error" })
+        </div>
+        <div class="large-3 columns">
+            @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @required = "required", @default = Model.Email })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation-error" })
+        </div>
+        <div class="large-3 columns">
+            @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.Roles, "Value", "Text"), new { @disabled = "disabled", @required = "required", @default = Model.SelectedRole })
+            @Html.ValidationMessageFor(m => m.SelectedRole, "", new { @class = "validation-error" })
+        </div>
+        <div class="large-2 columns actions">
+            <a class="reset-password-user" href="javascript:void(0);" data-id="@Model.Id" data-action="ResetPassword" title="Reset Password">
+                <i class="fa fa-retweet fa-fw fa-lg"></i>
+            </a>
+            <a class="reset-passphrase-user" href="javascript:void(0);" data-id="@Model.Id" data-action="ResetSecurePhrase" title="Reset Secure Phrase">
+                <i class="fa fa-lock fa-fw fa-lg"></i>
+            </a>
+            <a class="delete-user" href="javascript:void(0);" data-id="@Model.Id" data-action="DeleteUser" title="Delete User">
+                <i class="fa fa-times fa-fw fa-lg"></i>
+            </a>
+            <a title="View/edit Cases" class="expand" data-show="@Model.Id">
+                <i class="fa fa-caret-square-o-down fa-fw fa-lg"></i>
+            </a>
+        </div>
+        <div class="large-12 columns text-right apply-buttons" style="display: none;">
+            @Ajax.ActionLink("Save", "Update", "UserManagement",
+                new { },
+                new AjaxOptions { HttpMethod = "POST" },
+                new { @class = "button tiny radius inline save-button" })
+            <a class="button tiny radius inline cancel-button" href="javascript:void(0);">Cancel</a>
+        </div>
+    </div>
+    <div id="@Model.Id" class="row hide expandable">
+        <div class="large-12 columns">
+            <div class="tags" data-userid="@Model.Id">
+                @Html.HiddenFor(m => m.AssignedCases, new { @class = "data-cases" })
+                <div class="autocompleteTagAsset"></div>
+            </div>
+        </div>
+    </div>
+}

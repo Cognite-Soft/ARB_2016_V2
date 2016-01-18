@@ -1,0 +1,25 @@
+﻿@model Cognite.Arb.Web.Models.UserManagement.UserManagementViewModel
+
+@{
+    ViewBag.Title = "User Manager";
+}
+
+@section Pageinfo {
+    @Html.Partial("_UserManagementPageInfo")
+}
+
+<div class="large-12 columns">
+    <!-- Begin Body Content -->
+    @{ Html.RenderPartial("Create", Model.NewUser); }
+    @{ Html.RenderPartial("List", Model.UserList); }
+    <!-- End Body Content -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/usermanagement")
+    <script type="text/javascript">
+        var userManagementUpdatedSuccessfully = '@Cognite.Arb.Web.Core.GlobalStrings.UserUpdatedSuccessfully';
+        var userManagementAssignCases = @Html.Raw(ViewBag.CasesToComplete);
+    </script>
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util='http://schemas.microsoft.com/wix/UtilExtension'
+     xmlns:sql='http://schemas.microsoft.com/wix/SqlExtension'>
+  <Fragment>
+    <PropertyRef Id="DATABASE_SERVER" />
+    <PropertyRef Id="DATABASE_NAME" />
+    <PropertyRef Id="DATABASE_USER" />
+    <PropertyRef Id="DATABASE_PASSWORD" />
+
+    <Property Id="TestConnectionDialogSuccceeded" Value="Connection is OK" />
+    <Property Id="TestConnectionDialogCaption" Value="Test Connection" />
+
+    <CustomAction Id="DataSourceTestConnection" BinaryKey="CustomActions" DllEntry="TestDatabaseConnectionAction" Execute="immediate"  Return="check" />
+
+    <UI>
+      <Dialog Id="DatabaseConnectionDlg" Width="370" Height="270" Title="Database Settings">
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="TestConnection" Type="PushButton" X="15" Y="243" Width="80" Height="17" Text="Test Connection" />
+
+        <!-- Labels -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="2" />
+        <!--<Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="Banner" />-->
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="2" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Database Connection" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="Description" />
+
+        <Control Id="DatabaseIpLabel" Type="Text" Height="13" Width="92" X="15" Y="55" Text="Server Address" />
+        <Control Id="DatabaseNameLabel" Type="Text" Height="15" Width="92" X="15" Y="73" Text="Database Name" />
+        <Control Id="DatabaseUserLabel" Type="Text" Height="13" Width="110" X="15" Y="91" Text="User Name" />
+        <Control Id="DatabaseUserPasswordLabel" Type="Text" Height="15" Width="110" X="15" Y="109" Text="Password" />
+
+        <!-- Text boxes -->
+        <Control Id="DatabaseIp" Type="Edit" Height="15" Width="230" X="132" Y="52" Property="DATABASE_SERVER"/>
+        <Control Id="DatabaseName" Type="Edit" Disabled="no" Height="15" Width="230" X="132" Y="70" Property="DATABASE_NAME"/>
+        <Control Id="DatabaseUser" Type="Edit" Disabled="no" Height="15" Width="230" X="132" Y="88" Property="DATABASE_USER"/>
+        <Control Id="DatabaseUserPassword" Type="Edit" Password="yes" Disabled="no" Height="15" Width="230" X="132" Y="106" Property="DATABASE_PASSWORD"/>
+      </Dialog>
+    </UI>
+
+  </Fragment>
+</Wix>

@@ -1,0 +1,163 @@
+﻿@using Cognite.Arb.Web.Models.Complaints
+
+@model Cognite.Arb.Web.Models.Complaints.ComplaintCommentsPreliminaryDecisionViewModel
+
+<div class="content demo-stage-2">
+    @using (Html.BeginForm("", "Complaints", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="caseid" value="@ViewContext.RouteData.Values["id"].ToString()" />
+        <div class="row first comments-header">
+            <div class="large-9 columns">
+                <h4>2 : Preliminary Decision</h4>
+            </div>
+            <div class="large-3 columns hide">
+                @switch (Model.State)
+                {
+                    case ComplaintCommentsStepState.Complete:
+                        <span class="label large right due success">Complete</span>
+                        break;
+                    case ComplaintCommentsStepState.InProcess:
+                        if (Model.DueDays == 0)
+                        {
+                            <span class="label alert large right due-countdown">Due today!</span>
+                        }
+                        else
+                        {
+                            <span class="label alert large right due-countdown">Due in @Model.DueDays days!</span>
+                        }
+                        <span class="label large right due">@Model.DueDateText</span>
+                        break;
+                    case ComplaintCommentsStepState.WaitingForPartiesComments:
+                        <span class="label large right due success">Waiting for Parties Comments</span>
+                        if (Model.DueDays == 0)
+                        {
+                            <span class="label alert large right due-countdown">Due today!</span>
+                        }
+                        else
+                        {
+                            <span class="label alert large right due-countdown">Due in @Model.DueDays days!</span>
+                        }
+                        break;
+                }
+            </div>
+        </div>
+        <div class="row hide">
+            <div class="large-12 columns">
+                <div class="row">
+                    <div class="large-6 columns">
+                        <h6>View the Preliminary Decision</h6>
+                        @if (!User.IsInRole("CaseWorker") || Model.State == ComplaintCommentsStepState.Complete)
+                        {
+                            <div class="view">
+                                @if (Model.PreliminaryDecisionDocument != null)
+                                {
+                                    <p>
+                                        <a href="@Url.Action("Download", "Documents", new { id = Model.PreliminaryDecisionDocument.Id })" title="View Document (@Model.PreliminaryDecisionDocument.Name)" target="_blank">
+                                            <i class="fa fa-file-text fa-fw"></i>
+                                            @Model.PreliminaryDecisionDocument.Name
+                                        </a>
+                                    </p>
+                                    if (User.IsInRole("PanelMember") && Model.State != ComplaintCommentsStepState.Complete)
+                                    {
+                                        <div class="edit">
+                                            <p>Upload updated preliminary decision</p>
+                                            <input type="file" name="preliminarydecisionfile" id="preliminarydecision-file" class="hide" />
+                                            <a class="button tiny attach" title="Attach Preliminary Decision" data-input-id="preliminarydecision-file"><i class="fa fa-paperclip fa-fw"></i></a>
+                                            <button type="submit" name="AddUpdatedPreliminaryDecision" class="button tiny add-parties-comment" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                                            <span class="preliminarydecision-file"></span>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>
+                                        No preliminary decision document yet.
+                                    </p>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            if (Model.PreliminaryDecisionDocument != null)
+                            {
+                                <p>
+                                    <a href="@Url.Action("Download", "Documents", new { id = Model.PreliminaryDecisionDocument.Id })" title="View Document (@Model.PreliminaryDecisionDocument.Name)" target="_blank">
+                                        <i class="fa fa-file-text fa-fw"></i>
+                                        @Model.PreliminaryDecisionDocument.Name
+                                    </a>
+                                </p>
+                            }
+                            
+                            <div class="edit">
+                                <input type="file" name="preliminarydecisionfile" id="preliminarydecision-file" class="hide" />
+                                <a class="button tiny attach" title="Attach Preliminary Decision" data-input-id="preliminarydecision-file"><i class="fa fa-paperclip fa-fw"></i></a>
+                                <button type="submit" name="AddPreliminaryDecision" class="button tiny add-parties-comment" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                                <span class="preliminarydecision-file"></span>
+                            </div>
+                        }
+                    </div>
+                    <div class="large-6 columns">
+                        <h6>Comments from parties involved</h6>
+                        <ul class="parties-comments">
+                            @if (Model.CommentsFromParties.Count > 0)
+                            {
+                                foreach (var comment in Model.CommentsFromParties)
+                                {
+                                    <li class="view">
+                                        @if (comment.Documents.Count > 0)
+                                        {
+                                            <a href="@Url.Action("Download", "Documents", new { id = comment.Documents[0].Id })" title="View Document (@comment.Documents[0].Name)" target="_blank">
+                                                <i class="fa fa-file-text fa-fw"></i>
+                                            </a>
+                                        }
+                                        @comment.Title
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="view default">There are no addtional comments yet.</li>
+                            }
+                        </ul>
+                        @if (User.IsInRole("CaseWorker") && Model.State != ComplaintCommentsStepState.Complete)
+                        {
+                            <div class="edit">
+                                <input type="text" id="party-comment" name="partiescomment" placeholder="Title">
+                                <input type="file" name="partiescommentfile" id="partiescomment-file" class="hide" />
+                                <a class="button tiny attach" data-input-id="partiescomment-file" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+                                <button type="submit" name="AddPartiesComment" class="button tiny add-parties-comment" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                                <span class="partiescomment-file"></span>
+                            </div>
+                        }
+                    </div>
+                </div>
+                @if (User.IsInRole("PanelMember"))
+                {
+                    if (Model.Comments.Count > 0)
+                    {
+                        <hr>
+                        <div class="view">
+                            <div class="box mini feed-sub">
+                                @foreach (var comment in Model.Comments)
+                                {
+                                    <div class="row">
+                                        <div class="large-2 columns center"><img src="/Content/Images/user.gif"><br><small>@comment.User.FullName</small></div>
+                                        <div class="large-10 columns"><p>@comment.Text</p></div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    if (Model.State == ComplaintCommentsStepState.InProcess && Model.PreliminaryDecisionDocument != null)
+                    {
+                        <div class="view">
+                            <textarea class="preliminary-decision-comment-text" rows="1" placeholder="Enter your comments"></textarea>
+                            <a class="button tiny yes preliminary-decision-comment" title="Send">Send</a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>

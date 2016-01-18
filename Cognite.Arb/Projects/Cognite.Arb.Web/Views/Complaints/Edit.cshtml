@@ -1,0 +1,168 @@
+﻿@using System
+@model Cognite.Arb.Web.Models.Complaints.ComplaintOverviewViewModel
+
+@using (Html.BeginForm("", "Complaints", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    <div class="large-8 columns">
+        <div class="content">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "validation-errors" })
+            @Html.HiddenFor(m => m.Id, new { @class = "syncronization-id" })
+            <div class="ovf-hidden">
+                <div class="large-6 columns"></div>
+                <div class="large-6 columns text-right">
+                    <input type="submit" name="Save" value="Save" id="saveChanges" class="button tiny yes" onclick="return validateSave();" />
+                    @Html.ActionLink("Cancel", "Cancel", new { id = Model.Id }, new { @class = "button tiny additional" })
+                    @Html.TextBox("alig", Model.Allegations.Items.Count, new { style = "display:none;" })
+
+                </div>
+            </div>
+            <div class="row first">
+                <div class="large-6 columns">
+                    <h4>Panel members</h4>
+                    <div class="edit">
+                        @{ var cellId = Guid.NewGuid(); }
+                        @Html.HiddenFor(m => Model.PanelMembers.Member1.Id, new { @class = "panelmember-hidden", id = cellId })
+                        <input type="text" value="@Model.PanelMembers.Member1.FullName" data-value-id="@cellId" class="panelmember" placeholder="Enter Panel Members Name" tabindex="1" id="pMem1"/>
+                        @{ cellId = Guid.NewGuid(); }
+                        @Html.HiddenFor(m => Model.PanelMembers.Member2.Id, new { @class = "panelmember-hidden", id = cellId })
+                        <input type="text" value="@Model.PanelMembers.Member2.FullName" data-value-id="@cellId" class="panelmember" placeholder="Enter Panel Members Name" tabindex="1" id="pMem2" />
+                        @{ cellId = Guid.NewGuid(); }
+                        @Html.HiddenFor(m => Model.PanelMembers.Member3.Id, new { @class = "panelmember-hidden", id = cellId })
+                        <input type="text" value="@Model.PanelMembers.Member3.FullName" data-value-id="@cellId" class="panelmember" placeholder="Enter Panel Members Name" tabindex="1" id="pMem3" />
+                    </div>
+                </div>
+                <div class="large-6 columns ar">
+                    <h4>Case Start Date</h4>
+                    <div class="edit">
+                        @Html.EditorFor(m => m.StartDate)
+                    </div>
+                    <h4>@Model.State.TypeText</h4>
+                </div>
+            </div>
+            <hr>
+            <h4>Date complaint received by ARB</h4>            
+            <div class="edit">
+                @Html.TextAreaFor(m => m.Background, new { rows = "4", placeholder = "Enter some background to the complaint" })
+            </div>
+            <br>
+            <h4>Background of complaint</h4>
+            <div class="view">
+                @foreach (var dateDetail in Model.DatesAndDetails)
+                {
+                    <p><strong>@dateDetail.Date.ToShortDateString()</strong> - @dateDetail.Text 
+                        @if (dateDetail.Documents.Count > 0)
+                        {
+                            <a href="@Url.Action("Download", "Documents", new { id = dateDetail.Documents[0].Id })" title="View Document (@dateDetail.Documents[0].Name)" target="_blank">
+                                <i class="fa fa-file-text fa-fw"></i>
+                            </a>
+                        }
+                        @if (dateDetail.CanBeDeleted)
+                        {
+                            <a href="javascript:void(0)" class="delete-dateanddetail" data-dateanddet-id="@dateDetail.Id"><i class="fa fa-times fa-fw fa-lg"></i></a>
+                        }
+                    </p>
+                }
+            </div>
+            <div class="edit">
+                @Html.EditorFor(m => m.NewDateAndDetail.Date)
+                @Html.TextAreaFor(m => m.NewDateAndDetail.Text, new { rows = "4", placeholder = "Enter some details" })
+                <button type="submit" name="AddDateAndDetail" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                <input type="file" name="dateanddetailsfile" id="dateanddetail-file" class="hide" />
+                <a class="button tiny attach" data-input-id="dateanddetail-file" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+                <span class="dateanddetail-file"></span>
+            </div>
+            <br>
+            <h4>Allegations</h4>
+            <h6>That the Architect is guilty of unacceptable professional conduct and/or serious professional incompetence in that he/she</h6>
+            <div class="view">
+                <ol>
+                    @foreach (var allegation in Model.Allegations.Items)
+                    {
+                        <li>
+                            @allegation.Text 
+                            @if (allegation.Documents.Count > 0)
+                            {
+                                <a href="@Url.Action("Download", "Documents", new { id = allegation.Documents[0].Id })" title="View Document (@allegation.Documents[0].Name)" target="_blank">
+                                    <i class="fa fa-file-text fa-fw"></i>
+                                </a>
+                            }
+                            @if (allegation.CanBeDeleted)
+                            {
+                                <a href="javascript:void(0)" class="delete-allegation" data-alleg-id="@allegation.Id"><i class="fa fa-times fa-fw fa-lg"></i></a>
+                            }
+                        </li>
+                    }
+                </ol>
+            </div>
+            @if (Model.Allegations.CanAddAlligation)
+            {
+                <div class="edit">
+                    @Html.TextAreaFor(m => m.NewAllegation.Text, new { rows = "4", placeholder = "Enter the allegation" })
+                    <button type="submit" name="AddAllegation" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                    <input type="file" name="allegationfile" id="allegation-file" class="hide" />
+                    <a href="javascript:void(0);" class="button tiny attach" data-input-id="allegation-file" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+                    <span class="allegation-file"></span>
+                </div>
+            }
+            <br>
+            <h4>Issue raised with architect?</h4>
+            <div class="edit">
+                @Html.RadioButtonFor(m => m.IssueRaisedWithArchitect.Answer, "true", new { id = "raised-yes" }) <label for="raised-yes">Yes</label>
+                @Html.RadioButtonFor(m => m.IssueRaisedWithArchitect.Answer, "false", new { id = "raised-no" }) <label for="raised-no">No</label>
+                @Html.TextAreaFor(m => m.IssueRaisedWithArchitect.Comments, new { id = "raised-comment", rows = "4", placeholder = "Enter any comments" })
+            </div>
+            <br>
+            <h4>Subject of legal proceedings?</h4>
+            <div class="edit">
+                @Html.RadioButtonFor(m => m.SubjectOfLegalProceedings.Answer, "true", new { id = "legal-yes" }) <label for="legal-yes">Yes</label>
+                @Html.RadioButtonFor(m => m.SubjectOfLegalProceedings.Answer, "false", new { id = "legal-no" }) <label for="legal-no">No</label>
+                @Html.TextAreaFor(m => m.SubjectOfLegalProceedings.Comments, new { id = "legal-comment", rows = "4", placeholder = "Enter any comments" })
+            </div>
+            <h4>Ideal outcome</h4>
+            <div class="edit">
+                @Html.TextAreaFor(m => m.IdealOutcome, new { id = "outcome", rows = "4", placeholder = "Enter the prefered outcome" })
+            </div>
+        </div>
+    </div>
+    <div class="large-4 columns">
+        <div class="claim-contact">
+            <h4>Relationship</h4>
+            <div class="edit">
+                @Html.TextBoxFor(m => m.Relationship, new { id = "relationship", placeholder = "Enter the relationship" })
+            </div>
+            <hr>
+            <h4>Contact agreement</h4>
+            <div class="edit">
+                @Html.RadioButtonFor(m => m.ContactAgreement, "true", new { id = "contact-agree-yes" }) <label for="contact-agree-yes">Yes</label>
+                @Html.RadioButtonFor(m => m.ContactAgreement, "false", new { id = "contact-agree-no" }) <label for="contact-agree-no">No</label>
+            </div>
+            <hr>
+            <h4>Complainant</h4>
+            <div class="edit">
+                @Html.TextBoxFor(m => m.ClaimantContact.Name, new { id = "claimant-name", placeholder = "Complainant Name" })
+                @Html.TextBoxFor(m => m.ClaimantContact.Phone, new { id = "claimant-phone-number", placeholder = "Phone Number" })
+                @Html.TextBoxFor(m => m.ClaimantContact.EMail, new { id = "claimant-email", placeholder = "Email Address" })
+                @Html.TextAreaFor(m => m.ClaimantContact.Address, new { id = "claimant-address", rows = "4", placeholder = "Address" })
+            </div>
+            <hr>
+            <h4>Architect</h4>
+            <div class="edit">
+                @Html.TextBoxFor(m => m.ArchitectContact.Name, new { id = "architect-name", placeholder = "Architects Name" })
+                @Html.TextBoxFor(m => m.ArchitectContact.RegistrationNumber, new { id = "architect-registration-number", placeholder = "Registration Number" })
+                @Html.TextBoxFor(m => m.ArchitectContact.Phone, new { id = "architect-phone-number", placeholder = "Phone Number" })
+                @Html.TextBoxFor(m => m.ArchitectContact.EMail, new { id = "architect-email", placeholder = "Email Address" })
+                @Html.TextAreaFor(m => m.ArchitectContact.Address, new { id = "architect-address", rows = "4", placeholder = "Address" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/complaintedit")
+
+    <script type="text/javascript">
+        var panelmembersAvailableUsers = @Html.Raw(ViewBag.PanelMembersToComplete);
+    </script>
+}

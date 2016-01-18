@@ -1,0 +1,35 @@
+﻿@using Cognite.Arb.Server.Contract
+@model Cognite.Arb.Web.Models.Complaints.ComplaintActivityFeedItemViewModel
+
+@{
+    var caseId = ViewContext.RouteData.Values["id"].ToString();
+    var href = "";
+    switch (Model.Action)
+    {
+        case ActivityFeed.ActivityFeedAction.PreliminaryAllegationComment:
+        case ActivityFeed.ActivityFeedAction.PreliminaryDecisionComment:
+        case ActivityFeed.ActivityFeedAction.FinalDecisionComment:
+            href = "/Complaints/Comments/" + caseId + "#" + Model.Id; 
+            break;
+        case ActivityFeed.ActivityFeedAction.CreateDocument:
+        case ActivityFeed.ActivityFeedAction.UpdateDocument:
+        case ActivityFeed.ActivityFeedAction.DeleteDocument:
+            href = "/Documents/Download/" + Model.Id + "#" + Model.Id;
+            break;
+        case ActivityFeed.ActivityFeedAction.Discussion:
+        case ActivityFeed.ActivityFeedAction.DiscussionComment:
+            href = "/Complaints/Discussions/" + caseId + "#" + Model.Id;
+            break;
+    }
+}
+
+<div class="box feed">
+    <a href="@href">
+        <div class="row">
+            <div class="large-2 columns small-3"><img src="/Content/Images/user.gif"></div>
+            <div class="large-10 columns">
+                <p><strong>@Model.User.FirstName - @Model.ActionText:</strong> <span>@Model.Description</span></p>
+            </div>
+        </div>
+    </a>
+</div>

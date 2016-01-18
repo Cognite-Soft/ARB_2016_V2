@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Run">
+
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+
+  <PropertyGroup>
+    <OutputFolder>c:\inetpub\wwwroot\Cognite.Web\</OutputFolder>
+    <OutputFolderBin>c:\inetpub\wwwroot\Cognite.Web\bin\</OutputFolderBin>
+    <CompilationDebug />
+    <CustomErrorsMode />
+  </PropertyGroup>
+
+  <Target Name="Run">
+    <CallTarget Targets="Compile" />
+    <CallTarget Targets="Publish" />
+    <CallTarget Targets="Copy" />
+  </Target>
+
+  <Target Name="Clean">
+    <ItemGroup>
+      <BinFiles Include="..\projects\Cognite.Arb.Web\bin\*.*" />
+    </ItemGroup>
+    <Delete Files="@(BinFiles)" />
+  </Target>
+
+  <Target Name="Compile" DependsOnTargets="Clean">
+    <MSBuild Projects="..\projects\Cognite.Arb.Web\Cognite.Arb.Web.csproj" />
+  </Target>
+
+  <Target Name="Publish">
+    <RemoveDir Directories="$(OutputFolder)" ContinueOnError="true" />
+    <MSBuild Projects="..\projects\Cognite.Arb.Web\Cognite.Arb.Web.csproj"
+             Targets="ResolveReferences;_CopyWebApplication"
+             Properties="WebProjectOutputDir=$(OutputFolder);OutDir=$(WebProjectOutputDir)\" />
+  </Target>
+  
+  <Target Name="Copy">
+    <ItemGroup>
+      <AssemblyFiles Include="..\projects\Cognite.Arb.Web\bin\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(OutputFolderBin)" />
+  </Target>
+
+</Project>

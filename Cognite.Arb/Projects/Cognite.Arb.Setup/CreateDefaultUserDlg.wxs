@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <PropertyRef Id="DEFAULT_USER_PASSWORD" />
+    <PropertyRef Id="DEFAULT_USER_PHRASE" />
+    <UI>
+      <Dialog Id="CreateDefaultUserDlg" Width="370" Height="270" Title="Default User Configuration">
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="Next" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="Back" />
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="Cancel">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+
+        <!-- Labels -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="2" />
+        <!--<Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.BrowseDlgBannerBitmap)" />-->
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="2" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Web API Address" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="HTTP address of the Web API" />
+        <Control Id="EmailLabel" Type="Text" Height="13" Width="92" X="15" Y="55" Text="Email: admin@arb.org.uk" />
+        <Control Id="PasswordLabel" Type="Text" Height="13" Width="92" X="15" Y="75" Text="Password" />
+        <Control Id="PhraseLabel" Type="Text" Height="13" Width="92" X="15" Y="95" Text="Secure Phrase" />
+
+        <!-- Text boxes -->
+        <Control Id="PasswordEdit" Type="Edit" Height="15" Width="230" X="132" Y="72" Property="DEFAULT_USER_PASSWORD"/>
+        <Control Id="PhraseEdit" Type="Edit" Height="15" Width="230" X="132" Y="92" Property="DEFAULT_USER_PHRASE"/>
+
+      </Dialog>
+    </UI>
+  </Fragment>
+</Wix>

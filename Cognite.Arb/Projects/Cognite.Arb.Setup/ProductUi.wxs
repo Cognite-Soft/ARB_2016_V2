@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI Id="ProductUI">
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="Mondo" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="SetupTypeDlg">1</Publish>
+
+      <Publish Dialog="SetupTypeDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+      <Publish Dialog="SetupTypeDlg" Control="TypicalButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="SetupTypeDlg" Control="CustomButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+      <Publish Dialog="SetupTypeDlg" Control="CompleteButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+    
+      <Publish Dialog="MaintenanceTypeDlg" Control="ChangeButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="1">
+        <![CDATA[WixUI_InstallMode = "Change"]]>
+      </Publish>
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Order="1" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Order="2" Value="DatabaseConnectionDlg">
+        <![CDATA[&WebApiFeature=3 OR &DatabaseFeature=3]]>
+      </Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Order="3" Value="WebApiAddressDlg">
+        <![CDATA[&WebApiFeature<>3 AND &DatabaseFeature<>3]]>
+      </Publish>
+      
+      <Publish Dialog="DatabaseConnectionDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="1">1</Publish>
+      <Publish Dialog="DatabaseConnectionDlg" Control="Next" Event="NewDialog" Order="1" Value="SmtpDlg">
+        <![CDATA[&WebApiFeature=3]]>
+      </Publish>
+      <Publish Dialog="DatabaseConnectionDlg" Control="Next" Event="NewDialog" Order="2" Value="WebApiAddressDlg">
+        <![CDATA[&WebApiFeature<>3]]>
+      </Publish>
+      <Publish Dialog="DatabaseConnectionDlg" Control="TestConnection" Event="DoAction" Order="1" Value="DataSourceTestConnection"></Publish>
+
+      <Publish Dialog="SmtpDlg" Control="Back" Event="NewDialog" Value="DatabaseConnectionDlg" Order="1">1</Publish>
+      <Publish Dialog="SmtpDlg" Control="Next" Event="NewDialog" Value="CreateDefaultUserDlg" Order="1">1</Publish>
+
+      <Publish Dialog="CreateDefaultUserDlg" Control="Back" Event="NewDialog" Value="SmtpDlg" Order="1">1</Publish>
+      <Publish Dialog="CreateDefaultUserDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="1">1</Publish>
+
+      <Publish Dialog="WebApiAddressDlg" Control="Back" Event="NewDialog" Value="DatabaseConnectionDlg" Order="1">
+        <![CDATA[&WebApiFeature<>3]]>
+      </Publish>
+      <Publish Dialog="WebApiAddressDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="2">
+        <![CDATA[&WebApiFeature=3 OR &DatabaseFeature=3]]>
+      </Publish>
+      <Publish Dialog="WebApiAddressDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="1">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="DatabaseConnectionDlg" Order="1">
+        <![CDATA[&WebApiFeature=3]]>
+      </Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WebApiAddressDlg" Order="2">
+        <![CDATA[&WebApiFeature<>3 AND &DatabaseFeature<>3]]>
+      </Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="3">1</Publish>
+    </UI>
+  </Fragment>
+</Wix>

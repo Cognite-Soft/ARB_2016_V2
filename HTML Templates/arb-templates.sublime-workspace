@@ -1,0 +1,630 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"we",
+				"week-8"
+			],
+			[
+				"week",
+				"week-8"
+			],
+			[
+				"w",
+				"week"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"body",
+				"body-font-color"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"bod",
+				"body-bg"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"top",
+				"top-nav"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"ta",
+				"target	Attr"
+			],
+			[
+				"c",
+				"color"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"rgb",
+				"rgba()"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"cl",
+				"clear"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"t",
+				"title	Attr"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"card",
+				"card-cover"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"no",
+				"none"
+			],
+			[
+				"d",
+				"display"
+			],
+			[
+				"re",
+				"reset"
+			],
+			[
+				"HU",
+				"HUD-background"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "case-activity.htm",
+			"settings":
+			{
+				"buffer_size": 5404,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"git clone https://github.com/wbond/sublime_package_control.git \"Package Control\"",
+			"cd Packages/",
+			"git clone https://github.com/wbond/sublime_package_control.git \"Package Control\"",
+			"cd Packages\\",
+			"Cd\\Users\\aproios.COGNITE\\AppData\\Roaming\\Sublime Text 3\\Packages\\",
+			"Cd\\Users\\aproios.COGNITE\\AppData\\Roaming\\Sublime Text 3\\Packages",
+			"cd Packages/"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/HTML Templates/admin-user-manager.htm",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/fonts.css",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/reset.css",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/layout.css",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/case-comments.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/js/app.js",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/assets/sprite.svg",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/classes.css",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/themes.css",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/cogforms.css",
+		"//dacsonline/c$/inetpub/wwwroot/KenticoCMS/App_Themes/DACS/_css/ie.css",
+		"/C/Users/aproios.COGNITE/Desktop/style.css",
+		"/C/Users/aproios.COGNITE/Desktop/DACS Branding 2014/DACS Website_About Us.jpg",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/scss/app.scss",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/case-overview.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/case-discussions.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/admin-user-manager.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/reset-phrase.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/reset-password.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/admin-schedule-editor.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/login.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/complaint-list.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/case-activity.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/arb-templates.sublime-project",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/QI/app/js/app.js",
+		"/C/Users/aproios.COGNITE/Downloads/font-awesome-4.0.3/font-awesome-4.0.3/css/font-awesome.min.css",
+		"/C/Users/aproios.COGNITE/Dropbox/port/scss/app.scss",
+		"/C/Users/aproios.COGNITE/Dropbox/port/js/sdc.Sticky.js",
+		"/C/Users/aproios.COGNITE/Dropbox/port/js/sdc.Grid.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/humans.txt",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/BeautifulTravel/version1/js/main.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/BeautifulTravel/travelHUD/js/load-content.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/BeautifulTravel/travelHUD/js/initialise.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/BeautifulTravel/travelHUD/js/ddid.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-html-demo/complaint-list.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/bower_components/foundation/scss/foundation/_functions.scss",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/sdc-blank/index.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/Gruntfile.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/package.json",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/case-documents.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/complaint.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/course.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/student.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/index.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/index-template.html",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/bower_components/modernizr/grunt.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/bower_components/modernizr/modernizr.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt/node_modules/coffee-script/Rakefile",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/package.json",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/Rakefile",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt/node_modules/js-yaml/node_modules/esprima/package.json",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt/node_modules/js-yaml/node_modules/esprima/README.md",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt-contrib-watch/node_modules/tiny-lr/package.json",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt-contrib-watch/node_modules/tiny-lr/readme.md",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt-contrib-watch/node_modules/tiny-lr/node_modules/qs/package.json",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/grunt-contrib-watch/node_modules/tiny-lr/node_modules/qs/Readme.md",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/node_modules/node-sass/node_modules/mocha/bin/_mocha",
+		"/C/Users/aproios.COGNITE/Desktop/arb/arb-templates/scss/app.scss",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arbprototype/app/scss/components/_base.scss",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arb-templates/scss/_settings.scss",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arbprototype/app/scss/_variables.scss",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arbprototype/app/scss/app.scss",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arbprototype/app/scripts/main.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arbprototype/app/scripts/app.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/arb/arbprototype/Gruntfile.js",
+		"/C/Users/aproios.COGNITE/Desktop/labsoft_scorm_example/imsmanifest.xml",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard-App/UniEBoard/js/jquery.fileupload.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/QI/Quote-v2.html",
+		"/C/Users/aproios.COGNITE/Desktop/arb/node_modules/foundation/Gruntfile.js",
+		"/C/Users/aproios.COGNITE/Desktop/arb/node_modules/foundation/package.json",
+		"/C/Users/aproios.COGNITE/Desktop/labsoft_scorm_example/imscp_v1p2.xsd",
+		"/C/Users/aproios.COGNITE/Desktop/labsoft_scorm_example/labsoft.xsd",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/QI/styles.css",
+		"/C/Users/aproios.COGNITE/Desktop/labsoft_scorm_example/ELMA2/ELMA2_01920.htm",
+		"/C/Users/aproios.COGNITE/Dropbox/- New Project Template/index.htm",
+		"/C/Users/aproios.COGNITE/Desktop/clean/index.htm",
+		"/C/Users/aproios.COGNITE/Desktop/clean/Gruntfile.js",
+		"/C/Users/aproios.COGNITE/Desktop/clean/.bowerrc",
+		"/C/Users/aproios.COGNITE/Desktop/clean/scss/app.scss",
+		"/C/Users/aproios.COGNITE/Desktop/clean/package.json",
+		"/C/Users/aproios.COGNITE/Dropbox/port/index.htm",
+		"/C/Users/aproios.COGNITE/Desktop/clean/bower.json",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard-App/UniEBoard/.bowerrc",
+		"/C/Users/aproios.COGNITE/Dropbox/port/package.json",
+		"/C/Users/aproios.COGNITE/Desktop/clean/node_modules/grunt/package.json",
+		"/C/Users/aproios.COGNITE/Dropbox/port/scss/sdcGrid.scss",
+		"/C/Users/aproios.COGNITE/Dropbox/port/project-view.htm",
+		"/C/Users/aproios.COGNITE/Dropbox/port/css/app.css",
+		"/C/Users/aproios.COGNITE/Dropbox/port/Gruntfile.js",
+		"/C/Users/aproios.COGNITE/Downloads/gridpak/demo/index.html",
+		"/C/Users/aproios.COGNITE/Downloads/gridpak/gridpak.js",
+		"/C/Users/aproios.COGNITE/Downloads/gridpak/gridpak.scss",
+		"/C/Users/aproios.COGNITE/Dropbox/port/index-flex.htm",
+		"/C/Users/aproios.COGNITE/Desktop/temp/DDANGA.htm",
+		"/C/Users/aproios.COGNITE/Desktop/Static analytics/Grades.cshtml",
+		"/C/Users/aproios.COGNITE/Desktop/Static analytics/Analytics.cshtml",
+		"/C/Users/aproios.COGNITE/Dropbox/port/old.htm",
+		"/C/Users/aproios.COGNITE/Desktop/workon sidebarEffects.js",
+		"/C/Users/aproios.COGNITE/Dropbox/port/js/sdc-sticky.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard/UniEBoard - WebApp/UniEBoard/node_modules/node-sass/libsass/environment.hpp",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard - Admin/Content/scss/app.scss",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard - Admin/dashboard.htm",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard - Admin/delete.htm",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard - Admin/settings.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard/UniEBoard - Admin/modules.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard/UniEBoard - Admin/settings.htm",
+		"/C/Users/aproios.COGNITE/Dropbox/muchcoin/site/index.htm",
+		"/C/Users/aproios.COGNITE/Dropbox/muchcoin/site/css/app.css",
+		"//PAULMERVIN-HP/c$/inetpub/wwwroot/NigeriaDemo/Views/Shared/_TeacherNavigationalElementsPartial.cshtml",
+		"//PAULMERVIN-HP/c$/inetpub/wwwroot/NigeriaDemo/Views/Shared/_AdminNavigationalElementsPartial.cshtml",
+		"/C/Users/aproios.COGNITE/Desktop/junk.htm",
+		"/C/Users/aproios.COGNITE/Dropbox/muchcoin/site/live.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard/UniEBoard - Teacher/classes.htm",
+		"/C/Users/aproios.COGNITE/Desktop/lockhatters checkout template/Checkout.htm",
+		"/C/Users/aproios.COGNITE/Desktop/lockhatters checkout template/template.htm",
+		"/C/Users/aproios.COGNITE/Desktop/internet/template.htm",
+		"/C/Users/aproios.COGNITE/Desktop/lockhatters checkout template/test.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/Lockhatters/WebApp/LockHattersShoppingCartStep_4.aspx",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/Lockhatters/WebApp/LockHattersShoppingCart.aspx",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard/index.htm",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard/scss/app.scss",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard/js/app.js",
+		"/C/Users/aproios.COGNITE/Desktop/UniEBoard/css/app.css",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/strategia-group/js/app.js",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard/UniEBoard - Prototype/teacher-grades.htm",
+		"/C/Users/aproios.COGNITE/Documents/GitHub/UniEBoard/SMES/mark-book.htm",
+		"//cogunieboard/c$/inetpub/wwwroot/NigeriaDemo/Scripts/js/app.js",
+		"//cogunieboard/c$/inetpub/wwwroot/UniEBoard/Views/Teacher/_CourseListPartial.cshtml"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"week-5",
+			"slogan",
+			"utility-navigation",
+			"W01 Light'",
+			".boxout blockquote",
+			"helv",
+			"h2",
+			".artist p.caption",
+			"'Helvetica Neue'",
+			"font-family",
+			"font-family	",
+			"EditMode",
+			"week-8",
+			"2",
+			"week-4-off",
+			"href=\"\" ",
+			"</a>",
+			"</li>",
+			".cont",
+			"Password",
+			"value=\"Andy Proios\" ",
+			" value=\"Andy Proios\" ",
+			"html",
+			"feed-s",
+			"dark",
+			"readme",
+			"Overview",
+			"fa-file",
+			"fa-file-o",
+			"add",
+			"url",
+			"claimant",
+			"Claimant",
+			"claimant",
+			"Claimant",
+			"claimant",
+			"legal",
+			"sex",
+			"architect",
+			"Architect",
+			"architect",
+			"45px",
+			"large-8",
+			"first",
+			"box",
+			"333",
+			"contain",
+			"contain-to-grid",
+			".contain-to-grid",
+			"mgs/user.gif",
+			"<!",
+			"imgs/user.gif",
+			"imgs",
+			"imgs/user.gif",
+			"user",
+			"index.htm",
+			"index.html",
+			"imgs/arb-logo.png",
+			"styles/app.css",
+			"transition",
+			"latest",
+			"Gridpak",
+			"gridpak",
+			"Gridpak",
+			"gridpak",
+			"t",
+			"\"",
+			"strobe",
+			"logo",
+			"960px",
+			"width",
+			"about",
+			"hover",
+			"link",
+			" class=\"link\"",
+			"#about",
+			"hasParentClass",
+			";",
+			"var",
+			";",
+			"var",
+			";",
+			"var",
+			";",
+			"BindAutocomplete",
+			";",
+			"var",
+			";",
+			"var",
+			";",
+			"var",
+			";",
+			"var",
+			";",
+			"console.log",
+			"var",
+			";",
+			"var",
+			"dist",
+			"900",
+			"before",
+			"<img src",
+			"img",
+			"End",
+			"./Checkout_files/",
+			"600",
+			"font-weight:600",
+			"600",
+			"font-weight:600",
+			"font:600",
+			"getHeroHeight",
+			"set height",
+			"set",
+			"navContiner",
+			"news1",
+			"+",
+			"+.ui",
+			"mark-book-orderby",
+			"columns time",
+			"<span class=\"right\"><small>Duration",
+			"Duration",
+			"2014 @",
+			"Department",
+			"input",
+			"</label>",
+			"<label>",
+			"span",
+			"First-Name"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"index.htm",
+			"images/arb-logo.png",
+			"css/app.css",
+			"#canvas",
+			".canvas"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "case-activity.htm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5404,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3724,
+								3724
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1035.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "arb-templates.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\aproios.COGNITE\\Dropbox\\port\\sdc-framework.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 243.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

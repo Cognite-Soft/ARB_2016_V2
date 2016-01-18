@@ -1,0 +1,72 @@
+﻿@model Cognite.Arb.Web.Models.Complaints.ComplaintActivityFeedViewModel
+
+@{
+    ViewBag.StartDate = Model.StartDate;
+}
+
+<div class="large-8 columns">
+    <!-- Begin feed -->
+    @foreach (var section in Model.Sections)
+    {
+        @Html.Partial("ActivityFeed/Section", section)
+    }
+    @if (Model.StartDate != null)
+    {
+        <div class="box feed">
+            <a href="">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <p><strong>@Model.StartDate.Value.ToShortDateString() - Case started</strong></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+    <!-- end feed -->
+</div>
+
+<div class="large-4 columns">
+    <ul class="no-bullet">
+        @{
+            string commentsClass, decisionClass, finaldecClass;
+            commentsClass = decisionClass = finaldecClass = "secondary";
+            
+            if (Model.StartDate != null)
+            {
+                var pc = Model.Sections.Where(i => i.SectionType == Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionType.PreliminaryComments).FirstOrDefault();
+                if (pc != null && pc.SectionStatus != Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionStatus.Future)
+                {
+                    commentsClass = pc.SectionStatus == Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionStatus.Current ? "" : "success";
+                }
+                
+                var pd = Model.Sections.Where(i => i.SectionType == Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionType.PreliminaryDecision).FirstOrDefault();
+                if (pd != null && pd.SectionStatus != Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionStatus.Future)
+                {
+                    decisionClass = pd.SectionStatus == Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionStatus.Current ? "" : "success";
+                }
+                
+                var fd = Model.Sections.Where(i => i.SectionType == Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionType.FinalDecision).FirstOrDefault();
+                if (fd != null && fd.SectionStatus != Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionStatus.Future)
+                {
+                    finaldecClass = fd.SectionStatus == Cognite.Arb.Server.Contract.ActivityFeed.ActivityFeedSectionStatus.Current ? "" : "success";
+                }
+            }
+        }
+        <li><a><span class="label @commentsClass">1 - Preliminary Comments</span></a></li>
+        <li><a><span class="label @decisionClass">2 - Preliminary Decision</span></a></li>
+        <li><a><span class="label @finaldecClass">3 - Final Decision</span></a></li>
+    </ul>
+
+   
+</div>
+
+
+
+
+<!-- div class="large-4 columns">
+    <ul class="no-bullet">
+        <li><a><span class="label success">1 - Preliminary Comments</span></a></li>
+        <li><a><span class="label">2 - Preliminary Decision</span></a></li>
+        <li><a><span class="label secondary">3 - Final Decision</span></a></li>
+    </ul>
+</div-->

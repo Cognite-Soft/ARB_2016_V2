@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b69194d2685c418793ddb2b74e394a26" Name="Diagram1">
+        <EntityTypeShape EntityType="ExternalDatabaseModel.CasePerson" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExternalDatabaseModel.Case" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExternalDatabaseModel.RegulationExecutivePerson" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExternalDatabaseModel.RegulationExecutiveUser" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExternalDatabaseModel.RoleOfPerson" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_CasePersons_Cases" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_CasePersons_RegulationExecutiveUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_CasePersons_RoleOfPersons" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_Cases_RegulationExecutiveUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_RegulationExecutivePersons_RegulationExecutiveUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_RegulationExecutivePersons_RoleOfPersons" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_RegulationExecutivePersons_RoleOfPersons1" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_RegulationExecutivePersons_RoleOfPersons2" ManuallyRouted="false" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_RegulationExecutivePersons_RoleOfPersons3" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ExternalDatabaseModel.NewCas" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ExternalDatabaseModel.RegulationExecOrgPersons_Seed" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_CasePersons_RegulationExecOrgPersons_Seed" />
+        <AssociationConnector Association="ExternalDatabaseModel.FK_RegulationExecutivePersons_RegulationExecOrgPersons_Seed" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

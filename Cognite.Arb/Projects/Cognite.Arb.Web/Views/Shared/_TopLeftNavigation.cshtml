@@ -1,0 +1,14 @@
+﻿<ul class="title-area left">
+    <li class="name">
+        <h1>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink(User.Identity.Name, "Logout", "Account", null, new { id = "current-user" })
+            }
+            else
+            {
+                @Html.ActionLink("Login", "Login", "Account")
+            }
+        </h1>
+    </li>
+</ul>

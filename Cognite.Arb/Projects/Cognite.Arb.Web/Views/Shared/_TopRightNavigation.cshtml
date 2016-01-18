@@ -1,0 +1,42 @@
+﻿@using Cognite.Arb.Web.Core
+
+@{
+    var controllerName = Request.RequestContext.RouteData.Values["controller"].ToString();
+    
+    var currentCaseId = -1;
+    var currentCaseObj = Session[ArbConstants.SessionCurrentCaseKey];
+    if (currentCaseObj != null)
+    {
+        currentCaseId = (int)currentCaseObj;
+    }
+    
+    var idObj = Request.RequestContext.RouteData.Values["id"];
+    var currentCaseOpened = (idObj != null) && idObj.ToString().Equals(currentCaseId.ToString());
+}
+
+<ul class="right">
+    @if (User.IsInRole("Admin,CaseWorker"))
+    {
+        <li class="@if (controllerName.Equals("UserManagement")) { @Html.Raw("active"); }">
+            @Html.ActionLink("User Manager", "Index", "UserManagement")
+        </li>
+    }
+    @if (User.IsInRole("CaseWorker"))
+    {
+        <li class="@if (controllerName.Equals("Schedule")) { @Html.Raw("active"); }">
+            @Html.ActionLink("Schedule Editor", "Index", "Schedule")
+        </li>
+    }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="@if (controllerName.Equals("Complaints") && !currentCaseOpened) { @Html.Raw("active"); }">
+            @Html.ActionLink("Complaints", "Index", "Complaints")
+        </li>
+    }
+    @if (User.Identity.IsAuthenticated && currentCaseId != -1)
+    {
+        <li class="@if (currentCaseOpened) { @Html.Raw("active"); }">
+            @Html.ActionLink("Current Case", "Overview", "Complaints", new { id = currentCaseId }, new { })
+        </li>
+    }
+</ul>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+  <Fragment>
+    <Property Id="VIRTUAL_DIR_VAL" Value="ArbWebApi" />
+    <Property Id="WEB_APP_NAME" Value="ArbWebApi" />
+    <Property Id="SMTP_HOST" Value="mail.scnsoft.com" />
+    <Property Id="SMTP_USER" Value="ict-8047@scnsoft.com"/>
+    <Property Id="SMTP_PASSWORD" Value="Fs2ldr2Z"/>
+    <Property Id="DEFAULT_USER_PASSWORD" Value="password" />
+    <Property Id="DEFAULT_USER_PHRASE" Value="1111122222"/>
+    <PropertyRef Id="WEBAPI_ADDRESS"/>
+
+    <!--<CustomAction Id="CreateDefaultUserAction" BinaryKey="CustomActions" DllEntry="CreateDefaultUserAction" Execute="immediate" Return="check" />
+
+    <InstallExecuteSequence>
+      <Custom Action="CreateDefaultUserAction" After="StartServices"></Custom>
+    </InstallExecuteSequence>-->
+    
+    <Feature Id="WebApiFeature" Title="Web API" Level="1">
+      <Component Id="StsComponent" Guid="{769065B3-E6C6-485E-B2A5-0B3B42D289EF}" Directory="STSFOLDER">
+        <CreateFolder />
+        <File Id="StsComponent01"
+              Source="../../../Cognite.Arb.Sts.WindowsServiceHost/bin/Debug/Cognite.Arb.Server.Sts.WindowsServiceHost.exe"/>
+        <File Id="StsComponent02"
+              Source="../../../Cognite.Arb.Sts.WindowsServiceHost/bin/Debug/Cognite.Arb.Server.Sts.WindowsServiceHost.exe.config"/>
+        <File Id="StsComponent03"
+              Source="../../../Cognite.Arb.Sts.WindowsServiceHost/bin/Debug/Cognite.Arb.Server.Sts.Service.dll"/>
+        <File Id="StsComponent04"
+              Source="../../../Cognite.Arb.Sts.WindowsServiceHost/bin/Debug/Cognite.Arb.Sts.Business.dll"/>
+        <File Id="StsComponent05"
+              Source="../../../Cognite.Arb.Sts.WindowsServiceHost/bin/Debug/Cognite.Arb.Sts.Contract.dll"/>
+        <ServiceInstall Id="StsComponentServiceInstall"
+                        Name="Cognite.Arb.Sts" DisplayName="Cognite.Arb.Sts"
+                        Description="Cognite ARB Security Token Service"
+                        Type="ownProcess" Start="auto" ErrorControl="normal"/>
+        <ServiceControl Id="StsComponentServiceControl" Name="Cognite.Arb.Sts"
+                        Start="install" Stop="both" Wait="yes" Remove="uninstall" />
+      </Component>
+      <Component Id="WebApiIISComponet" Guid="{B93685DD-5560-48F3-8FB9-F31233E7B585}" Directory="WEBAPISERVICEFOLDER">
+        <CreateFolder />
+        <iis:WebSite Id="ArbWebApiSite" Description="ArbWebApiSite" Directory="WEBAPISERVICEFOLDER">
+          <iis:WebAddress Id="AllUnassigned1" Port="81"/>
+        </iis:WebSite>
+        <iis:WebVirtualDir Id="WebApiVirtualDirectory" Alias="ArbWebApi" Directory="WEBAPISERVICEFOLDER" WebSite="ArbWebApiSite">
+          <iis:WebApplication Id="WebApiWebApplication" Name="ArbWebApi"></iis:WebApplication>
+        </iis:WebVirtualDir>
+      </Component>
+      <Component Id="WebApiContent_WEBAPIPUBLISH_Component" Guid="c998e2d9-b8fe-4500-86c2-6afb3512bf1f" Directory="WEBAPISERVICEFOLDER">
+<CreateFolder />
+<File Id="File_92775fabb6fb49bf920922b06b5a3919" Source="../../../Cognite.Arb.Server.WebApi/favicon.ico"/>
+<File Id="File_376e3a005ae142a89fad7e8cdb26f8ae" Source="../../../Cognite.Arb.Server.WebApi/Global.asax"/>
+<File Id="File_6f5fca498723421d87d3e95d2d800f6a" Source="../../../Cognite.Arb.Server.WebApi/packages.config"/>
+<File Id="File_27fa297323ae48f9a489c428b6d9ee28" Source="../../../Cognite.Arb.Server.WebApi/Web.config"/>
+</Component>
+<Component Id="WebApiContent_Areas_Component" Guid="4a23e979-99c8-470e-a457-a05117b1749a" Directory="WebApiContent_Areasc2db2e66631e4831bc16160c5a10c680_FOLDER">
+<CreateFolder />
+</Component>
+<Component Id="WebApiContent_HelpPage_Component" Guid="38d58673-3e5d-43f0-89f4-0970931d5146" Directory="WebApiContent_HelpPagea565c08c2a0e407aae24c0a498c17e1b_FOLDER">
+<CreateFolder />
+<File Id="File_5d9fc9acdc60421a99657104d445a499" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\HelpPage.css"/>
+</Component>
+<Component Id="WebApiContent_Views_Component1" Guid="8678882f-95d0-4cd7-9898-e31c3e403316" Directory="WebApiContent_Views7c460e6fa7774d71bfb5dcfd048f1da6_FOLDER">
+<CreateFolder />
+<File Id="File_2b7de8b32677413495942a9c39416630" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Web.config"/>
+<File Id="File_3e284a0b85324a5686bcd117b21dd6fd" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\_ViewStart.cshtml"/>
+</Component>
+<Component Id="WebApiContent_Help_Component" Guid="e1dd50e5-319b-4570-b59d-712e9f1f97bf" Directory="WebApiContent_Help4605ef8f44ad482189d712dc105a7520_FOLDER">
+<CreateFolder />
+<File Id="File_4c1a8acb876047d7b450874ec458c970" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\Api.cshtml"/>
+<File Id="File_2593845ec1ed4948b72137041c16574d" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\Index.cshtml"/>
+<File Id="File_b4ec4d9686de4df492711bb8d05779d6" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\ResourceModel.cshtml"/>
+</Component>
+<Component Id="WebApiContent_DisplayTemplates_Component" Guid="8f334c7f-0266-4010-a2f3-6d066fe82bd6" Directory="WebApiContent_DisplayTemplates0fc235b3fe9f4d899a3d78bbf49a57c4_FOLDER">
+<CreateFolder />
+<File Id="File_13397a30e88244089b861cda4baff120" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml"/>
+<File Id="File_d6c98baf0319461fbf7b3bc1223af6d4" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml"/>
+<File Id="File_83a9eca78e4c4c88a899b663adecff35" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml"/>
+<File Id="File_4fc5eb21afe347afa78ef59913e60e00" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml"/>
+<File Id="File_d76c6d903bd5472e91c8b60cdeec233d" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml"/>
+<File Id="File_301a4e3386744e05b6261c10c83cddb9" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml"/>
+<File Id="File_ba1615027ad64727a1e9aa5f927a1d52" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml"/>
+<File Id="File_fb1350b3c20d490bb46c8c65af81e1cf" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml"/>
+<File Id="File_73f7d6418ac848dea35ab847bd492d35" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml"/>
+<File Id="File_948ba8cf70224501920619b777ec90b2" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml"/>
+<File Id="File_2235869183e44e8ba57efdc73506211a" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml"/>
+<File Id="File_089b0cdc297b46be8b8b2414666f4829" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml"/>
+<File Id="File_9fe361ec5d9345379d390edd19d4290c" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml"/>
+<File Id="File_6a1eec4b1b244f65bb81e8b02ec83101" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml"/>
+</Component>
+<Component Id="WebApiContent_Shared_Component1" Guid="a1d3ecaa-35ec-462c-99b7-dc1cf7f7e25e" Directory="WebApiContent_Sharedd2309b9dfe2b43fc95417903ad8a2f15_FOLDER">
+<CreateFolder />
+<File Id="File_91483fe91bc44f099c980e93295034e2" Source="../../../Cognite.Arb.Server.WebApi/Areas\HelpPage\Views\Shared\_Layout.cshtml"/>
+</Component>
+<Component Id="WebApiContent_bin_Component" Guid="a42b3ad8-9344-47a3-9318-2135197cd7f0" Directory="WebApiContent_bind8cbe8517d144a47bbd3622b16259da4_FOLDER">
+<CreateFolder />
+<File Id="File_d018e3ec194f478ea21406908d1b71e2" Source="../../../Cognite.Arb.Server.WebApi/bin\Antlr3.Runtime.dll"/>
+<File Id="File_1707c323312647988a87d6abfe7d4dd6" Source="../../../Cognite.Arb.Server.WebApi/bin\AutoMapper.dll"/>
+<File Id="File_e51adb8097fa415380f32f1a9f0d6679" Source="../../../Cognite.Arb.Server.WebApi/bin\AutoMapper.Net4.dll"/>
+<File Id="File_23488ddfbdc1451c861039d0499d0331" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.Business.dll"/>
+<File Id="File_d73bc364d1f546269a021ea627b07632" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.Business.Mailing.dll"/>
+<File Id="File_0ec46be91945434bb1fccba4acdc21ce" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.Contract.dll"/>
+<File Id="File_2e3c63511f7a4efb91ebcc9f2eebd2eb" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.Resource.Database.dll"/>
+<File Id="File_2cfa989bf96e49c78854c3a494c2fcfd" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.Resource.MailSender.dll"/>
+<File Id="File_cf8715e8060a40c7b6e0a2eae67589d4" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.WebApi.dll"/>
+<File Id="File_3dbadd8b6ef54901893a6c91637cc163" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.WebApi.ExceptionHandling.dll"/>
+<File Id="File_8a65443ceb194f7f98d4f561a9febda5" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Server.WebApi.Security.dll"/>
+<File Id="File_f990d88ecc3d40be8d682a98600dae9e" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Sts.Client.dll"/>
+<File Id="File_b7a3a0f3e9f54b869b536756ca96dde3" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.Sts.Contract.dll"/>
+<File Id="File_5d6f4c6ce0a4445d892458c02084329f" Source="../../../Cognite.Arb.Server.WebApi/bin\Cognite.Arb.WebApi.Resource.Sts.dll"/>
+<File Id="File_c7b5fa1665ea4763918f4cbd3eadd4fc" Source="../../../Cognite.Arb.Server.WebApi/bin\EntityFramework.dll"/>
+<File Id="File_40103cb8ff894c149129a7afdcbc89f6" Source="../../../Cognite.Arb.Server.WebApi/bin\EntityFramework.SqlServer.dll"/>
+<File Id="File_84d04dd3779f41ab802e536f29119968" Source="../../../Cognite.Arb.Server.WebApi/bin\Microsoft.Practices.ServiceLocation.dll"/>
+<File Id="File_dec4a7a0205a4465949a9f25966b46ff" Source="../../../Cognite.Arb.Server.WebApi/bin\Microsoft.Practices.Unity.dll"/>
+<File Id="File_22676e8cfbc0480c8b13836eb3fbb995" Source="../../../Cognite.Arb.Server.WebApi/bin\Microsoft.Practices.Unity.Mvc.dll"/>
+<File Id="File_ec76cd888fce4a2eada2b91dc27f49e7" Source="../../../Cognite.Arb.Server.WebApi/bin\Microsoft.Web.Infrastructure.dll"/>
+<File Id="File_89baa0949b2f467898c2b8a8edda4a9e" Source="../../../Cognite.Arb.Server.WebApi/bin\Newtonsoft.Json.dll"/>
+<File Id="File_6cfd4b5cb5f44cf9a2c6d1681e293ed8" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Net.Http.Formatting.dll"/>
+<File Id="File_b599d03c79c44b0091d4e549a9b6da23" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.Helpers.dll"/>
+<File Id="File_e02c0e0365ba43a6b7820d7aa61c4876" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.Http.dll"/>
+<File Id="File_4a0087d5f5924a639b4a9e57d7718e0c" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.Http.Tracing.dll"/>
+<File Id="File_e40ecc48e1924e9f977452b86d447269" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.Http.WebHost.dll"/>
+<File Id="File_80929e1264ed453798a837c5c3008027" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.Mvc.dll"/>
+<File Id="File_82a02a702e1d461d809e7ca78806cb6f" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.Optimization.dll"/>
+<File Id="File_4d9bc7c3f0c14c8382b5c3cdfb97a344" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.Razor.dll"/>
+<File Id="File_c1df4a788a9847338351bed1f0a056a8" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.WebPages.Deployment.dll"/>
+<File Id="File_201151c7564e4c469c4c433c67a79880" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.WebPages.dll"/>
+<File Id="File_7124f6ab77f04de78de1b225ec9b13e6" Source="../../../Cognite.Arb.Server.WebApi/bin\System.Web.WebPages.Razor.dll"/>
+<File Id="File_ef9c568bd2aa47f6817837c40b044502" Source="../../../Cognite.Arb.Server.WebApi/bin\WebActivatorEx.dll"/>
+<File Id="File_20052edfc69446e79e6989b31bde3455" Source="../../../Cognite.Arb.Server.WebApi/bin\WebGrease.dll"/>
+</Component>
+<Component Id="WebApiContent_MailTemplates_Component1" Guid="cabe0e98-c8be-45f9-88e9-59ef49d70501" Directory="WebApiContent_MailTemplates292e59b4a6634f988b8e2bfd88042173_FOLDER">
+<CreateFolder />
+<File Id="File_1726916b70ef4ba5a909df083618301d" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\AssignmentUpdate.html"/>
+<File Id="File_80a9177177c3412a92f9b70983305f67" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\CaseWorkerAssigned.html"/>
+<File Id="File_51a2ef612df94eecbdb57867ca5b3d8d" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\NewUser.html"/>
+<File Id="File_af010ccf7c424f06bf0e0d706a662c56" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\NewUserComplete.html"/>
+<File Id="File_48dfe0dc1bba4088a7d4defff54d2354" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\ResetPassword.html"/>
+<File Id="File_99c4199171054e59b063aea0c0201111" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\ResetPasswordCopmlete.html"/>
+<File Id="File_8fcd626bc43b49489ff2c853541e6692" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\ResetSecurePhrase.html"/>
+<File Id="File_b2d994546fb94293a64711176a0d914d" Source="../../../Cognite.Arb.Server.WebApi/bin\MailTemplates\ResetSecurePhraseComplete.html"/>
+</Component>
+<Component Id="WebApiContent_Content_Component" Guid="ef553a05-decb-41bb-851f-62b383ef4c15" Directory="WebApiContent_Content6811e9d51d93462288e7f406104c61b9_FOLDER">
+<CreateFolder />
+<File Id="File_fcb60abbe154455381fc82faa1e8bf47" Source="../../../Cognite.Arb.Server.WebApi/Content\bootstrap.css"/>
+<File Id="File_1892c1912f3647269158bbbfc785f5f3" Source="../../../Cognite.Arb.Server.WebApi/Content\bootstrap.min.css"/>
+<File Id="File_aeb1d762a54144b68499507a2e103b9f" Source="../../../Cognite.Arb.Server.WebApi/Content\Site.css"/>
+</Component>
+<Component Id="WebApiContent_fonts_Component" Guid="0e5bda30-1510-4abb-acc4-1dd18013736d" Directory="WebApiContent_fonts2f619a0f12dd44609d3319006ac81923_FOLDER">
+<CreateFolder />
+<File Id="File_f5591a5bd77345b8bd4e8e3f7d14079d" Source="../../../Cognite.Arb.Server.WebApi/fonts\glyphicons-halflings-regular.eot"/>
+<File Id="File_66034f932b784ed68a974b40c9559ef9" Source="../../../Cognite.Arb.Server.WebApi/fonts\glyphicons-halflings-regular.svg"/>
+<File Id="File_2c67759b9d974f808f1126462a44748c" Source="../../../Cognite.Arb.Server.WebApi/fonts\glyphicons-halflings-regular.ttf"/>
+<File Id="File_758fcd8beeda4c2795c7bedc0625ee50" Source="../../../Cognite.Arb.Server.WebApi/fonts\glyphicons-halflings-regular.woff"/>
+</Component>
+<Component Id="WebApiContent_MailTemplates_Component" Guid="2838aaa1-5e6a-4990-bc26-081cb53cca09" Directory="WebApiContent_MailTemplates106f7d1b63ab4c9ea980cc148e5c59a0_FOLDER">
+<CreateFolder />
+<File Id="File_af8043934dd34a8a99c86b0c7402f5d8" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\AssignmentUpdate.html"/>
+<File Id="File_c073f1e1c422424da34244833d025093" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\CaseWorkerAssigned.html"/>
+<File Id="File_b742bed1be154d499625a159a4e977d6" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\NewUser.html"/>
+<File Id="File_e4bbc28769eb40e189e067096c381700" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\NewUserComplete.html"/>
+<File Id="File_fdbd60a7a97f4fa2bea77276c9248695" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\ResetPassword.html"/>
+<File Id="File_45b1dd20f42147629d52e9efc8921422" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\ResetPasswordCopmlete.html"/>
+<File Id="File_85c1f21e82bb4ffbab65ebceaabb5820" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\ResetSecurePhrase.html"/>
+<File Id="File_2d5eea05e919405b9e7d59a0f278b795" Source="../../../Cognite.Arb.Server.WebApi/MailTemplates\ResetSecurePhraseComplete.html"/>
+</Component>
+<Component Id="WebApiContent_Scripts_Component" Guid="6891be09-6762-47fc-986f-d97da0ad2d69" Directory="WebApiContent_Scripts9a7d4fad4c4243e2a1755a810ceef029_FOLDER">
+<CreateFolder />
+<File Id="File_7d64b6734c2f4423bbf69e80e9325d98" Source="../../../Cognite.Arb.Server.WebApi/Scripts\bootstrap.js"/>
+<File Id="File_5e50e7d7acd4460998eaa87ca34d2d53" Source="../../../Cognite.Arb.Server.WebApi/Scripts\bootstrap.min.js"/>
+<File Id="File_41ce9e31cef1426fab1578dc64df97d1" Source="../../../Cognite.Arb.Server.WebApi/Scripts\jquery-1.10.2.js"/>
+<File Id="File_8e32d3132685410db670d159a981f615" Source="../../../Cognite.Arb.Server.WebApi/Scripts\jquery-1.10.2.min.js"/>
+<File Id="File_6c95cf1d30384cf28def349705d80a5f" Source="../../../Cognite.Arb.Server.WebApi/Scripts\jquery-1.10.2.min.map"/>
+<File Id="File_10465a2f60a5481d90dba487d1bc9001" Source="../../../Cognite.Arb.Server.WebApi/Scripts\modernizr-2.6.2.js"/>
+<File Id="File_358f130a1a6c413d817a7b225c538c20" Source="../../../Cognite.Arb.Server.WebApi/Scripts\respond.js"/>
+<File Id="File_8dc25634c0f540bd85f4ec54e73f615e" Source="../../../Cognite.Arb.Server.WebApi/Scripts\respond.min.js"/>
+<File Id="File_8cd28d48c5e348eea7e13c9d46585284" Source="../../../Cognite.Arb.Server.WebApi/Scripts\_references.js"/>
+</Component>
+<Component Id="WebApiContent_Views_Component" Guid="6224ad63-fb89-4e17-84be-7eaeaf458b8d" Directory="WebApiContent_Views873b4bf249584602994dd9f32aed7c14_FOLDER">
+<CreateFolder />
+<File Id="File_b320575718874833bfa392ab089cf010" Source="../../../Cognite.Arb.Server.WebApi/Views\Web.config"/>
+<File Id="File_f0ae67684fb44558924d36dde6066ebc" Source="../../../Cognite.Arb.Server.WebApi/Views\_ViewStart.cshtml"/>
+</Component>
+<Component Id="WebApiContent_Home_Component" Guid="305b08f0-eb93-4754-9adc-3f8290f60d1a" Directory="WebApiContent_Home0301b05532b24abf9ca89c13b7a4d20e_FOLDER">
+<CreateFolder />
+<File Id="File_b9c34acffd1a4d54bf49c93749533e14" Source="../../../Cognite.Arb.Server.WebApi/Views\Home\Index.cshtml"/>
+</Component>
+<Component Id="WebApiContent_Shared_Component" Guid="116d69f9-e9d6-4c7b-8a44-d41f190b3871" Directory="WebApiContent_Shared2058c00bf4844ee491573496c5d43dd6_FOLDER">
+<CreateFolder />
+<File Id="File_e4ea273b9c6d4e5caf146a9cbe7881c8" Source="../../../Cognite.Arb.Server.WebApi/Views\Shared\Error.cshtml"/>
+<File Id="File_14c80185e2a94f08b3a4839ef37669d8" Source="../../../Cognite.Arb.Server.WebApi/Views\Shared\_Layout.cshtml"/>
+</Component>
+    </Feature>
+  </Fragment>
+</Wix>

@@ -1,0 +1,35 @@
+﻿@model Cognite.Arb.Web.Models.Account.ForgotPasswordPhraseViewModel
+@{
+    ViewBag.Title = "Reset Secure Phrase";
+}
+
+<div class="large-4 large-centered columns">
+    <!-- Begin Body Content -->
+    @using (Html.BeginForm("ForgotSecurePhrase", "Account", FormMethod.Post, new { @class = "custom", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="box login">
+            <h4>Reset Secure Phrase</h4>
+            <div class="row">
+                @Html.ValidationSummary("", new { @class = "validation-errors" })
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    @Html.LabelFor(m => m.Email, new { @class = "inline" })
+                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "Type your email...", @tabindex = 1, autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation-error" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <input type="submit" class="button small radius full-width" value="Reset secure phrase" tabindex="2" />
+                </div>
+            </div>
+        </div>
+    }
+    <!-- End Body Content -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,104 @@
+﻿@using System
+@using Cognite.Arb.Server.Contract.Cases
+@model Cognite.Arb.Web.Models.Complaints.ComplaintCommentsViewModel
+
+
+    <div class="large-8 columns">
+        @Html.AntiForgeryToken()
+        @if (Model.RenderFinalDecision)
+        { @Html.Partial("Comments/FinalDecision", Model.FinalDecision) }
+        @if (Model.RenderPreliminaryDecision)
+        { @Html.Partial("Comments/PreliminaryDecision", Model.PreliminaryDecision) }
+        @if (Model.RenderPreliminaryComments)
+        { @Html.Partial("Comments/PreliminaryComments", Model.PreliminaryComments) }
+    </div>
+
+    <div class="large-4 columns backclr" id="readme">
+        @if (Model.AllDocuments.Count() > 0)
+        { 
+        <h4 class="document-header">Case Documents</h4>
+        
+        <ul class="no-bullet">
+            
+            @foreach (var document in Model.AllDocuments)
+            {
+                <li>
+                    <a href="@Url.Action("Download", "Documents", new { id = document.Id })" title="View Document (@document.Name)" target="_blank">
+                        <span class="label secondary">
+                            <i class="fa fa-file-text fa-fw"></i> @document.Name
+                        </span>
+                    </a>
+                </li>
+            }
+        </ul>
+        }
+
+    @if (User.IsInRole("CaseWorker") || User.IsInRole("PanelMember"))
+    { 
+        using (Html.BeginForm("Comments", "Complaints", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+        
+    <h4 class="document-header">Upload Preliminary Decision Document</h4>
+            <div class="view">
+                @if (User.IsInRole("CaseWorker"))
+                {
+                    <button type="submit" name="AddPreliminaryDecision" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                }
+                else if (User.IsInRole("PanelMember"))
+                {
+                    <button type="submit" name="AddUpdatedPreliminaryDecision" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                }
+                <!--<button type="submit" name="AddPreliminaryDecision" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></button>-->
+                <input type="file" name="preliminarydecisionfile" id="uploadpreliminary-file" class="hide" />
+                <a class="button tiny attach" data-input-id="uploadpreliminary-file" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+                <span class="uploadpreliminary-file"></span>
+            </div>
+            <hr>
+    <h4 class="document-header">Upload Final Decision Document</h4>
+            <div class="view">
+                @if (User.IsInRole("CaseWorker"))
+                {
+                    <button type="submit" name="AddFinalDecision" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                }
+                else if (User.IsInRole("PanelMember"))
+                {
+                    <button type="submit" name="AddUpdatedFinalDecision" class="button tiny" title="Add"><i class="fa fa-plus fa-fw"></i></button>
+                }
+
+                <input type="file" name="finaldecisionfile" id="uploadfinaldecision-file" class="hide" />
+                <a class="button tiny attach" data-input-id="uploadfinaldecision-file" title="Attach Document"><i class="fa fa-paperclip fa-fw"></i></a>
+                <span class="uploadfinaldecision-file"></span>
+            </div>
+        }
+            <hr />        
+        if (User.IsInRole("PanelMember"))
+        {         
+             <h4 class="document-header">Send Notification to Case Worker</h4>
+            
+            using (Html.BeginForm("NotifyCaseWorker", "Notification", FormMethod.Post))
+            {
+                                                
+                @Html.AntiForgeryToken()
+            
+                @Html.RadioButton("Notify", "I have amended the decision", new { tabindex = 1 })
+                @Html.Label("I have amended the decision");
+                <br />
+                @Html.RadioButton("Notify", "I have no changes to make", new { tabindex = 1 })                
+                @Html.Label("I have no changes to make");
+                <br />
+                <div id="divNotificationMessage" style="display:none;color:red;font-size:15px;"></div>
+                <br />
+                @*Html.ActionLink("NotifyCaseWorker", "Notification", new { @class = "button smsall radius yes", id = Model.Id })*@
+                <input type="button" id="btnSendNotificationToCaseWorker" class="button small radius yes" value="Send" tabindex="3" />
+            }
+
+        }
+
+    }       
+        
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/complaintview")
+}

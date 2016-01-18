@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ProductCode="{08A0B75D-133F-406b-A435-3B6C3931AF82}"?>
+  <?define UpgradeCode="{3f97214e-1882-4f92-b925-b0239312ebd2}"?>
+  <?define ProductName="Cognite.Arb" ?>
+  <?define ProductVersion="1.0.0.0" ?>
+</Include>
